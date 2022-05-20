@@ -1,0 +1,10 @@
+.bg-carousel {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+
+    width: 1494px;
+    height: 1062px;
+    
+    background-image: url('./resources/BG.png');
+}
