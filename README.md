@@ -1,3 +1,3 @@
 ## GAME FINDER.
 
-Proyecto final para el bootcamp de Frontend realizado por Altimetrik.
+Final project for the Frontend bootcamp by Altimetrik. Made with plain HTML, CSS, and JavaScript.
