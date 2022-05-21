@@ -1,0 +1,50 @@
+:root {
+    font-family: 'Exo';
+}
+
+/*
+
+    Login page styling for the carousel icons and page logo.
+
+*/
+
+#bg-carousel {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+
+    width: 1494px;
+    height: 1062px;
+
+    background: url('../resources/images/BG.png');
+}
+
+#logo-login {
+    position: absolute;
+    left: 39px;
+    top: 30px;
+
+    width: 322px;
+    height: 66px;
+}
+
+#left-chevron {
+    position: absolute;
+    left: 32px;
+    top: 509px;
+}
+
+#right-chevron {
+    position: absolute;
+    right: 32px;
+    top: 509px;
+
+    transform: rotate(-180deg);
+}
+
+/* using the selector :nth-child() from javascript i can change the color of the image it is showing currently */
+#bottom-slider {
+    position: absolute;
+    left: 687px;
+    top: 995px;
+}
