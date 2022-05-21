@@ -2,6 +2,11 @@
     font-family: 'Exo';
     --primary-text-color: #FFFFFF;
     --secondary-text-color: #4CC986;
+    --background-login-form: #303030;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+    margin: 0;
 }
 
 /*
@@ -20,7 +25,7 @@
     width: 1494px;
     height: 1062px;
 
-    background: url('../resources/images/BG.png');
+    background: url('../resources/images/BG.png'), #C4C4C4;
 }
 
 #logo-login {
@@ -60,3 +65,48 @@
     --------------------------------------------------------
 
 */
+
+#login-container {
+    position: relative;
+    left: 932px;
+    top: 178px;
+
+    width: 462px;
+    height: 702px;
+
+    background: var(--background-login-form);
+    backdrop-filter: blur(10px);
+    mix-blend-mode: hard-light;
+    
+    border-radius: 12px;
+}
+
+#login-container div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: absolute;
+    top: 40px;
+    bottom: 40px;
+    left: 50px;
+    right: 50px;
+
+    color: var(--primary-text-color);
+}
+
+.sections {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+}
+
+.sections h1 {
+    font-size: 1.25rem;
+}
+
+.sections #login-description {
+    margin-top: 8px;
+}
