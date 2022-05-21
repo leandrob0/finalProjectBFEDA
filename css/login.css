@@ -95,7 +95,7 @@ h1,h2,h3,h4,h5,h6,p {
     color: var(--primary-text-color);
 }
 
-.sections {
+.login-sections {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -103,10 +103,10 @@ h1,h2,h3,h4,h5,h6,p {
     width: 100%;
 }
 
-.sections h1 {
+.login-sections h1 {
     font-size: 1.25rem;
 }
 
-.sections #login-description {
+.login-sections #login-description {
     margin-top: 8px;
 }
