@@ -9,6 +9,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 /*
@@ -239,6 +240,11 @@ input.form__text-input {
     line-height: 24px;
     padding: 12px;
 }
+
+.btn:hover {
+    cursor: pointer;
+}
+
 .btn__login {
     background-color: #4CC986;
 
@@ -263,4 +269,64 @@ input.form__text-input {
 
 .form__register-button:hover {
     cursor: pointer;
+}
+
+.login-or {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    margin-top: 24px;
+
+    font-size: 14px;
+    line-height: 19px;
+    text-align: center;
+}
+
+.login-or__text {
+    width: 67px;
+    color: var(--bg-dark-icons);
+}
+
+.login-or__line {
+    width: 40%;
+    border: 1px solid var(--bg-dark-icons);
+}
+
+.btn-socials {
+    width: 100%;
+
+    border: 2px solid white;
+    border-radius: 6px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    line-height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 9px 0 9px 0;
+}
+
+.btn-socials:nth-last-of-type(2) {
+    margin-bottom: 24px;
+}
+
+.btn-socials:hover {
+    cursor: pointer;
+}
+
+.btn-fb {
+    margin-top: 29px;
+    margin-bottom: 23px;
+}
+
+.btn-icon {
+    position: absolute;
+    left: 61px;
 }
