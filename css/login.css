@@ -1,12 +1,14 @@
 :root {
     font-family: 'Exo';
     --primary-text-color: #FFFFFF;
-    --secondary-text-color: #4CC986;
+    --secondary-text-color: #5FE19B;
     --background-login-form: #303030;
+    --bg-dark-icons: #515151;
 }
 
-h1,h2,h3,h4,h5,h6,p {
+* {
     margin: 0;
+    padding: 0;
 }
 
 /*
@@ -18,6 +20,10 @@ h1,h2,h3,h4,h5,h6,p {
 */
 
 #bg-carousel {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
     position: absolute;
     left: 0px;
     top: 0px;
@@ -51,6 +57,14 @@ h1,h2,h3,h4,h5,h6,p {
     transform: rotate(-180deg);
 }
 
+.circle-color {
+    fill: var(--bg-dark-icons);
+}
+
+.arrow-color {
+    fill: var(--primary-text-color)
+}
+
 /* using the selector :nth-child() from javascript i can change the color of the image it is showing currently */
 #bottom-slider {
     position: absolute;
@@ -68,45 +82,185 @@ h1,h2,h3,h4,h5,h6,p {
 
 #login-container {
     position: relative;
-    left: 932px;
-    top: 178px;
+
+    margin-right: 100px;
 
     width: 462px;
     height: 702px;
 
-    background: var(--background-login-form);
+    margin-bottom: 5px;
+
     backdrop-filter: blur(10px);
-    mix-blend-mode: hard-light;
+    background-color: rgba(0, 0, 0, 0.6);
     
     border-radius: 12px;
 }
 
-#login-container div {
+.login-container__section {
+    position: absolute;
+    top: 40px;
+    right: 50px;
+    left: 50px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    position: absolute;
-    top: 40px;
-    bottom: 40px;
-    left: 50px;
-    right: 50px;
-
+    font-style: normal;
+    font-weight: 400;
     color: var(--primary-text-color);
 }
 
-.login-sections {
+.login-container__section h1 {
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 27px;
+}
+
+.login-container__section #login-container__description {
+    font-size: 1rem;
+    line-height: 21px;
+
+    margin-top: 11px;
+}
+
+#form {
     display: flex;
     flex-direction: column;
-    align-items: center;
 
     width: 100%;
 }
 
-.login-sections h1 {
-    font-size: 1.25rem;
+#form input {
+    border: 0;
+    border-radius: 4px;
+
+    box-sizing: border-box;
+
+    height: 47px;
+    margin: 0;
 }
 
-.login-sections #login-description {
-    margin-top: 8px;
+#form>input {
+    margin-top: 36px;
+    margin-bottom: 16px; 
+}
+
+input.form__text-input {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+#form .form__text-input::placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+
+    color: #939393;
+}
+
+#form input[type="checkbox"] {
+    appearance: none;
+    box-sizing: border-box;
+
+    width: 20px;
+    height: 20px;
+
+    margin:0;
+
+    border: 2px solid white;
+    border-radius: 4px;
+}
+
+#form__options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 13px;
+}
+
+.form__remember { 
+    display: flex;
+    align-items: center;
+}
+
+#form__remember-text {
+    font-size: 0.875rem;
+    line-height: 19px;
+
+    margin-left: 16px;
+    padding-top: 1px;
+}
+
+#form_forgot {
+    font-size: 0.875rem;
+    
+    text-align: right;
+    line-height: 19px;
+
+    color: var(--secondary-text-color);
+}
+
+/*
+
+    Styling for the password input.
+
+*/
+
+#form__password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: inherit;
+}
+
+#form__password-container input {
+    width: inherit;
+    padding-right: 40px;
+}
+
+#form__password-icon {
+    position: absolute;
+
+    right: 8px;
+}
+
+.btn {
+    border: 0;
+    border-radius: 6px;
+
+    color: white;
+    font-family: 'Exo';
+    font-weight: 700;
+    font-size: 1.125rem;
+    line-height: 24px;
+    padding: 12px;
+}
+.btn__login {
+    background-color: #4CC986;
+
+    margin-top: 24px;
+}
+
+.form__register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 32px;
+
+    font-size: 0.875rem;
+    line-height: 19px;
+}
+
+.form__register-button {
+    padding-left: 5px;
+    color: var(--secondary-text-color)
+}
+
+.form__register-button:hover {
+    cursor: pointer;
 }

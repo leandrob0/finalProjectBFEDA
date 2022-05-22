@@ -24,8 +24,9 @@
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <circle opacity="0.8" cx="21.5" cy="21.5" r="21.5" fill="#515151" />
+        <circle class="circle-color" opacity="0.8" cx="21.5" cy="21.5" r="21.5" />
         <path
+          class="arrow-color"
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M25.9425 10.724C26.1925 10.974 26.3329 11.3131 26.3329 11.6667C26.3329 12.0202 26.1925 12.3593 25.9425 12.6093L17.5519 21L25.9425 29.3907C26.1854 29.6421 26.3198 29.9789 26.3168 30.3285C26.3137 30.6781 26.1735 31.0125 25.9263 31.2598C25.6791 31.507 25.3447 31.6472 24.9951 31.6502C24.6455 31.6533 24.3087 31.5189 24.0572 31.276L14.7239 21.9427C14.4739 21.6926 14.3335 21.3536 14.3335 21C14.3335 20.6464 14.4739 20.3074 14.7239 20.0573L24.0572 10.724C24.3072 10.474 24.6463 10.3336 24.9999 10.3336C25.3534 10.3336 25.6925 10.474 25.9425 10.724Z"
@@ -40,8 +41,9 @@
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <circle opacity="0.8" cx="21.5" cy="21.5" r="21.5" fill="#515151" />
+        <circle class="circle-color" opacity="0.8" cx="21.5" cy="21.5" r="21.5" />
         <path
+          class="arrow-color"
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M25.9425 10.724C26.1925 10.974 26.3329 11.3131 26.3329 11.6667C26.3329 12.0202 26.1925 12.3593 25.9425 12.6093L17.5519 21L25.9425 29.3907C26.1854 29.6421 26.3198 29.9789 26.3168 30.3285C26.3137 30.6781 26.1735 31.0125 25.9263 31.2598C25.6791 31.507 25.3447 31.6472 24.9951 31.6502C24.6455 31.6533 24.3087 31.5189 24.0572 31.276L14.7239 21.9427C14.4739 21.6926 14.3335 21.3536 14.3335 21C14.3335 20.6464 14.4739 20.3074 14.7239 20.0573L24.0572 10.724C24.3072 10.474 24.6463 10.3336 24.9999 10.3336C25.3534 10.3336 25.6925 10.474 25.9425 10.724Z"
@@ -56,7 +58,7 @@
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <rect width="120" height="27" rx="13.5" fill="#515151" />
+        <rect class="circle-color" width="120" height="27" rx="13.5" />
         <circle cx="20.5" cy="13.5" r="3.5" fill="white" />
         <circle opacity="0.25" cx="36.5" cy="13.5" r="3.5" fill="white" />
         <circle opacity="0.25" cx="52.5" cy="13.5" r="3.5" fill="white" />
@@ -65,12 +67,29 @@
         <circle opacity="0.25" cx="100.5" cy="13.5" r="3.5" fill="white" />
       </svg>
       <main id="login-container">
-        <div>
-          <section class='login-sections'>
-            <h1>Welcome! Log in or register</h1>
-            <p id="login-description">Log in to find the games you’re looking for!</p>
-          </section>
-        </div>
+        <section class='login-container__section'>
+          <h1>Welcome! Log in or register</h1>
+          <p id="login-container__description">Log in to find the games you're looking for!</p>
+          <form id="form">
+            <input class="form__text-input" type="email" placeholder="Email">
+            <div id="form__password-container">
+              <input class="form__text-input form__password" size="20" type="password" placeholder="Password">
+              <img id="form__password-icon" src="./resources/icons/Eye.png">
+            </div>
+            <div id="form__options">
+              <span class="form__remember">
+                <input type="checkbox">
+                <p id="form__remember-text">Remember me</p>
+              </span>
+              <p id="form_forgot">Forgot password?</p>
+            </div>
+            <button class="btn btn__login" type="button">Log in</button>
+          </form>
+          <div class="form__register">
+            <p>Not registered yet?</p>
+            <span class="form__register-button">Register now</span>
+          </div>
+        </section>
       </main>
     </div>
   </body>
