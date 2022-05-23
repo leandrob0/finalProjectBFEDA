@@ -1,5 +1,4 @@
 :root {
-    font-family: 'Exo';
     --primary-text-color: #FFFFFF;
     --secondary-text-color: #5FE19B;
     --background-login-form: #303030;
@@ -10,6 +9,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Exo';
 }
 
 /*
@@ -150,21 +150,28 @@
 input.form__text-input {
     padding-left: 16px;
     padding-right: 16px;
+
+    font-weight: 400;
+    font-size: 0.938rem;
+    line-height: 20px;
+    color: #3D3D3D;
+    outline: none;
 }
 
 #form .form__text-input::placeholder {
     font-style: normal;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 0.938rem;
     line-height: 20px;
 
     color: #939393;
 }
 
-#form input[type="checkbox"] {
-    appearance: none;
-    box-sizing: border-box;
+/*
+    Checkbox styling.
+*/
 
+#form input[type="checkbox"] {
     width: 20px;
     height: 20px;
 
@@ -173,6 +180,22 @@ input.form__text-input {
     border: 2px solid white;
     border-radius: 4px;
 }
+
+#form input[type="checkbox"]:hover {
+    cursor: pointer;
+}
+
+#form input[type="checkbox"]:not(:checked) {
+    appearance: none;
+}
+
+#form input[type="checkbox"]:checked {
+    filter: hue-rotate(305deg);
+}
+
+/*
+    ----------------------------------
+*/
 
 #form__options {
     display: flex;
@@ -204,6 +227,10 @@ input.form__text-input {
     color: var(--secondary-text-color);
 }
 
+#form_forgot:hover {
+    cursor: pointer;
+}
+
 /*
 
     Styling for the password input.
@@ -221,6 +248,12 @@ input.form__text-input {
 #form__password-container input {
     width: inherit;
     padding-right: 40px;
+
+    color: #3D3D3D;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.938rem;
+    line-height: 20px;
 }
 
 #form__password-icon {
@@ -229,12 +262,15 @@ input.form__text-input {
     right: 8px;
 }
 
+#form__password-icon:hover {
+    cursor: pointer;
+}
+
 .btn {
     border: 0;
     border-radius: 6px;
 
     color: white;
-    font-family: 'Exo';
     font-weight: 700;
     font-size: 1.125rem;
     line-height: 24px;
