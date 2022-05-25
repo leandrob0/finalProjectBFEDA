@@ -12,6 +12,11 @@
     font-family: 'Exo';
 }
 
+body {
+    width: 1494px;
+    height: 1062px;
+}
+
 /*
 
     --------------------------------------------------------
@@ -22,15 +27,15 @@
 
 #bg-carousel {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
 
     position: absolute;
     left: 0px;
     top: 0px;
 
-    width: 1494px;
-    height: 1062px;
+    width: 100%;
+    height: 100%;
 
     background: url('../resources/images/BG.png'), #C4C4C4;
 }
@@ -45,15 +50,12 @@
 }
 
 #left-chevron {
-    position: absolute;
-    left: 32px;
-    top: 509px;
+    margin-left: 32px;
 }
 
 #right-chevron {
-    position: absolute;
-    right: 32px;
-    top: 509px;
+    margin-left: 25px;
+    margin-right: 32px;
 
     transform: rotate(-180deg);
 }
@@ -69,8 +71,17 @@
 /* using the selector :nth-child() from javascript i can change the color of the image it is showing currently */
 #bottom-slider {
     position: absolute;
-    left: 687px;
-    top: 995px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 40px;
+}
+
+.right-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /*
@@ -83,8 +94,6 @@
 
 #login-container {
     position: relative;
-
-    margin-right: 100px;
 
     width: 462px;
     height: 702px;
