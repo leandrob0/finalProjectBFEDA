@@ -16,7 +16,8 @@
   <body>
     <div id="bg-carousel">
       <img id="logo-login" src="./resources/logos/White.svg" alt="webpage logo" />
-      <svg
+      <div>
+        <svg
         id="left-chevron"
         width="43"
         height="43"
@@ -33,7 +34,42 @@
           fill="white"
         />
       </svg>
-      <svg
+      </div>
+      <div class="right-side">
+        <main id="login-container">
+          <section class='login-container__section'>
+            <h1>Welcome! Log in or register</h1>
+            <p id="login-container__description">Log in to find the games you're looking for!</p>
+            <form id="form">
+              <input class="form__text-input" type="email" placeholder="Email">
+              <div id="form__password-container">
+                <input class="form__text-input form__password" size="20" type="password" placeholder="Password">
+                <img id="form__password-icon" src="./resources/icons/Eye.png">
+              </div>
+              <div id="form__options">
+                <span class="form__remember">
+                  <input type="checkbox">
+                  <p id="form__remember-text">Remember me</p>
+                </span>
+                <p id="form_forgot">Forgot password?</p>
+              </div>
+              <button class="btn btn__login" type="button">Log in</button>
+            </form>
+            <div class="form__register">
+              <p>Not registered yet?</p>
+              <span class="form__register-button">Register now</span>
+            </div>
+            <div class="login-or">
+              <div class="login-or__line"></div>
+              <p class="login-or__text">or</p>
+              <div class="login-or__line"></div>
+            </div>
+            <btn class="btn-socials btn-fb" type="button"><img class="btn-icon" src="./resources/icons/Facebook.png" alt="Social media logo">Login with Facebook</btn>
+            <btn class="btn-socials" type="button"><img class="btn-icon" src="./resources/icons/Tumblr.png" alt="Social media logo">Login with Twitter</btn>
+            <btn class="btn-socials" type="button"><img class="btn-icon" src="./resources/icons/Google.png" alt="Social media logo">Login with Google</btn>
+          </section>
+        </main>
+        <svg
         id="right-chevron"
         width="43"
         height="43"
@@ -50,6 +86,7 @@
           fill="white"
         />
       </svg>
+      </div>
       <svg
         id="bottom-slider"
         width="120"
@@ -66,39 +103,6 @@
         <circle opacity="0.25" cx="84.5" cy="13.5" r="3.5" fill="white" />
         <circle opacity="0.25" cx="100.5" cy="13.5" r="3.5" fill="white" />
       </svg>
-      <main id="login-container">
-        <section class='login-container__section'>
-          <h1>Welcome! Log in or register</h1>
-          <p id="login-container__description">Log in to find the games you're looking for!</p>
-          <form id="form">
-            <input class="form__text-input" type="email" placeholder="Email">
-            <div id="form__password-container">
-              <input class="form__text-input form__password" size="20" type="password" placeholder="Password">
-              <img id="form__password-icon" src="./resources/icons/Eye.png">
-            </div>
-            <div id="form__options">
-              <span class="form__remember">
-                <input type="checkbox">
-                <p id="form__remember-text">Remember me</p>
-              </span>
-              <p id="form_forgot">Forgot password?</p>
-            </div>
-            <button class="btn btn__login" type="button">Log in</button>
-          </form>
-          <div class="form__register">
-            <p>Not registered yet?</p>
-            <span class="form__register-button">Register now</span>
-          </div>
-          <div class="login-or">
-            <div class="login-or__line"></div>
-            <p class="login-or__text">or</p>
-            <div class="login-or__line"></div>
-          </div>
-          <btn class="btn-socials btn-fb" type="button"><img class="btn-icon" src="./resources/icons/Facebook.png" alt="Social media logo">Login with Facebook</btn>
-          <btn class="btn-socials" type="button"><img class="btn-icon" src="./resources/icons/Tumblr.png" alt="Social media logo">Login with Twitter</btn>
-          <btn class="btn-socials" type="button"><img class="btn-icon" src="./resources/icons/Google.png" alt="Social media logo">Login with Google</btn>
-        </section>
-      </main>
     </div>
     <script src="./script.js" async defer></script>
   </body>
