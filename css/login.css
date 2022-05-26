@@ -75,7 +75,6 @@ body {
     fill: var(--primary-text-color)
 }
 
-/* using the selector :nth-child() from javascript i can change the color of the image it is showing currently */
 #bottom-slider {
     position: absolute;
     left: 0;
