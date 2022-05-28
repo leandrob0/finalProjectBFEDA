@@ -1,12 +1,16 @@
 const eye = document.getElementById('form__password-icon');
 
 eye.addEventListener('click', () => {
+
+    const input = eye.previousElementSibling;
+    input.classList.toggle('form__password-dots');
+
     if(eye.src.indexOf('Off') !== -1) {
         eye.src = '../resources/icons/Eye.png';
-        eye.previousElementSibling.type = 'password';
+        input.type = 'password';
     } else {
         eye.src = '../resources/icons/Eye Off.png';
-        eye.previousElementSibling.type = 'text';
+        input.type = 'text';
     }
 });
 

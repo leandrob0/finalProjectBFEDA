@@ -164,7 +164,7 @@ body {
 
 input.form__text-input {
     padding-left: 16px;
-    padding-right: 16px;
+    padding-right: 38px;
 
     font-weight: 400;
     font-size: 0.938rem;
@@ -260,7 +260,7 @@ input.form__text-input {
     width: inherit;
 }
 
-#form__password-container input {
+.form__password {
     width: inherit;
     padding-right: 40px;
 
@@ -269,6 +269,22 @@ input.form__text-input {
     font-weight: 400;
     font-size: 0.938rem;
     line-height: 20px;
+}
+
+.form__password.form__password-dots {
+    font: large Verdana,sans-serif;
+    padding-bottom: 5px;
+}
+
+input[type="password"]::placeholder {
+    font-family: 'Exo';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.938rem;
+    letter-spacing: 0px;
+    line-height: 20px;
+
+    padding-bottom: 50px;
 }
 
 #form__password-icon {
