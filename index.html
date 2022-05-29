@@ -41,9 +41,9 @@
             <h1>Welcome! Log in or register</h1>
             <p id="login-container__description">Log in to find the games you're looking for!</p>
             <form id="form">
-              <input class="form__text-input" type="email" placeholder="Email">
+              <input class="form__text-input" type="email" placeholder="Email" autocomplete="email" required>
               <div id="form__password-container">
-                <input class="form__text-input form__password form__password-dots" size="20" type="password" placeholder="Password">
+                <input class="form__text-input form__password form__password-dots" size="20" type="password" placeholder="Password" autocomplete="current-password" required>
                 <img id="form__password-icon" src="./resources/icons/Eye.png">
               </div>
               <div id="form__options">
@@ -53,7 +53,7 @@
                 </span>
                 <p id="form_forgot">Forgot password?</p>
               </div>
-              <button class="btn btn__login" type="button">Log in</button>
+              <button class="btn btn__login">Log in</button>
             </form>
             <div class="form__register">
               <p>Not registered yet?</p>
@@ -104,6 +104,6 @@
         <circle opacity="0.25" cx="100.5" cy="13.5" r="3.5" fill="white" />
       </svg>
     </div>
-    <script src="./script.js" async defer></script>
+    <script src="./javascript/login.js" async defer></script>
   </body>
 </html>
