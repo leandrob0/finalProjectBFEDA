@@ -58,6 +58,8 @@ header {
 
     display: flex;
     align-items: center;
+
+    margin-left: -136px;
 }
 
 .search__icon {
