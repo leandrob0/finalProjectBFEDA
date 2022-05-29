@@ -68,3 +68,11 @@ const handleCarousel = (e) => {
 rightChevron.addEventListener('click', handleCarousel)
 leftChevron.addEventListener('click', handleCarousel)
 
+//================================================================
+
+const form = document.getElementById('form');
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    location.href = 'games.html';
+})
