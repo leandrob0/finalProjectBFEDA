@@ -10,9 +10,91 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Exo';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
 }
 
 body {
-    width: 1494px;
-    height: 1062px;
+    width: 1440px;
+    height: 1024px;
+}
+
+/*
+    ##########################################################################
+
+    HEADER STYLING.
+
+    ##########################################################################
+*/
+
+header {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+
+    height: 94px; /* todavia no esta claro cual va a ser el viewport height y width*/
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: linear-gradient(180deg, #5FE19B 0%, #36B972 50%, #0EA152 100%);
+    box-shadow: 1px -3px 36px rgba(0, 0, 0, 0.5);
+}
+
+.logo__image {
+    height: 34px;
+    width: 267px;
+
+    margin-left: 40px;
+}
+
+.search {
+    background: #FFFFFF;
+    border-radius: 4px;
+
+    display: flex;
+    align-items: center;
+
+    margin-left: -136px;
+}
+
+.search__icon {
+    margin: 15px 11px 14px 11px;
+}
+
+.search__input {
+    outline: none;
+    border: 0;
+
+    margin-right: 8px;
+    width: 314px;
+}
+
+.user {
+    margin-right: 40px;
+}
+
+.user__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user__log-out {
+    text-decoration: none;
+    color: white;
+    margin-right: 16px;
+    word-break: keep-all;
+
+    width: 66px;
+    text-align: right;
+}
+
+.user__img {
+    border-radius: 100%;
+    border: 2px solid #FFFFFF;
 }
