@@ -68,7 +68,13 @@ const handleCarousel = (e) => {
 rightChevron.addEventListener('click', handleCarousel)
 leftChevron.addEventListener('click', handleCarousel)
 
-//================================================================
+/*
+############################################
+
+    Code for the form submit functionality.
+
+############################################
+*/
 
 const form = document.getElementById('form');
 
