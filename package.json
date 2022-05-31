@@ -4,7 +4,8 @@
   "description": "Final project for the Frontend bootcamp by Altimetrik. Made with plain HTML, CSS, and JavaScript.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "json-server db.json -m ./node_modules/json-server-auth"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/leandrob0/finalProjectBFEDA/issues"
   },
-  "homepage": "https://github.com/leandrob0/finalProjectBFEDA#readme"
+  "homepage": "https://github.com/leandrob0/finalProjectBFEDA#readme",
+  "devDependencies": {
+    "json-server": "^0.17.0",
+    "json-server-auth": "^2.1.0"
+  }
 }
