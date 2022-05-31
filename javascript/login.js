@@ -80,5 +80,13 @@ const form = document.getElementById('form');
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    location.href = 'games.html';
+
+    const inputs = e.target.elements;
+    const email = inputs.email.value.trim();
+    const pw = inputs.password.value.trim();
+    const remember = inputs.checkbox.checked;
+
+    if(false) { // everything right, goes to the other page.
+        location.href = 'games.html';
+    } 
 })
