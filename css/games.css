@@ -1,7 +1,7 @@
 :root {
     --dark-text-color: #FFFFFF;
     --light-text-color: #515151;
-    --bg-dark-icons: #515151;
+
     --bg-dark: #151515;
     --bg-light: #F0F0F0;
 
@@ -10,6 +10,14 @@
     --dark-enabled-inside: #FFFDF5;
     --dark-disabled-bg: #303030;
     --dark-disabled-inside: #515151;
+
+    /* Cards colors */
+    --dark-card-bg: #303030;
+    --light-card-bg: #FFFFFF;
+}
+
+html {
+    overflow-x: hidden;
 }
 
 * {
@@ -25,7 +33,7 @@
 
 body {
     width: 1440px;
-    height: 1024px;
+    min-height: 1024px;
 }
 
 /*
@@ -41,6 +49,8 @@ header {
     left: 0;
     right: 0;
     top: 0;
+
+    z-index: 10;
 
     height: 94px;
 
@@ -115,7 +125,9 @@ header {
 */
 
 main {
-    height: 100%;
+    position: relative;
+
+    min-height: 1024px;
 
     padding-top: 94px;
 
@@ -196,4 +208,138 @@ main {
 
 .cards-disabled-inside {
     fill: var(--dark-disabled-inside);
+}
+
+/*
+    ##########################################################################
+
+    GAMES CARDS STYLING.
+
+    ##########################################################################
+*/
+
+.games-container {
+    display: grid;
+    grid-template-columns: repeat(3, 363px);
+    grid-auto-rows: 314px;
+    gap: 24px;
+    margin-left: 263px;
+    margin-top: 24px;
+}
+
+.card {
+    height: 314px;
+    width: 363px;
+
+    background: var(--dark-card-bg);
+    border-radius: 12px;
+}
+
+.card__image {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.first-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 10px;
+}
+
+.game-title {
+    font-weight: 700;
+    line-height: 32px;
+    font-size: 1.5rem;
+}
+
+.game-ranking {
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 24px;
+
+    color: #36B972;
+}
+
+.second-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 16px;
+}
+
+.text-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.date-release {
+    margin-left: 19px;
+}
+
+.icon-container {
+    justify-self: flex-end;
+}
+
+.icon-container svg {
+    margin-right: 12px;
+    margin-left: 12px;
+}
+
+.icon-container svg:last-child {
+    margin: 0;
+}
+
+.icon-container svg:first-child {
+    margin: 0;
+}
+
+.icon-color {
+    fill: var(--dark-text-color);
+}
+
+.third-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 4px;
+}
+
+.info-key {
+    color: #939393;
+}
+
+.info-value {
+    color: var(--dark-text-color);
+}
+
+.genres-margin {
+    margin-left: 58px;
+}
+
+/*
+
+    Bottom of the page fade effect.
+
+*/
+
+.fade-effect {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    height: 100px;
+
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
 }
