@@ -3,7 +3,13 @@
     --light-text-color: #515151;
     --bg-dark-icons: #515151;
     --bg-dark: #151515;
-    --bg-light: #F0F0F0;;
+    --bg-light: #F0F0F0;
+
+    /* Icons from the view options */
+    --dark-enabled-bg: #515151;
+    --dark-enabled-inside: #FFFDF5;
+    --dark-disabled-bg: #303030;
+    --dark-disabled-inside: #515151;
 }
 
 * {
@@ -151,4 +157,43 @@ main {
 
 .switch svg {
     margin-left: 13px;
+}
+
+.descriptions__options {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.descriptions__subtitle {
+    font-size: 1.125rem;
+    line-height: 24px;
+
+    margin-left: 40px;
+    margin-top: 2px;
+}
+
+.options-container {
+    display: flex;
+    justify-content: space-between;
+
+    width: 104px;
+    margin-right: 40px;
+    margin-top: -5px;
+}
+
+.cards-enabled-outer {
+    fill: var(--dark-enabled-bg);
+}
+
+.cards-enabled-inside {
+    fill: var(--dark-enabled-inside);
+}
+
+.cards-disabled-outer {
+    fill: var(--dark-disabled-bg);
+}
+
+.cards-disabled-inside {
+    fill: var(--dark-disabled-inside);
 }
