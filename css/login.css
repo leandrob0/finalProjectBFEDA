@@ -111,10 +111,16 @@ body {
     width: 462px;
     height: 702px;
 
-    backdrop-filter: blur(10px);
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.35);
     
     border-radius: 12px;
+}
+
+#login-container.login-background {
+    backdrop-filter: blur(5px);
+
+    position: absolute;
+    right: 99px;
 }
 
 .login-container__section {
