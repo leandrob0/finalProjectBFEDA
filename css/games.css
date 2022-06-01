@@ -10,6 +10,10 @@
     --dark-enabled-inside: #FFFDF5;
     --dark-disabled-bg: #303030;
     --dark-disabled-inside: #515151;
+
+    /* Cards colors */
+    --dark-card-bg: #303030;
+    --light-card-bg: #FFFFFF;
 }
 
 * {
@@ -196,4 +200,27 @@ main {
 
 .cards-disabled-inside {
     fill: var(--dark-disabled-inside);
+}
+
+/*
+    ##########################################################################
+
+    GAMES CARDS STYLING.
+
+    ##########################################################################
+*/
+
+.games-container {
+    display: grid;
+    grid-template-columns: repeat(3,363px);
+    grid-auto-rows: 314px;
+    gap: 24px;
+}
+
+.card {
+    height: 314px;
+    width: 363px;
+
+    background: var(--dark-card-bg);
+    border-radius: 12px;
 }
