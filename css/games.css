@@ -18,8 +18,7 @@
 
 html {
     overflow-x: hidden;
-    overflow-y: hidden;
-  }
+}
 
 * {
     margin: 0;
@@ -221,7 +220,7 @@ main {
 
 .games-container {
     display: grid;
-    grid-template-columns: repeat(3,363px);
+    grid-template-columns: repeat(3, 363px);
     grid-auto-rows: 314px;
     gap: 24px;
     margin-left: 263px;
@@ -342,5 +341,5 @@ main {
 
     height: 100px;
 
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0,0.8));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
 }
