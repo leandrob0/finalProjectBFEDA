@@ -1,0 +1,28 @@
+{
+  "name": "finalprojectbfeda",
+  "version": "1.0.0",
+  "description": "Final project for the Frontend bootcamp by Altimetrik. Made with plain HTML, CSS, and JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "json-server -p 4000 db.json -m ./node_modules/json-server-auth"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leandrob0/finalProjectBFEDA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leandrob0/finalProjectBFEDA/issues"
+  },
+  "homepage": "https://github.com/leandrob0/finalProjectBFEDA#readme",
+  "devDependencies": {
+    "json-server": "^0.17.0",
+    "json-server-auth": "^2.1.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
+}

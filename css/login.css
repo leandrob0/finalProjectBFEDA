@@ -233,6 +233,11 @@ input.form__text-input {
     padding-top: 1px;
 }
 
+#form__remember-text:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 #form_forgot {
     font-size: 0.875rem;
     
@@ -244,6 +249,7 @@ input.form__text-input {
 
 #form_forgot:hover {
     cursor: pointer;
+    text-decoration: underline var(--secondary-text-color);
 }
 
 /*
@@ -291,10 +297,13 @@ input[type="password"]::placeholder {
     position: absolute;
 
     right: 8px;
+
+    transition: 0.1s ease-out;
 }
 
 #form__password-icon:hover {
     cursor: pointer;
+    transform: scale(1.1);
 }
 
 .btn {
@@ -336,6 +345,7 @@ input[type="password"]::placeholder {
 
 .form__register-button:hover {
     cursor: pointer;
+    text-decoration: underline var(--secondary-text-color);
 }
 
 .login-or {
