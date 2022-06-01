@@ -13,8 +13,8 @@
 }
 
 body {
-    width: 1494px;
-    height: 1062px;
+    width: 1440px;
+    height: 1024px;
 }
 
 /*
@@ -37,6 +37,8 @@ body {
     width: 100%;
     height: 100%;
 
+    padding-top: 34px;
+
     background-image: url('../resources/images/BG.png');
     background-color: #C4C4C4;
     background-size: cover;
@@ -49,6 +51,11 @@ body {
 
     width: 322px;
     height: 66px;
+}
+
+.left-container {
+    display: flex;
+    align-items: center;
 }
 
 #left-chevron {
@@ -81,7 +88,7 @@ body {
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    bottom: 40px;
+    bottom: 32px;
 }
 
 .right-side {
@@ -103,8 +110,6 @@ body {
 
     width: 462px;
     height: 702px;
-
-    margin-bottom: 5px;
 
     backdrop-filter: blur(10px);
     background-color: rgba(0, 0, 0, 0.6);
