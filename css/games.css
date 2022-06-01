@@ -1,8 +1,9 @@
 :root {
-    --primary-text-color: #FFFFFF;
-    --secondary-text-color: #5FE19B;
-    --background-login-form: #303030;
+    --dark-text-color: #FFFFFF;
+    --light-text-color: #515151;
     --bg-dark-icons: #515151;
+    --bg-dark: #151515;
+    --bg-light: #F0F0F0;;
 }
 
 * {
@@ -12,7 +13,7 @@
     font-family: 'Exo';
     font-style: normal;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 0.938rem;
     line-height: 20px;
 }
 
@@ -35,7 +36,7 @@ header {
     right: 0;
     top: 0;
 
-    height: 94px; /* todavia no esta claro cual va a ser el viewport height y width*/
+    height: 94px;
 
     display: flex;
     justify-content: space-between;
@@ -97,4 +98,57 @@ header {
 .user__img {
     width: 48px;
     height: 48px;
+}
+
+/*
+    ##########################################################################
+
+    BELOW HEADER CONTENT STYLING.
+
+    ##########################################################################
+*/
+
+main {
+    height: 100%;
+
+    padding-top: 94px;
+
+    background-color: var(--bg-dark);
+    color: var(--dark-text-color);
+}
+
+.descriptions__text {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.description-title {
+    font-weight: 800;
+    font-size: 3rem;
+    line-height: 64px;
+
+    margin-left: 40px;
+    padding-top: 19px;
+}
+
+.switch {
+    display: flex;
+    align-items: center;
+
+    padding-top: 19px;
+    padding-right: 40px;
+}
+
+.switch p {
+    width: 86px;
+    height: 39px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.switch svg {
+    margin-left: 13px;
 }
