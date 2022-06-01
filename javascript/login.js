@@ -1,3 +1,13 @@
+// If the user is logged  in, it doesn't allow him to be in the login page.
+(function () {
+  const userinfo = JSON.parse(localStorage.getItem('userinfo'));
+
+    if(userinfo) {
+        location.href = '/games.html';
+    }
+})();
+
+
 /*
 ############################################
 
