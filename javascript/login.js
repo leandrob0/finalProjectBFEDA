@@ -133,13 +133,13 @@ form.addEventListener("submit", (e) => {
     })
     .then((data) => {
       if(typeof data === 'object') {
-        localStorage.setItem('userinfo', JSON.stringify({...data, photo: 'Custom.png'}));
+        localStorage.setItem('userinfo', JSON.stringify(data));
         location.href = 'games.html';
       } else {
-          throw new Error(data);
+          throw new Error();
       }
     })
-    .catch((err) => {
-      alert(err);
+    .catch(() => {
+      alert("The credentials don't match any user in the database.");
     });
 });
