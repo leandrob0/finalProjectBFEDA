@@ -1,19 +1,29 @@
 :root {
-    --dark-text-color: #FFFFFF;
-    --light-text-color: #515151;
+    --primary-text-color: #FFFFFF;
 
-    --bg-dark: #151515;
-    --bg-light: #F0F0F0;
+    --bg: #151515;
 
     /* Icons from the view options */
-    --dark-enabled-bg: #515151;
-    --dark-enabled-inside: #FFFDF5;
-    --dark-disabled-bg: #303030;
-    --dark-disabled-inside: #515151;
+    --enabled-bg: #515151;
+    --enabled-inside: #FFFDF5;
+    --disabled-bg: #303030;
+    --disabled-inside: #515151;
 
-    /* Cards colors */
-    --dark-card-bg: #303030;
-    --light-card-bg: #FFFFFF;
+    --card-bg: #303030;
+}
+
+.light-mode {
+    --card-bg: #FFFFFF;
+
+    /* Icons from the view options */
+    --enabled-bg: #939393;
+    --enabled-inside: #515151;
+    --disabled-bg: #D8D8D8;
+    --disabled-inside: #C4C4C4;
+
+    --bg: #F0F0F0;
+
+    --primary-text-color: #515151;
 }
 
 html {
@@ -131,8 +141,8 @@ main {
     height: 930;
     margin-top: 94px;
 
-    background-color: var(--bg-dark);
-    color: var(--dark-text-color);
+    background-color: var(--bg);
+    color: var(--primary-text-color);
 }
 
 .descriptions__text {
@@ -195,19 +205,19 @@ main {
 }
 
 .cards-enabled-outer {
-    fill: var(--dark-enabled-bg);
+    fill: var(--enabled-bg);
 }
 
 .cards-enabled-inside {
-    fill: var(--dark-enabled-inside);
+    fill: var(--enabled-inside);
 }
 
 .cards-disabled-outer {
-    fill: var(--dark-disabled-bg);
+    fill: var(--disabled-bg);
 }
 
 .cards-disabled-inside {
-    fill: var(--dark-disabled-inside);
+    fill: var(--disabled-inside);
 }
 
 /*
@@ -236,7 +246,7 @@ main {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--dark-card-bg);
+    background: var(--card-bg);
     border-radius: 20px;
 }
 
@@ -244,7 +254,7 @@ main {
     height: 314px;
     width: 363px;
 
-    background: var(--dark-card-bg);
+    background: var(--card-bg);
     border-radius: 12px;
 }
 
@@ -315,7 +325,7 @@ main {
 }
 
 .icon-color {
-    fill: var(--dark-text-color);
+    fill: var(--primary-text-color);
 }
 
 .third-row {
@@ -333,7 +343,7 @@ main {
 }
 
 .info-value {
-    color: var(--dark-text-color);
+    color: var(--primary-text-color);
 }
 
 .genres-margin {
