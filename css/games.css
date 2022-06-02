@@ -128,9 +128,8 @@ header {
 main {
     position: relative;
 
-    height: 100%;
-
-    padding-top: 94px;
+    height: 930;
+    margin-top: 94px;
 
     background-color: var(--bg-dark);
     color: var(--dark-text-color);
@@ -227,8 +226,18 @@ main {
     margin-left: 263px;
     margin-top: 24px;
 
-    height: 100%;
+    height: 788px;
+
     overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--dark-card-bg);
+    border-radius: 20px;
 }
 
 .card {
