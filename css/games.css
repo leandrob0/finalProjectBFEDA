@@ -18,6 +18,7 @@
 
 html {
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 * {
@@ -33,7 +34,7 @@ html {
 
 body {
     width: 1440px;
-    min-height: 1024px;
+    height: 1024px;
 }
 
 /*
@@ -127,7 +128,7 @@ header {
 main {
     position: relative;
 
-    min-height: 1024px;
+    height: 100%;
 
     padding-top: 94px;
 
@@ -225,6 +226,9 @@ main {
     gap: 24px;
     margin-left: 263px;
     margin-top: 24px;
+
+    height: 100%;
+    overflow-y: auto;
 }
 
 .card {
