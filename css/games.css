@@ -247,6 +247,7 @@ main {
 
 ::-webkit-scrollbar-thumb {
     background: var(--card-bg);
+    border: 1px solid black;
     border-radius: 20px;
 }
 
