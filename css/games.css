@@ -238,8 +238,7 @@ main {
 
 .games-container {
     display: grid;
-    grid-template-columns: repeat(3, 363px);
-    grid-auto-rows: 314px;
+    
     gap: 24px;
     margin-left: 263px;
     margin-top: 24px;
