@@ -9,6 +9,7 @@
 .light-mode {
     --primary-text-color: #515151;
     --btn-border: #36B972;
+    --bg-icons: #FFFFFF;
 }
 
 * {
@@ -95,6 +96,10 @@ body {
     margin-left: auto;
     margin-right: auto;
     bottom: 32px;
+}
+
+.dot-color {
+    fill: var(--primary-text-color);
 }
 
 .right-side {
