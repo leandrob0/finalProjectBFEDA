@@ -85,6 +85,8 @@ eye.addEventListener("click", () => {
     body.classList.add("light-mode");
     loginContainer.style.backgroundColor = 'white';
   } 
+  
+  localStorage.setItem("carousel", JSON.stringify(actualPhoto));
 })();
 
 const handleCarousel = (e) => {
