@@ -208,6 +208,10 @@ main {
     margin-top: -5px;
 }
 
+.options-container svg:hover {
+    cursor: pointer;
+}
+
 .cards-enabled-outer {
     fill: var(--enabled-bg);
 }

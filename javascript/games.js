@@ -4,6 +4,8 @@ const toggle = document.querySelector("#toggle-switch");
 const body = document.querySelector("body");
 const gamesContainer = document.querySelector(".games-container");
 const logoutButton = document.querySelector(".user__log-out");
+const cardOption = document.querySelector('#card-option');
+const galleryOption = document.querySelector('#gallery-option');
 
 // When the page loads, checks if the localStorage item describing the user logged in exists.
 // If it doesn't exist, it goes back to the login page (it means the user didn't log in.)
@@ -182,6 +184,42 @@ const cards = [
       </article>`;
   });
 })();
+
+/*
+############################################
+
+    Code for changing the view of the cards.
+
+############################################
+*/
+
+function handleViewChange(element) {
+  const classesEnabled = ['cards-enabled-outer','cards-enabled-inside'];
+  const classesDissabled = ['cards-disabled-outer', 'cards-disabled-inside'];
+
+  const sibling = element.previousElementSibling || element.nextElementSibling;
+  const siblingChildren = sibling.children;
+  const children = element.children;
+  
+  // Swaps the classes between the children of the svg's.
+  for(let i = 0; i < children.length; i++) {
+    if (children[i].classList.contains(classesDissabled[i])) {
+      children[i].classList.remove(classesDissabled[i]);
+      children[i].classList.add(classesEnabled[i]);
+      siblingChildren[i].classList.remove(classesEnabled[i]);
+      siblingChildren[i].classList.add(classesDissabled[i]);
+    } else {
+      children[i].classList.add(classesDissabled[i]);
+      children[i].classList.remove(classesEnabled[i]);
+      siblingChildren[i].classList.add(classesEnabled[i]);
+      siblingChildren[i].classList.remove(classesDissabled[i]);
+    }
+  }
+}
+
+cardOption.addEventListener('click', () => handleViewChange(cardOption));
+galleryOption.addEventListener('click', () => handleViewChange(galleryOption));
+
 
 /*
 ############################################
