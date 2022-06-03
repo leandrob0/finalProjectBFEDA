@@ -200,7 +200,10 @@ function handleViewChange(element) {
   const sibling = element.previousElementSibling || element.nextElementSibling;
   const siblingChildren = sibling.children;
   const children = element.children;
-  
+
+  // Checks whether the clicked element is already highlighted as clicked.
+  if(children[0].classList.contains('cards-enabled-outer')) return;
+
   // Swaps the classes between the children of the svg's.
   for(let i = 0; i < children.length; i++) {
     if (children[i].classList.contains(classesDissabled[i])) {
