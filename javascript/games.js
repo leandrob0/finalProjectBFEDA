@@ -117,8 +117,10 @@ function cardTemplate(card) {
     <span class="game-ranking">#1</span>
   </div>
   <div class="second-row">
-    <div class="text-container info-key"><p>Release date:</p>
-      <p class="date-release info-value">${card.release}</p></div>
+    <div class="text-container info-key">
+      <p>Release date:</p>
+      <p class="date-release info-value">${card.release}</p>
+    </div>
     <div class="icon-container">
       <svg
         width="24"

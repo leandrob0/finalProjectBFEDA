@@ -359,6 +359,50 @@ main {
 }
 
 /*
+    ##########################################################################
+
+    GAMES GALLERY STYLING.
+
+    ##########################################################################
+*/
+
+.gallery {
+    width: 697px;
+    height: 538px;
+
+    margin-left: 228px;
+
+    background: var(--card-bg);
+    border-radius: 12px;
+}
+
+.gallery__image {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.date-release-gallery {
+    margin-left: 10px;
+}
+
+.genres-key-margin {
+    margin-left: 24px;
+    margin-right: 10px;
+}
+
+.game-description {
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 10px;
+
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 19px;
+
+    color: var(--primary-text-color);
+}
+
+/*
 
     Bottom of the page fade effect.
 
