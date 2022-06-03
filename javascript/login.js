@@ -4,6 +4,7 @@ const rightChevron = document.getElementById("right-chevron");
 const leftChevron = document.getElementById("left-chevron");
 const bottomSliderChildren = document.getElementById("bottom-slider").children;
 
+const headerLightMode = document.querySelector('.not-show');
 const logo = document.querySelector("#logo-login");
 const body = document.querySelector("body");
 const loginContainer = document.querySelector("main");
@@ -83,9 +84,10 @@ eye.addEventListener("click", () => {
   if (mode === "light") {
     logo.src = "./resources/logos/Black.svg";
     body.classList.add("light-mode");
-    loginContainer.style.backgroundColor = 'white';
+    loginContainer.style.backgroundColor = '#F0F0F0';
+    headerLightMode.setAttribute('id', 'show-header');
   } 
-  
+
   localStorage.setItem("carousel", JSON.stringify(actualPhoto));
 })();
 

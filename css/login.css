@@ -4,11 +4,14 @@
     --background-login-form: #303030;
     --bg-icons: #515151;
     --btn-border: white;
+    --remember-me-border: white;
 }
 
 .light-mode {
     --primary-text-color: #515151;
+    --secondary-text-color: #36B972;
     --btn-border: #36B972;
+    --remember-me-border: #8F8F8F;
     --bg-icons: #FFFFFF;
 }
 
@@ -58,6 +61,8 @@ body {
 
     width: 322px;
     height: 66px;
+
+    z-index: 3;
 }
 
 .left-container {
@@ -106,6 +111,30 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/*
+
+    Header for the lightmode styling.
+
+*/
+
+.not-show {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 115px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(4px);
+    z-index: 2;
+
+    display: none;
+}
+
+#show-header {
+    display: block;
 }
 
 /*
@@ -218,7 +247,7 @@ input.form__text-input {
 
     margin:0;
 
-    border: 2px solid white;
+    border: 2px solid var(--remember-me-border);
     border-radius: 4px;
 }
 
