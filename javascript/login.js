@@ -10,6 +10,7 @@ const body = document.querySelector("body");
 const loginContainer = document.querySelector("main");
 
 const form = document.getElementById("form");
+const btnSocialsIcons = document.querySelectorAll('.btn-icon');
 
 // This array contains all the names of the images for the background.
 const images = [
@@ -86,6 +87,9 @@ eye.addEventListener("click", () => {
     body.classList.add("light-mode");
     loginContainer.style.backgroundColor = '#F0F0F0';
     headerLightMode.setAttribute('id', 'show-header');
+    btnSocialsIcons.forEach((icon) => {
+      icon.classList.add('light-btn-icon');
+    })
   } 
 
   localStorage.setItem("carousel", JSON.stringify(actualPhoto));

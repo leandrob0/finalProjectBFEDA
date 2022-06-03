@@ -5,6 +5,7 @@
     --bg-icons: #515151;
     --btn-border: white;
     --remember-me-border: white;
+    --social-icon-color: white;
 }
 
 .light-mode {
@@ -13,6 +14,7 @@
     --btn-border: #36B972;
     --remember-me-border: #8F8F8F;
     --bg-icons: #FFFFFF;
+    --social-icon-color: #36B972;
 }
 
 * {
@@ -423,7 +425,7 @@ input[type="password"]::placeholder {
 
 .login-or__line {
     width: 40%;
-    border: 1px solid var(--bg-dark-icons);
+    border: 1px solid var(--primary-text-color);
 }
 
 .btn-socials {
@@ -461,4 +463,8 @@ input[type="password"]::placeholder {
 .btn-icon {
     position: absolute;
     left: 61px;
+}
+
+.social-logo-icon {
+    fill: var(--social-icon-color);
 }
