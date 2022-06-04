@@ -431,6 +431,8 @@ main {
 
     width: fit-content;
     grid-area: aside;
+
+    color: var(--primary-text-color);
 }
 
 .sidebar__text-top {
@@ -445,6 +447,30 @@ main {
 .sidebar__text-top:nth-last-of-type(2) {
     margin-top: 14px;
     margin-bottom: 14px;
+}
+
+.sidebar__second-row {
+    margin-top: 37px;
+}
+
+.icon-text-container {
+    display: flex;
+    align-items: center;
+
+    margin-left: 40px;
+    margin-right: 94px;
+    margin-bottom: 17px;
+}
+
+.icon-text-container:last-of-type {
+    margin-bottom: 0;
+}
+
+.icon-text-container__text {
+    font-size: 1.125rem;
+    line-height: 24px;
+
+    margin-left: 10px;
 }
 
 /*
