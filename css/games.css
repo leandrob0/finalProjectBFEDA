@@ -238,6 +238,9 @@ main {
 
 .games-container {
     display: grid;
+
+    grid-template-columns: repeat(3, 363px);
+    grid-auto-rows: 314px;
     
     gap: 24px;
     margin-left: 263px;
@@ -269,6 +272,9 @@ main {
 .card__image {
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
+
+    width: 363px;
+    height: 179px;
 }
 
 .first-row {
@@ -379,6 +385,9 @@ main {
 .gallery__image {
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
+
+    width: 697px;
+    height: 314px;
 }
 
 .date-release-gallery {
