@@ -311,6 +311,10 @@ main {
     font-weight: 700;
     line-height: 32px;
     font-size: 1.5rem;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .game-ranking {
@@ -335,6 +339,9 @@ main {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+
+    overflow-y: hidden;
+    text-overflow: ellipsis;
 }
 
 .date-release {
@@ -378,6 +385,10 @@ main {
 
 .info-value {
     color: var(--primary-text-color);
+    
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .genres-margin {

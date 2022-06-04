@@ -59,66 +59,25 @@ toggle.addEventListener("click", () => {
   );
 });
 
-// Cards simulation to test the cards visuals.
-const cards = [
-  {
-    image: "https://via.placeholder.com/363x179",
-    title: "Devils May Cry",
-    release: "25-01-2021",
-    genres: ["Action", "RPG"],
-  },
-  {
-    image: "https://via.placeholder.com/363x179",
-    title: "Biomutant",
-    release: "25-01-2021",
-    genres: ["Action", "RPG"],
-  },
-  {
-    image: "https://via.placeholder.com/363x179",
-    title: "Biomutant",
-    release: "25-01-2021",
-    genres: ["Action", "RPG"],
-  },
-  {
-    image: "https://via.placeholder.com/363x179",
-    title: "Biomutant",
-    release: "25-01-2021",
-    genres: ["Action", "RPG"],
-  },
-  {
-    image: "https://via.placeholder.com/363x179",
-    title: "Biomutant",
-    release: "25-01-2021",
-    genres: ["Action", "RPG", "Adventure"],
-  },
-  {
-    image: "https://via.placeholder.com/363x179",
-    title: "Biomutant",
-    release: "25-01-2021",
-    genres: ["Action", "RPG"],
-  },
-  {
-    image: "https://via.placeholder.com/363x179",
-    title: "Biomutant",
-    release: "25-01-2021",
-    genres: ["Action", "RPG"],
-  },
-];
-
-function galleryTemplate() {
+function galleryTemplate(game) {
   return `<article class="gallery">
-  <img class="gallery__image" src="https://via.placeholder.com/697x314" />
+  <img class="gallery__image" src="${game.background_image}" />
   <img class="heart-icon" src="./resources/icons/heart-empty.svg" alt="Heart icon." />
   <div class="first-row">
-    <h2 class="game-title">Biomutant</h2>
+    <h2 class="game-title">${game.name}</h2>
     <span class="game-ranking">#1</span>
   </div>
   <div class="second-row">
     <div class="text-container info-key">
       <p>Release date:</p>
-      <p class="date-release-gallery info-value">Apr 21, 2021</p>
+      <p class="date-release-gallery info-value">${game.released}</p>
       <p class="genres-key-margin">Genres:</p>
-      <p class="info-value genres-value-margin">Action, RPG</p>
+      <p class="info-value genres-value-margin">${game.genres.map((genre, i) => {
+        if(i + 1 === game.genres.length) {
+          return genre.name;
+        } 
+        return genre.name + ' ';
+      })}</p>
     </div>
     <div class="icon-container">
       <svg
@@ -261,27 +220,27 @@ function cardTemplate(game) {
       if(i + 1 === game.genres.length) {
         return genre.name;
       } 
-      return genre.name + ', ';
+      return genre.name + ' ';
     })}</p>
   </div>
   </article>`;
 }
 
-(function () {
-  fetch('https://api.rawg.io/api/games?key=e3108f7dfa484f38bdb2d3b8372fb406')
-    .then((res) => {
-      return res.json();
-    })
-    .then((games) => {
-      games.results.forEach((game) => {
-        console.log(game);
-        gamesContainer.innerHTML += cardTemplate(game);
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-})();
+let gamesArray = [];
+
+fetch('https://api.rawg.io/api/games?key=e3108f7dfa484f38bdb2d3b8372fb406')
+  .then((res) => {
+    return res.json();
+  })
+  .then((games) => {
+    gamesArray = games.results;
+    games.results.forEach((game) => {
+      gamesContainer.innerHTML += cardTemplate(game);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  })
 
 /*
 ############################################
@@ -311,7 +270,10 @@ function handleViewChange(element) {
     while(gamesContainer.firstElementChild) {
       gamesContainer.removeChild(gamesContainer.firstElementChild);
     }
-    gamesContainer.innerHTML += galleryTemplate();
+
+    gamesArray.forEach((game) => {
+      gamesContainer.innerHTML += galleryTemplate(game);
+    });
   } else {
     gamesContainer.style.gridTemplateColumns = 'repeat(3, 363px)';
     gamesContainer.style.gridAutoRows = '314px';
@@ -320,8 +282,9 @@ function handleViewChange(element) {
     while(gamesContainer.firstElementChild) {
       gamesContainer.removeChild(gamesContainer.firstElementChild);
     }
-    cards.forEach((card) => {
-      gamesContainer.innerHTML += cardTemplate(card);
+
+    gamesArray.forEach((game) => {
+      gamesContainer.innerHTML += cardTemplate(game);
     });
   }
 
