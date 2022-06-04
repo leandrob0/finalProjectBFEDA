@@ -285,6 +285,10 @@ main {
     top: 14px;
 }
 
+.heart-icon:hover {
+    cursor: pointer;
+}
+
 .card__image {
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
