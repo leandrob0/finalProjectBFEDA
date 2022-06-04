@@ -181,22 +181,22 @@ function galleryTemplate() {
 </article>`;
 }
 
-function cardTemplate(card) {
+function cardTemplate(game) {
   return `<article class="card">
   <img
     class="card__image"
-    src="${card.image}"
+    src="${game.background_image}"
     alt="placeholder image"
   />
   <img class="heart-icon" src="./resources/icons/heart-empty.svg" alt="Heart icon." />
   <div class="first-row">
-    <h2 class="game-title">${card.title}</h2>
+    <h2 class="game-title">${game.name}</h2>
     <span class="game-ranking">#1</span>
   </div>
   <div class="second-row">
     <div class="text-container info-key">
       <p>Release date:</p>
-      <p class="date-release info-value">${card.release}</p>
+      <p class="date-release info-value">${game.released}</p>
     </div>
     <div class="icon-container">
       <svg
@@ -257,15 +257,30 @@ function cardTemplate(card) {
   </div>
   <div class="third-row">
     <p class="info-key">Genres:</p>
-    <p class="info-value genres-margin">${card.genres.join(", ")}</p>
+    <p class="info-value genres-margin">${game.genres.map((genre, i) => {
+      if(i + 1 === game.genres.length) {
+        return genre.name;
+      } 
+      return genre.name + ', ';
+    })}</p>
   </div>
   </article>`;
 }
 
 (function () {
-  cards.forEach((card) => {
-    gamesContainer.innerHTML += cardTemplate(card);
-  });
+  fetch('https://api.rawg.io/api/games?key=e3108f7dfa484f38bdb2d3b8372fb406')
+    .then((res) => {
+      return res.json();
+    })
+    .then((games) => {
+      games.results.forEach((game) => {
+        console.log(game);
+        gamesContainer.innerHTML += cardTemplate(game);
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    })
 })();
 
 /*
