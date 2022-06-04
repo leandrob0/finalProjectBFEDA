@@ -142,11 +142,18 @@ header {
 main {
     position: relative;
 
-    height: 930;
     margin-top: 94px;
 
     background-color: var(--bg);
     color: var(--primary-text-color);
+
+    display: grid;
+    grid-template-areas: "below below below"
+                         "aside games games";
+}
+
+.descriptions {
+    grid-area: below;
 }
 
 .descriptions__text {
@@ -243,12 +250,12 @@ main {
     grid-auto-rows: 314px;
     
     gap: 24px;
-    margin-left: 263px;
     margin-top: 24px;
 
     height: 788px;
 
     overflow-y: auto;
+    grid-area: games;
 }
 
 ::-webkit-scrollbar {
@@ -409,6 +416,21 @@ main {
     line-height: 19px;
 
     color: var(--primary-text-color);
+}
+
+/*
+    ##########################################################################
+
+    SIDEBAR STYLING.
+
+    ##########################################################################
+*/
+
+.sidebar {
+    margin-top: 24px;
+
+    width: min-content;
+    grid-area: aside;
 }
 
 /*
