@@ -269,11 +269,20 @@ main {
 }
 
 .card {
+    position: relative;
+
     height: 314px;
     width: 363px;
 
     background: var(--card-bg);
     border-radius: 12px;
+}
+
+.heart-icon {
+    position: absolute;
+
+    right: 13px;
+    top: 14px;
 }
 
 .card__image {
@@ -380,6 +389,8 @@ main {
 */
 
 .gallery {
+    position: relative;
+
     width: 697px;
     height: 538px;
 

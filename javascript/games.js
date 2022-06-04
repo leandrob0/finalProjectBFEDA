@@ -107,7 +107,8 @@ const cards = [
 
 function galleryTemplate() {
   return `<article class="gallery">
-  <img class="gallery__image" src="https://via.placeholder.com/697x314" >
+  <img class="gallery__image" src="https://via.placeholder.com/697x314" />
+  <img class="heart-icon" src="./resources/icons/heart-empty.svg" alt="Heart icon." />
   <div class="first-row">
     <h2 class="game-title">Biomutant</h2>
     <span class="game-ranking">#1</span>
@@ -187,6 +188,7 @@ function cardTemplate(card) {
     src="${card.image}"
     alt="placeholder image"
   />
+  <img class="heart-icon" src="./resources/icons/heart-empty.svg" alt="Heart icon." />
   <div class="first-row">
     <h2 class="game-title">${card.title}</h2>
     <span class="game-ranking">#1</span>
