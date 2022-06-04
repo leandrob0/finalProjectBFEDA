@@ -383,7 +383,7 @@ main {
     width: 697px;
     height: 538px;
 
-    margin-left: 228px;
+    margin-left: 80px;
 
     background: var(--card-bg);
     border-radius: 12px;
@@ -429,8 +429,17 @@ main {
 .sidebar {
     margin-top: 24px;
 
-    width: min-content;
+    width: fit-content;
     grid-area: aside;
+}
+
+.sidebar__text-top {
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 27px;
+
+    margin-left: 40px;
+    margin-right: 94px;
 }
 
 /*
