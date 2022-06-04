@@ -455,6 +455,10 @@ main {
     margin-right: 94px;
 }
 
+.sidebar__text-top:hover {
+    cursor: pointer;
+}
+
 .sidebar__text-top:nth-last-of-type(3) {
     color: #36B972;
 }
@@ -485,6 +489,10 @@ main {
     line-height: 24px;
 
     margin-left: 10px;
+}
+
+.icon-text-container__text:hover {
+    cursor: pointer;
 }
 
 .sidebar__popular-text {
