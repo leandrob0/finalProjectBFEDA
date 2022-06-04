@@ -442,6 +442,11 @@ main {
     margin-right: 94px;
 }
 
+.sidebar__text-top:nth-last-of-type(2) {
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+
 /*
 
     Bottom of the page fade effect.
