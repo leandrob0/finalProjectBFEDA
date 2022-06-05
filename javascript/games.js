@@ -4,8 +4,8 @@ const toggle = document.querySelector("#toggle-switch");
 const body = document.querySelector("body");
 const gamesContainer = document.querySelector(".games-container");
 const logoutButton = document.querySelector(".user__log-out");
-const cardOption = document.querySelector('#card-option');
-const galleryOption = document.querySelector('#gallery-option');
+const cardOption = document.querySelector("#card-option");
+const galleryOption = document.querySelector("#gallery-option");
 
 // When the page loads, checks if the localStorage item describing the user logged in exists.
 // If it doesn't exist, it goes back to the login page (it means the user didn't log in.)
@@ -37,10 +37,10 @@ const galleryOption = document.querySelector('#gallery-option');
 function handleSwitchChange(mode) {
   if (mode === "dark") {
     body.classList.add("light-mode");
-    toggle.src = './resources/icons/Off.png';
+    toggle.src = "./resources/icons/Off.png";
   } else {
     body.classList.remove("light-mode");
-    toggle.src = './resources/icons/On.png';
+    toggle.src = "./resources/icons/On.png";
   }
 }
 
@@ -59,6 +59,14 @@ toggle.addEventListener("click", () => {
   );
 });
 
+/*
+############################################
+
+  TEMPLATES FOR THE CARDS.
+
+############################################
+*/
+
 function galleryTemplate(game) {
   return `<article class="gallery">
   <img class="gallery__image" src="${game.background_image}" />
@@ -72,12 +80,7 @@ function galleryTemplate(game) {
       <p>Release date:</p>
       <p class="date-release-gallery info-value">${game.released}</p>
       <p class="genres-key-margin">Genres:</p>
-      <p class="info-value genres-value-margin">${game.genres.map((genre, i) => {
-        if(i + 1 === game.genres.length) {
-          return genre.name;
-        } 
-        return genre.name + ' ';
-      })}</p>
+      <p class="info-value genres-value-margin">${game.genres.map((genre, i) => i + 1 === game.genres.length ? genre.name : genre.name + " ")}</p>
     </div>
     <div class="icon-container">
       <svg
@@ -136,7 +139,7 @@ function galleryTemplate(game) {
       </svg>
     </div>
   </div>
-  <p class="game-description">Game's description goes over here: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p class="game-description">${game.description}</p>
 </article>`;
 }
 
@@ -216,31 +219,48 @@ function cardTemplate(game) {
   </div>
   <div class="third-row">
     <p class="info-key">Genres:</p>
-    <p class="info-value genres-margin">${game.genres.map((genre, i) => {
-      if(i + 1 === game.genres.length) {
-        return genre.name;
-      } 
-      return genre.name + ' ';
-    })}</p>
+    <p class="info-value genres-margin">${game.genres.map((genre, i) => i + 1 === game.genres.length ? genre.name : genre.name + " ")}</p>
   </div>
   </article>`;
 }
 
+/*
+############################################
+
+  GAME FETCHING FUNCTIONALITY.
+
+############################################
+*/
+
 let gamesArray = [];
 
-fetch('https://api.rawg.io/api/games?key=e3108f7dfa484f38bdb2d3b8372fb406')
+fetch("https://api.rawg.io/api/games?key=e3108f7dfa484f38bdb2d3b8372fb406")
   .then((res) => {
     return res.json();
   })
   .then((games) => {
     gamesArray = games.results;
-    games.results.forEach((game) => {
+    games.results.forEach(async (game, i) => {
+      // Gets the game description
+      let description = await fetch(
+        `https://api.rawg.io/api/games/${game.id}?key=e3108f7dfa484f38bdb2d3b8372fb406`
+      )
+        .then((res) => res.json())
+        .then((res) => res.description);
+
+      // Replaces the tags the description has.
+      description = description.replace(/<\/?[^>]+(>|$)/g, "");
+
+      // Adds the description to the array of games.
+      gamesArray[i] = { ...gamesArray[i], description };
+
+      // Shows it.
       gamesContainer.innerHTML += cardTemplate(game);
     });
   })
   .catch((err) => {
     console.log(err);
-  })
+  });
 
 /*
 ############################################
@@ -251,23 +271,23 @@ fetch('https://api.rawg.io/api/games?key=e3108f7dfa484f38bdb2d3b8372fb406')
 */
 
 function handleViewChange(element) {
-  const classesEnabled = ['cards-enabled-outer','cards-enabled-inside'];
-  const classesDissabled = ['cards-disabled-outer', 'cards-disabled-inside'];
+  const classesEnabled = ["cards-enabled-outer", "cards-enabled-inside"];
+  const classesDissabled = ["cards-disabled-outer", "cards-disabled-inside"];
 
   const sibling = element.previousElementSibling || element.nextElementSibling;
   const siblingChildren = sibling.children;
   const children = element.children;
 
   // Checks whether the clicked element is already highlighted as clicked.
-  if(children[0].classList.contains('cards-enabled-outer')) return;
+  if (children[0].classList.contains("cards-enabled-outer")) return;
 
   // Checks which view option the user selected to set the grid layout and the card styling.
-  if(element.id === 'gallery-option') {
-    gamesContainer.style.gridTemplateColumns = '697px';
-    gamesContainer.style.gridAutoRows = '538px';
-    
-    // Changes the cards. 
-    while(gamesContainer.firstElementChild) {
+  if (element.id === "gallery-option") {
+    gamesContainer.style.gridTemplateColumns = "697px";
+    gamesContainer.style.gridAutoRows = "538px";
+
+    // Changes the cards.
+    while (gamesContainer.firstElementChild) {
       gamesContainer.removeChild(gamesContainer.firstElementChild);
     }
 
@@ -275,11 +295,11 @@ function handleViewChange(element) {
       gamesContainer.innerHTML += galleryTemplate(game);
     });
   } else {
-    gamesContainer.style.gridTemplateColumns = 'repeat(3, 363px)';
-    gamesContainer.style.gridAutoRows = '314px';
+    gamesContainer.style.gridTemplateColumns = "repeat(3, 363px)";
+    gamesContainer.style.gridAutoRows = "314px";
 
-    // Changes the cards. 
-    while(gamesContainer.firstElementChild) {
+    // Changes the cards.
+    while (gamesContainer.firstElementChild) {
       gamesContainer.removeChild(gamesContainer.firstElementChild);
     }
 
@@ -289,7 +309,7 @@ function handleViewChange(element) {
   }
 
   // Swaps the classes between the children of the svg's.
-  for(let i = 0; i < children.length; i++) {
+  for (let i = 0; i < children.length; i++) {
     if (children[i].classList.contains(classesDissabled[i])) {
       children[i].classList.remove(classesDissabled[i]);
       children[i].classList.add(classesEnabled[i]);
@@ -304,9 +324,8 @@ function handleViewChange(element) {
   }
 }
 
-cardOption.addEventListener('click', () => handleViewChange(cardOption));
-galleryOption.addEventListener('click', () => handleViewChange(galleryOption));
-
+cardOption.addEventListener("click", () => handleViewChange(cardOption));
+galleryOption.addEventListener("click", () => handleViewChange(galleryOption));
 
 /*
 ############################################

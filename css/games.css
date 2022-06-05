@@ -339,9 +339,6 @@ main {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-
-    overflow-y: hidden;
-    text-overflow: ellipsis;
 }
 
 .date-release {
@@ -385,7 +382,7 @@ main {
 
 .info-value {
     color: var(--primary-text-color);
-    
+
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -442,6 +439,11 @@ main {
     line-height: 19px;
 
     color: var(--primary-text-color);
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
 }
 
 /*
