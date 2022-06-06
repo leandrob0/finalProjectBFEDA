@@ -82,7 +82,10 @@ function galleryTemplate(game) {
   <img class="gallery__image" src="${game.background_image}" />
   <img class="heart-icon" src="./resources/icons/heart-empty.svg" alt="Heart icon." />
   <div class="first-row">
-    <h2 class="game-title">${game.name}</h2>
+    <div class="game-title-container">
+      <h2 class="game-title">${game.name}</h2>
+      <p class="game-title-hide">${game.name}</p>
+    </div>
     <span class="game-ranking">#1</span>
   </div>
   <div class="second-row">
@@ -162,7 +165,10 @@ function cardTemplate(game) {
   />
   <img class="heart-icon" src="./resources/icons/heart-empty.svg" alt="Heart icon." />
   <div class="first-row">
-    <h2 class="game-title">${game.name}</h2>
+    <div class="game-title-container">
+      <h2 class="game-title">${game.name}</h2>
+      <p class="game-title-hide">${game.name}</p>
+    </div>
     <span class="game-ranking">#1</span>
   </div>
   <div class="second-row">
