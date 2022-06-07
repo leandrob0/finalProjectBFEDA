@@ -303,23 +303,18 @@ function handleViewChange(element) {
     gamesContainer.style.gridAutoRows = "538px";
 
     // Changes the cards.
-    while (gamesContainer.firstElementChild) {
-      gamesContainer.removeChild(gamesContainer.firstElementChild);
-    }
-
     gamesArray.forEach((game) => {
+      gamesContainer.innerHTML = "";
       gamesContainer.innerHTML += galleryTemplate(game);
     });
+    
   } else {
     gamesContainer.style.gridTemplateColumns = "repeat(3, 363px)";
     gamesContainer.style.gridAutoRows = "314px";
 
     // Changes the cards.
-    while (gamesContainer.firstElementChild) {
-      gamesContainer.removeChild(gamesContainer.firstElementChild);
-    }
-
     gamesArray.forEach((game) => {
+      gamesContainer.innerHTML = "";
       gamesContainer.innerHTML += cardTemplate(game);
     });
   }
