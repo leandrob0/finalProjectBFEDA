@@ -79,11 +79,11 @@ fetch("https://api.rawg.io/api/games?key=e3108f7dfa484f38bdb2d3b8372fb406")
     gamesArray = games.results;
     games.results.forEach(async (game, i) => {
       // Gets the game description
-      let description = await fetch(
+      let details = await fetch(
         `https://api.rawg.io/api/games/${game.id}?key=e3108f7dfa484f38bdb2d3b8372fb406`
       )
-        .then((res) => res.json())
-        .then((res) => res.description);
+      let detailsJson = await details.json();
+      let description = detailsJson.description;
 
       // Replaces the tags the description has.
       description = description.replace(/<\/?[^>]+(>|$)/g, "");
