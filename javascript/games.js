@@ -1,4 +1,5 @@
 import { galleryTemplate, cardTemplate } from "./templates.js";
+import { renderView } from "./helpers.js";
 
 // Select every element that i will use.
 const userimg = document.querySelector(".user__img");
@@ -8,6 +9,7 @@ const gamesContainer = document.querySelector(".games-container");
 const logoutButton = document.querySelector(".user__log-out");
 const cardOption = document.querySelector("#card-option");
 const galleryOption = document.querySelector("#gallery-option");
+const searchInput = document.querySelector(".search__input");
 
 // When the page loads, checks if the localStorage item describing the user logged in exists.
 // If it doesn't exist, it goes back to the login page (it means the user didn't log in.)
@@ -81,7 +83,7 @@ fetch("https://api.rawg.io/api/games?key=e3108f7dfa484f38bdb2d3b8372fb406")
       // Gets the game description
       let details = await fetch(
         `https://api.rawg.io/api/games/${game.id}?key=e3108f7dfa484f38bdb2d3b8372fb406`
-      )
+      );
       let detailsJson = await details.json();
       let description = detailsJson.description;
 
@@ -93,9 +95,7 @@ fetch("https://api.rawg.io/api/games?key=e3108f7dfa484f38bdb2d3b8372fb406")
     });
   })
   .then(() => {
-    gamesArray.forEach((game, index) => {
-      gamesContainer.innerHTML += cardTemplate(game, index + 1);
-    });
+    renderView(gamesContainer, gamesArray, cardTemplate);
   })
   .catch((err) => {
     console.log(err);
@@ -126,19 +126,13 @@ function handleViewChange(element) {
     gamesContainer.style.gridAutoRows = "538px";
 
     // Changes the cards.
-    gamesContainer.innerHTML = "";
-    gamesArray.forEach((game, index) => {
-      gamesContainer.innerHTML += galleryTemplate(game, index + 1);
-    });
+    renderView(gamesContainer, gamesArray, galleryTemplate);
   } else {
     gamesContainer.style.gridTemplateColumns = "repeat(3, 363px)";
     gamesContainer.style.gridAutoRows = "314px";
 
     // Changes the cards.
-    gamesContainer.innerHTML = "";
-    gamesArray.forEach((game, index) => {
-      gamesContainer.innerHTML += cardTemplate(game, index + 1);
-    });
+    renderView(gamesContainer, gamesArray, cardTemplate);
   }
 
   // Swaps the classes between the children of the svg's.
@@ -159,6 +153,24 @@ function handleViewChange(element) {
 
 cardOption.addEventListener("click", () => handleViewChange(cardOption));
 galleryOption.addEventListener("click", () => handleViewChange(galleryOption));
+
+/*
+############################################
+
+    Code for the search functionality.
+
+############################################
+*/
+
+searchInput.addEventListener("input", (e) => {
+  const name = e.target.value.toLowerCase();
+
+  let filteredArr = gamesArray.filter(
+    (game) =>
+      game.name.toLowerCase().includes(name) || name === game.name.toLowerCase()
+  );
+  renderView(gamesContainer, filteredArr, cardTemplate);
+});
 
 /*
 ############################################
