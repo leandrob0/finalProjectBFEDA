@@ -90,9 +90,11 @@ fetch("https://api.rawg.io/api/games?key=e3108f7dfa484f38bdb2d3b8372fb406")
 
       // Adds the description to the array of games.
       gamesArray[i] = { ...gamesArray[i], description };
-
-      // Shows it.
-      gamesContainer.innerHTML += cardTemplate(game, i + 1);
+    });
+  })
+  .then(() => {
+    gamesArray.forEach((game, index) => {
+      gamesContainer.innerHTML += cardTemplate(game, index + 1);
     });
   })
   .catch((err) => {
