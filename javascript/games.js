@@ -92,7 +92,7 @@ fetch("https://api.rawg.io/api/games?key=e3108f7dfa484f38bdb2d3b8372fb406")
       gamesArray[i] = { ...gamesArray[i], description };
 
       // Shows it.
-      gamesContainer.innerHTML += cardTemplate(game);
+      gamesContainer.innerHTML += cardTemplate(game, i + 1);
     });
   })
   .catch((err) => {
@@ -125,8 +125,8 @@ function handleViewChange(element) {
 
     // Changes the cards.
     gamesContainer.innerHTML = "";
-    gamesArray.forEach((game) => {
-      gamesContainer.innerHTML += galleryTemplate(game);
+    gamesArray.forEach((game, index) => {
+      gamesContainer.innerHTML += galleryTemplate(game, index + 1);
     });
   } else {
     gamesContainer.style.gridTemplateColumns = "repeat(3, 363px)";
@@ -134,8 +134,8 @@ function handleViewChange(element) {
 
     // Changes the cards.
     gamesContainer.innerHTML = "";
-    gamesArray.forEach((game) => {
-      gamesContainer.innerHTML += cardTemplate(game);
+    gamesArray.forEach((game, index) => {
+      gamesContainer.innerHTML += cardTemplate(game, index + 1);
     });
   }
 

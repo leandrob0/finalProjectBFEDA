@@ -1,6 +1,6 @@
 import { includesPlatform } from "./helpers.js";
 
-export function galleryTemplate(game) {
+export function galleryTemplate(game, index) {
   return `<article class="gallery">
     <img class="gallery__image" src="${game.background_image}" />
     <img class="heart-icon" src="./resources/icons/heart-empty.svg" alt="Heart icon." />
@@ -9,7 +9,7 @@ export function galleryTemplate(game) {
         <h2 class="game-title">${game.name}</h2>
         <p class="game-title-hide">${game.name}</p>
       </div>
-      <span class="game-ranking">#1</span>
+      <span class="game-ranking">#${index}</span>
     </div>
     <div class="second-row">
       <div class="text-container info-key">
@@ -94,7 +94,7 @@ export function galleryTemplate(game) {
   </article>`;
 }
 
-export function cardTemplate(game) {
+export function cardTemplate(game, index) {
   return `<article class="card">
     <img
       class="card__image"
@@ -107,7 +107,7 @@ export function cardTemplate(game) {
         <h2 class="game-title">${game.name}</h2>
         <p class="game-title-hide">${game.name}</p>
       </div>
-      <span class="game-ranking">#1</span>
+      <span class="game-ranking">#${index}</span>
     </div>
     <div class="second-row">
       <div class="text-container info-key">
