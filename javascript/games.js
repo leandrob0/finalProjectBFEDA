@@ -169,7 +169,14 @@ searchInput.addEventListener("input", (e) => {
     (game) =>
       game.name.toLowerCase().includes(name) || name === game.name.toLowerCase()
   );
-  renderView(gamesContainer, filteredArr, cardTemplate);
+
+  renderView(
+    gamesContainer,
+    filteredArr,
+    gamesContainer.style.gridTemplateColumns === "697px"
+      ? galleryTemplate
+      : cardTemplate
+  );
 });
 
 /*
