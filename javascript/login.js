@@ -163,7 +163,7 @@ form.addEventListener("submit", (e) => {
   const inputs = e.target.elements;
   const email = inputs.email.value.trim();
   const pw = inputs.password.value.trim();
-  const remember = inputs.checkbox.checked; // If selected, i should save in localStorage that it won't need to log in again everytime.
+  const remember = inputs.checkbox.checked;
 
   loginUser(email, pw)
     .then((res) => {
