@@ -165,10 +165,12 @@ galleryOption.addEventListener("click", () => handleViewChange(galleryOption));
 ############################################
 */
 
+let filteredArr = [];
+
 searchInput.addEventListener("input", (e) => {
   const searchValue = e.target.value.trim().toLowerCase();
 
-  let filteredArr = gamesArray.filter(
+  filteredArr = gamesArray.filter(
     (game) =>
       game.name.toLowerCase().includes(searchValue) || searchValue === game.name.toLowerCase()
   );

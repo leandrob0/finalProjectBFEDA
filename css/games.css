@@ -88,14 +88,22 @@ header {
     background: #FFFFFF;
     border-radius: 4px;
 
-    display: flex;
-    align-items: center;
-
     margin-left: -136px;
 }
 
-.search__icon {
+.search__form {
+    display: flex;
+    align-items: center;
+}
+
+.search__button {
     margin: 15px 11px 14px 11px;
+
+    border: 0;
+    background-color: transparent;
+
+    display: grid;
+    place-content: center;
 }
 
 .search__input {
