@@ -88,7 +88,8 @@ fetch("https://api.rawg.io/api/games?key=e3108f7dfa484f38bdb2d3b8372fb406")
       let description = detailsJson.description;
 
       // Replaces the tags the description has.
-      description = description.replace(/<\/?[^>]+(>|$)/g, "");
+      description = description.replace("<p>", "");
+      description = description.replace("</p>", "");
 
       // Adds the description to the array of games.
       gamesArray[i] = { ...gamesArray[i], description };
