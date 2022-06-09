@@ -9,6 +9,8 @@ const gamesContainer = document.querySelector(".games-container");
 const logoutButton = document.querySelector(".user__log-out");
 const cardOption = document.querySelector("#card-option");
 const galleryOption = document.querySelector("#gallery-option");
+const homeButton = document.querySelector("#home");
+const searchForm = document.querySelector(".search__form");
 const searchInput = document.querySelector(".search__input");
 
 // When the page loads, checks if the localStorage item describing the user logged in exists.
@@ -167,13 +169,21 @@ galleryOption.addEventListener("click", () => handleViewChange(galleryOption));
 
 let filteredArr = [];
 
+// Handles the dropdown with all the options depending on the string entered.
 searchInput.addEventListener("input", (e) => {
   const searchValue = e.target.value.trim().toLowerCase();
-
+  console.log(searchValue);
   filteredArr = gamesArray.filter(
     (game) =>
       game.name.toLowerCase().includes(searchValue) || searchValue === game.name.toLowerCase()
   );
+});
+
+// For every option showed with the event listener before add an event listener to each one, that on click shows that card.
+
+// Handles showing the cards that the user filtered before when clicked on the search icon or pressed enter.
+searchForm.addEventListener('submit', (e) => {
+  e.preventDefault();
 
   renderView(
     gamesContainer,
@@ -183,6 +193,19 @@ searchInput.addEventListener("input", (e) => {
       : cardTemplate
   );
 });
+
+// Handles going back to showing all the games when clicked on the Home option on the sidebar.
+homeButton.addEventListener('click', () => {
+  searchInput.value = "";
+
+  renderView(
+    gamesContainer,
+    gamesArray,
+    gamesContainer.style.gridTemplateColumns === "697px"
+      ? galleryTemplate
+      : cardTemplate
+  );
+})
 
 /*
 ############################################

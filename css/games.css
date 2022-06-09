@@ -106,6 +106,10 @@ header {
     place-content: center;
 }
 
+.search__button:hover {
+    cursor: pointer;
+}
+
 .search__input {
     outline: none;
     border: 0;
