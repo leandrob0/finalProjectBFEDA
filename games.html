@@ -42,6 +42,8 @@
         <input
           class="search__input"
           type="text"
+          autocomplete="off"
+          name="search"
           placeholder="Search games..."
         />
       </section>
@@ -60,7 +62,11 @@
           </div>
           <div class="switch">
             <p>Dark mode</p>
-            <img id="toggle-switch" src="./resources/icons/On.png" alt="Switch mode toggle." />
+            <img
+              id="toggle-switch"
+              src="./resources/icons/On.png"
+              alt="Switch mode toggle."
+            />
           </div>
         </div>
         <div class="descriptions__options">
@@ -145,8 +151,7 @@
           </div>
         </div>
       </aside>
-      <section class="games-container">
-      </section>
+      <section class="games-container"></section>
       <footer class="fade-effect"></footer>
     </main>
     <script src="./javascript/helpers.js" type="module"></script>

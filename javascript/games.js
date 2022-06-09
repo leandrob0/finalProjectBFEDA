@@ -163,11 +163,11 @@ galleryOption.addEventListener("click", () => handleViewChange(galleryOption));
 */
 
 searchInput.addEventListener("input", (e) => {
-  const name = e.target.value.toLowerCase();
+  const searchValue = e.target.value.trim().toLowerCase();
 
   let filteredArr = gamesArray.filter(
     (game) =>
-      game.name.toLowerCase().includes(name) || name === game.name.toLowerCase()
+      game.name.toLowerCase().includes(searchValue) || searchValue === game.name.toLowerCase()
   );
 
   renderView(
