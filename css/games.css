@@ -85,6 +85,8 @@ header {
 }
 
 .search {
+    position: relative;
+
     background: #FFFFFF;
     border-radius: 4px;
 
@@ -120,6 +122,49 @@ header {
 
     font-size: 0.938rem;
     color: #3D3D3D;
+}
+
+.search__results {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 55px;
+
+    background-color: white;
+
+    list-style: none;
+
+    max-height: 210px;
+    overflow-y: scroll;
+}
+
+.search__results::-webkit-scrollbar {
+    width: 10px;
+}
+
+.search__results::-webkit-scrollbar-thumb {
+    background: var(--card-bg);
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.search__results-item {
+    text-decoration: none;
+
+    padding: 10px 34px 10px 14px;
+
+    color: #3D3D3D;
+}
+
+hr {
+    border: 0.5px solid #E1E1E4;
+
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.search__results-item:last-of-type {
+    border: 0;
 }
 
 .user {
