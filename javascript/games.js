@@ -75,6 +75,21 @@ toggle.addEventListener("click", () => {
 
 let gamesArray = [];
 
+async function fetchGameDetails(game) {
+  try {
+    let details = await fetch(
+      `https://api.rawg.io/api/games/${game.id}?key=e3108f7dfa484f38bdb2d3b8372fb406`
+    );
+    let detailsJson = await details.json();
+    let description = detailsJson.description;
+
+    return description;
+  } catch (err) {
+    console.log(err);
+    return 'The details could not be retrieved.';
+  }
+}
+
 fetch("https://api.rawg.io/api/games?key=e3108f7dfa484f38bdb2d3b8372fb406")
   .then((res) => {
     return res.json();
@@ -82,21 +97,16 @@ fetch("https://api.rawg.io/api/games?key=e3108f7dfa484f38bdb2d3b8372fb406")
   .then((games) => {
     gamesArray = games.results;
     games.results.forEach(async (game, i) => {
-      // Gets the game description
-      let details = await fetch(
-        `https://api.rawg.io/api/games/${game.id}?key=e3108f7dfa484f38bdb2d3b8372fb406`
-      );
-      let detailsJson = await details.json();
-      let description = detailsJson.description;
+        let description = await fetchGameDetails(game);
 
-      // Replaces the tags the description has.
-      // Matches the character < / > literally (case sensitive).
-      // ? Matches the previous token as many times as needed.
-      // The g flag captures all instead of returning at the first encounter.
-      description = description.replace(/<\/?[^>]+(>|$)/g, "");
+        // Replaces the tags the description has.
+        // Matches the character < / > literally (case sensitive).
+        // ? Matches the previous token as many times as needed.
+        // The g flag captures all instead of returning at the first encounter.
+        description = description.replace(/<\/?[^>]+(>|$)/g, "");
 
-      // Adds the description to the array of games.
-      gamesArray[i] = { ...gamesArray[i], description };
+        // Adds the description to the array of games.
+        gamesArray[i] = { ...gamesArray[i], description };
     });
   })
   .then(() => {
@@ -175,14 +185,15 @@ searchInput.addEventListener("input", (e) => {
   console.log(searchValue);
   filteredArr = gamesArray.filter(
     (game) =>
-      game.name.toLowerCase().includes(searchValue) || searchValue === game.name.toLowerCase()
+      game.name.toLowerCase().includes(searchValue) ||
+      searchValue === game.name.toLowerCase()
   );
 });
 
 // For every option showed with the event listener before add an event listener to each one, that on click shows that card.
 
 // Handles showing the cards that the user filtered before when clicked on the search icon or pressed enter.
-searchForm.addEventListener('submit', (e) => {
+searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   renderView(
@@ -195,7 +206,7 @@ searchForm.addEventListener('submit', (e) => {
 });
 
 // Handles going back to showing all the games when clicked on the Home option on the sidebar.
-homeButton.addEventListener('click', () => {
+homeButton.addEventListener("click", () => {
   searchInput.value = "";
 
   renderView(
@@ -205,7 +216,7 @@ homeButton.addEventListener('click', () => {
       ? galleryTemplate
       : cardTemplate
   );
-})
+});
 
 /*
 ############################################
