@@ -1,4 +1,4 @@
-import { galleryTemplate, cardTemplate } from "./templates.js";
+import { galleryTemplate, cardTemplate, searchResultTemplate } from "./templates.js";
 import { renderView } from "./helpers.js";
 
 // Select every element that i will use.
@@ -12,6 +12,7 @@ const galleryOption = document.querySelector("#gallery-option");
 const homeButton = document.querySelector("#home");
 const searchForm = document.querySelector(".search__form");
 const searchInput = document.querySelector(".search__input");
+const searchResults = document.querySelector(".search__results");
 
 // When the page loads, checks if the localStorage item describing the user logged in exists.
 // If it doesn't exist, it goes back to the login page (it means the user didn't log in.)
@@ -182,12 +183,20 @@ let filteredArr = [];
 // Handles the dropdown with all the options depending on the string entered.
 searchInput.addEventListener("input", (e) => {
   const searchValue = e.target.value.trim().toLowerCase();
-  console.log(searchValue);
+
   filteredArr = gamesArray.filter(
     (game) =>
       game.name.toLowerCase().includes(searchValue) ||
       searchValue === game.name.toLowerCase()
   );
+  
+  searchResults.innerHTML = "";
+
+  if(filteredArr.length > 0 && searchValue !== "") {
+    filteredArr.forEach((item, i) => {
+      searchResults.innerHTML += searchResultTemplate(item.name, filteredArr.length - 1 === i);
+    })
+  }
 });
 
 // For every option showed with the event listener before add an event listener to each one, that on click shows that card.
