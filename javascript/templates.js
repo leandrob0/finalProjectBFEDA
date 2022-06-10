@@ -194,7 +194,7 @@ export function cardTemplate(game, index) {
 
 export function searchResultTemplate(game, last) {
   return `
-  <li class="search__results-item">${game}</li>
+  <li id="${game.id}" class="search__results-item">${game.name}</li>
   ${!last ? `<hr>` : ""}
   `;
   // If the item to be displayed is the last one in the list, dont put an hr.

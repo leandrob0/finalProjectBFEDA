@@ -194,8 +194,8 @@ searchInput.addEventListener("input", (e) => {
 
   if(filteredArr.length > 0 && searchValue !== "") {
     filteredArr.forEach((item, i) => {
-      searchResults.innerHTML += searchResultTemplate(item.name, filteredArr.length - 1 === i);
-    })
+      searchResults.innerHTML += searchResultTemplate(item, filteredArr.length - 1 === i);
+    });
   }
 });
 
