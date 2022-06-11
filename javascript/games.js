@@ -12,6 +12,7 @@ const galleryOption = document.querySelector("#gallery-option");
 const homeButton = document.querySelector("#home");
 const searchForm = document.querySelector(".search__form");
 const searchInput = document.querySelector(".search__input");
+const searchButton = document.querySelector('.search__button');
 const searchResults = document.querySelector(".search__results");
 
 // When the page loads, checks if the localStorage item describing the user logged in exists.
@@ -196,10 +197,22 @@ searchInput.addEventListener("input", (e) => {
     filteredArr.forEach((item, i) => {
       searchResults.innerHTML += searchResultTemplate(item, filteredArr.length - 1 === i);
     });
+
+    // Handles the click on a list item option.
+    let searchItems = Array.from(document.querySelectorAll('.search__results-item'));
+    searchItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        // Sets the filteredArr to the game clicked, and submits the form.
+        filteredArr = gamesArray.filter(
+          (game) =>
+            game.name.includes(item.textContent) ||
+            item.textContent === game.name
+        );
+        searchButton.click();
+      })
+    })
   }
 });
-
-// For every option showed with the event listener before add an event listener to each one, that on click shows that card.
 
 // Handles showing the cards that the user filtered before when clicked on the search icon or pressed enter.
 searchForm.addEventListener("submit", (e) => {
