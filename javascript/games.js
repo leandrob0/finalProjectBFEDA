@@ -14,6 +14,7 @@ const searchForm = document.querySelector(".search__form");
 const searchInput = document.querySelector(".search__input");
 const searchButton = document.querySelector('.search__button');
 const searchResults = document.querySelector(".search__results");
+const backgroundSearchModal = document.querySelector('.background-modal');
 
 // When the page loads, checks if the localStorage item describing the user logged in exists.
 // If it doesn't exist, it goes back to the login page (it means the user didn't log in.)
@@ -181,6 +182,13 @@ galleryOption.addEventListener("click", () => handleViewChange(galleryOption));
 
 let filteredArr = [];
 
+// Handles the background for the search list, when clicked, it closes the list.
+backgroundSearchModal.addEventListener('click', () => {
+  backgroundSearchModal.style.display = 'none';
+  searchResults.innerHTML = "";
+  searchInput.value = "";
+});
+
 // Handles the dropdown with all the options depending on the string entered.
 searchInput.addEventListener("input", (e) => {
   const searchValue = e.target.value.trim().toLowerCase();
@@ -194,6 +202,7 @@ searchInput.addEventListener("input", (e) => {
   searchResults.innerHTML = "";
 
   if(filteredArr.length > 0 && searchValue !== "") {
+
     filteredArr.forEach((item, i) => {
       searchResults.innerHTML += searchResultTemplate(item, filteredArr.length - 1 === i);
     });
@@ -210,7 +219,9 @@ searchInput.addEventListener("input", (e) => {
         );
         searchButton.click();
       })
-    })
+    });
+
+    backgroundSearchModal.style.display = 'block';
   }
 });
 
