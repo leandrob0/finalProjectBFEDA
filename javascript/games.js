@@ -1,4 +1,5 @@
-import { galleryTemplate, cardTemplate } from "./templates.js";
+import { galleryTemplate, cardTemplate, searchResultTemplate } from "./templates.js";
+import { renderView } from "./helpers.js";
 
 // Select every element that i will use.
 const userimg = document.querySelector(".user__img");
@@ -8,6 +9,12 @@ const gamesContainer = document.querySelector(".games-container");
 const logoutButton = document.querySelector(".user__log-out");
 const cardOption = document.querySelector("#card-option");
 const galleryOption = document.querySelector("#gallery-option");
+const homeButton = document.querySelector("#home");
+const searchForm = document.querySelector(".search__form");
+const searchInput = document.querySelector(".search__input");
+const searchButton = document.querySelector('.search__button');
+const searchResults = document.querySelector(".search__results");
+const backgroundSearchModal = document.querySelector('.background-modal');
 
 // When the page loads, checks if the localStorage item describing the user logged in exists.
 // If it doesn't exist, it goes back to the login page (it means the user didn't log in.)
@@ -71,6 +78,21 @@ toggle.addEventListener("click", () => {
 
 let gamesArray = [];
 
+async function fetchGameDetails(game) {
+  try {
+    let details = await fetch(
+      `https://api.rawg.io/api/games/${game.id}?key=e3108f7dfa484f38bdb2d3b8372fb406`
+    );
+    let detailsJson = await details.json();
+    let description = detailsJson.description;
+
+    return description;
+  } catch (err) {
+    console.log(err);
+    return 'The details could not be retrieved.';
+  }
+}
+
 fetch("https://api.rawg.io/api/games?key=e3108f7dfa484f38bdb2d3b8372fb406")
   .then((res) => {
     return res.json();
@@ -78,24 +100,20 @@ fetch("https://api.rawg.io/api/games?key=e3108f7dfa484f38bdb2d3b8372fb406")
   .then((games) => {
     gamesArray = games.results;
     games.results.forEach(async (game, i) => {
-      // Gets the game description
-      let details = await fetch(
-        `https://api.rawg.io/api/games/${game.id}?key=e3108f7dfa484f38bdb2d3b8372fb406`
-      )
-      let detailsJson = await details.json();
-      let description = detailsJson.description;
+        let description = await fetchGameDetails(game);
 
-      // Replaces the tags the description has.
-      description = description.replace(/<\/?[^>]+(>|$)/g, "");
+        // Replaces the tags the description has.
+        // Matches the character < / > literally (case sensitive).
+        // ? Matches the previous token as many times as needed.
+        // The g flag captures all instead of returning at the first encounter.
+        description = description.replace(/<\/?[^>]+(>|$)/g, "");
 
-      // Adds the description to the array of games.
-      gamesArray[i] = { ...gamesArray[i], description };
+        // Adds the description to the array of games.
+        gamesArray[i] = { ...gamesArray[i], description };
     });
   })
   .then(() => {
-    gamesArray.forEach((game, index) => {
-      gamesContainer.innerHTML += cardTemplate(game, index + 1);
-    });
+    renderView(gamesContainer, gamesArray, cardTemplate);
   })
   .catch((err) => {
     console.log(err);
@@ -126,19 +144,13 @@ function handleViewChange(element) {
     gamesContainer.style.gridAutoRows = "538px";
 
     // Changes the cards.
-    gamesContainer.innerHTML = "";
-    gamesArray.forEach((game, index) => {
-      gamesContainer.innerHTML += galleryTemplate(game, index + 1);
-    });
+    renderView(gamesContainer, gamesArray, galleryTemplate);
   } else {
     gamesContainer.style.gridTemplateColumns = "repeat(3, 363px)";
     gamesContainer.style.gridAutoRows = "314px";
 
     // Changes the cards.
-    gamesContainer.innerHTML = "";
-    gamesArray.forEach((game, index) => {
-      gamesContainer.innerHTML += cardTemplate(game, index + 1);
-    });
+    renderView(gamesContainer, gamesArray, cardTemplate);
   }
 
   // Swaps the classes between the children of the svg's.
@@ -159,6 +171,85 @@ function handleViewChange(element) {
 
 cardOption.addEventListener("click", () => handleViewChange(cardOption));
 galleryOption.addEventListener("click", () => handleViewChange(galleryOption));
+
+/*
+############################################
+
+    Code for the search functionality.
+
+############################################
+*/
+
+let filteredArr = [];
+
+// Handles the background for the search list, when clicked, it closes the list.
+backgroundSearchModal.addEventListener('click', () => {
+  backgroundSearchModal.style.display = 'none';
+  searchResults.innerHTML = "";
+  searchInput.value = "";
+});
+
+// Handles the dropdown with all the options depending on the string entered.
+searchInput.addEventListener("input", (e) => {
+  const searchValue = e.target.value.trim().toLowerCase();
+
+  filteredArr = gamesArray.filter(
+    (game) =>
+      game.name.toLowerCase().includes(searchValue) ||
+      searchValue === game.name.toLowerCase()
+  );
+  
+  searchResults.innerHTML = "";
+
+  if(filteredArr.length > 0 && searchValue !== "") {
+
+    filteredArr.forEach((item, i) => {
+      searchResults.innerHTML += searchResultTemplate(item, filteredArr.length - 1 === i);
+    });
+
+    // Handles the click on a list item option.
+    let searchItems = Array.from(document.querySelectorAll('.search__results-item'));
+    searchItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        // Sets the filteredArr to the game clicked, and submits the form.
+        filteredArr = gamesArray.filter(
+          (game) =>
+            game.name.includes(item.textContent) ||
+            item.textContent === game.name
+        );
+        searchButton.click();
+      })
+    });
+
+    backgroundSearchModal.style.display = 'block';
+  }
+});
+
+// Handles showing the cards that the user filtered before when clicked on the search icon or pressed enter.
+searchForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  renderView(
+    gamesContainer,
+    filteredArr,
+    gamesContainer.style.gridTemplateColumns === "697px"
+      ? galleryTemplate
+      : cardTemplate
+  );
+});
+
+// Handles going back to showing all the games when clicked on the Home option on the sidebar.
+homeButton.addEventListener("click", () => {
+  searchInput.value = "";
+
+  renderView(
+    gamesContainer,
+    gamesArray,
+    gamesContainer.style.gridTemplateColumns === "697px"
+      ? galleryTemplate
+      : cardTemplate
+  );
+});
 
 /*
 ############################################

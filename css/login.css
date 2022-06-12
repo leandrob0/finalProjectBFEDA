@@ -334,6 +334,14 @@ input.form__text-input {
     line-height: 20px;
 }
 
+#form input:focus:invalid {
+    border: 1px solid red;
+}
+
+#form input:valid {
+    border: 1px solid green;
+}
+
 .form__password.form__password-dots {
     font: large Verdana,sans-serif;
     padding-bottom: 5px;
