@@ -21,25 +21,6 @@ let gamesArray = []; // Variable for the games fetching functionality.
 let filteredArr = []; // Variable to filter the games for the search functionality.
 let lastSearches = JSON.parse(localStorage.getItem('searches')) || []; // Variable for the last searches functionality.
 
-// When the page loads, checks if the localStorage item describing the user logged in exists.
-// If it doesn't exist, it goes back to the login page (it means the user didn't log in.)
-// If it exists, sets the photo from top right to the photo from the user.
-// Also, gets the current color mode and sets it (because by default it is dark).
-(function () {
-  const userinfo = JSON.parse(localStorage.getItem("userinfo"));
-
-  if (!userinfo) {
-    location.href = "/";
-  }
-
-  userimg.src = `../resources/images/${userinfo.user.photo}`;
-
-  const localStorageItem = JSON.parse(localStorage.getItem("carousel"));
-  const mode = localStorageItem.mode;
-
-  handleSwitchChange(mode === "dark" ? "light" : "dark");
-})();
-
 /*
 ############################################
 
@@ -72,6 +53,25 @@ toggle.addEventListener("click", () => {
     })
   );
 });
+
+// When the page loads, checks if the localStorage item describing the user logged in exists.
+// If it doesn't exist, it goes back to the login page (it means the user didn't log in.)
+// If it exists, sets the photo from top right to the photo from the user.
+// Also, gets the current color mode and sets it (because by default it is dark).
+(function () {
+  const userinfo = JSON.parse(localStorage.getItem("userinfo"));
+
+  if (!userinfo) {
+    location.href = "/";
+  }
+
+  userimg.src = `../resources/images/${userinfo.user.photo}`;
+
+  const localStorageItem = JSON.parse(localStorage.getItem("carousel"));
+  const mode = localStorageItem.mode;
+
+  handleSwitchChange(mode === "dark" ? "light" : "dark");
+})();
 
 /*
 ############################################
