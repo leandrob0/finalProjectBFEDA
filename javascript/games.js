@@ -178,7 +178,7 @@ galleryOption.addEventListener("click", () => handleViewChange(galleryOption));
 /*
 ############################################
 
-    Code for the search functionality.
+    Code for the search and last searches functionality.
 
 ############################################
 */
@@ -261,14 +261,6 @@ homeButton.addEventListener("click", () => {
       : cardTemplate
   );
 });
-
-/*
-############################################
-
-    Code for the last searches functionality.
-
-############################################
-*/
 
 lastSearchesButton.addEventListener('click', () => {
 
