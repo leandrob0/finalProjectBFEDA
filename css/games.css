@@ -618,6 +618,10 @@ main {
     line-height: 29px;
 }
 
+#sidebar__last-searches:hover {
+    cursor: pointer;
+}
+
 /*
 
     Bottom of the page fade effect.
