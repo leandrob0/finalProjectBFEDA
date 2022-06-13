@@ -168,6 +168,10 @@ header {
     color: #3D3D3D;
 }
 
+.search__results-item:hover {
+    cursor: pointer;
+}
+
 hr {
     border: 0.5px solid #E1E1E4;
 
