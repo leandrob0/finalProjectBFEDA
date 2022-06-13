@@ -15,6 +15,11 @@ const searchInput = document.querySelector(".search__input");
 const searchButton = document.querySelector('.search__button');
 const searchResults = document.querySelector(".search__results");
 const backgroundSearchModal = document.querySelector('.background-modal');
+const lastSearchesButton = document.querySelector('#sidebar__last-searches');
+
+let gamesArray = []; // Variable for the games fetching functionality.
+let filteredArr = []; // Variable to filter the games for the search functionality.
+let lastSearches = JSON.parse(localStorage.getItem('searches')) || []; // Variable for the last searches functionality.
 
 // When the page loads, checks if the localStorage item describing the user logged in exists.
 // If it doesn't exist, it goes back to the login page (it means the user didn't log in.)
@@ -75,8 +80,6 @@ toggle.addEventListener("click", () => {
 
 ############################################
 */
-
-let gamesArray = [];
 
 async function fetchGameDetails(game) {
   try {
@@ -180,8 +183,6 @@ galleryOption.addEventListener("click", () => handleViewChange(galleryOption));
 ############################################
 */
 
-let filteredArr = [];
-
 // Handles the background for the search list, when clicked, it closes the list.
 backgroundSearchModal.addEventListener('click', () => {
   backgroundSearchModal.style.display = 'none';
@@ -229,6 +230,16 @@ searchInput.addEventListener("input", (e) => {
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
+  if(filteredArr.length === 1) {
+    // If the lastSearches arr already has the last two, takes out the first (added before), and adds the new one.
+    if(lastSearches.length  === 2) {
+      lastSearches.shift();
+    }
+
+    lastSearches.push(filteredArr[0]);
+    localStorage.setItem('searches', JSON.stringify(lastSearches));
+  }
+
   renderView(
     gamesContainer,
     filteredArr,
@@ -250,6 +261,26 @@ homeButton.addEventListener("click", () => {
       : cardTemplate
   );
 });
+
+/*
+############################################
+
+    Code for the last searches functionality.
+
+############################################
+*/
+
+lastSearchesButton.addEventListener('click', () => {
+
+  renderView(
+    gamesContainer,
+    lastSearches,
+    gamesContainer.style.gridTemplateColumns === "697px"
+      ? galleryTemplate
+      : cardTemplate
+  );
+});
+
 
 /*
 ############################################
