@@ -1,6 +1,9 @@
+const baseUrl = "https://api.rawg.io/api/games";
+const API_KEY = "e3108f7dfa484f38bdb2d3b8372fb406"
+
 export const fetchGames = async (page) => {
   const response = await fetch(
-    `https://api.rawg.io/api/games?page=${page}&key=e3108f7dfa484f38bdb2d3b8372fb406`
+    `${baseUrl}?page=${page}&key=${API_KEY}`
   );
 
   // This handles a 404 status
@@ -16,7 +19,7 @@ export const fetchGames = async (page) => {
 export const getGamesDetails = async (games) => {
   const gamesWithDescription = Promise.all(games.map(async (game, i) => {
     let details = await fetch(
-      `https://api.rawg.io/api/games/${game.id}?key=e3108f7dfa484f38bdb2d3b8372fb406`
+      `${baseUrl}/${game.id}?key=${API_KEY}`
     );
     let detailsJson = await details.json();
     let description = detailsJson.description;
