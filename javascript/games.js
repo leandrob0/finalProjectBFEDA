@@ -4,7 +4,7 @@ import {
   searchResultTemplate,
 } from "./templates.js";
 import { renderView } from "./helpers.js";
-import { fetchGames, getGamesDetails } from "./services.js";
+import { fetchGames, getGamesDetails , searchGames } from "./services.js";
 
 // Select every element that i will use.
 const userimg = document.querySelector(".user__img");
@@ -200,14 +200,10 @@ backgroundSearchModal.addEventListener("click", () => {
 });
 
 // Handles the dropdown with all the options depending on the string entered.
-searchInput.addEventListener("input", (e) => {
+searchInput.addEventListener("input", async (e) => {
   const searchValue = e.target.value.trim().toLowerCase();
 
-  filteredArr = gamesArray.filter(
-    (game) =>
-      game.name.toLowerCase().includes(searchValue) ||
-      searchValue === game.name.toLowerCase()
-  );
+  filteredArr = await searchGames(searchValue);
 
   searchResults.innerHTML = "";
 
@@ -226,7 +222,7 @@ searchInput.addEventListener("input", (e) => {
     searchItems.forEach((item) => {
       item.addEventListener("click", () => {
         // Sets the filteredArr to the game clicked, and submits the form.
-        filteredArr = gamesArray.filter(
+        filteredArr = filteredArr.filter(
           (game) =>
             game.name.includes(item.textContent) ||
             item.textContent === game.name

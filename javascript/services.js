@@ -36,3 +36,18 @@ export const getGamesDetails = async (games) => {
 
   return gamesWithDescription;
 };
+
+export const searchGames = async (search) => {
+  const response = await fetch(
+    `${baseUrl}?search=${search}&key=${API_KEY}`
+  );
+
+  // This handles a 404 status
+  if (!response.ok) {
+    return [];
+  }
+
+  const transformedResponse = await response.json();
+
+  return transformedResponse.results;
+}
