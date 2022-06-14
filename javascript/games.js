@@ -1,5 +1,10 @@
-import { galleryTemplate, cardTemplate, searchResultTemplate } from "./templates.js";
+import {
+  galleryTemplate,
+  cardTemplate,
+  searchResultTemplate,
+} from "./templates.js";
 import { renderView } from "./helpers.js";
+import { fetchGames, getGamesDetails } from "./services.js";
 
 // Select every element that i will use.
 const userimg = document.querySelector(".user__img");
@@ -12,14 +17,14 @@ const galleryOption = document.querySelector("#gallery-option");
 const homeButton = document.querySelector("#home");
 const searchForm = document.querySelector(".search__form");
 const searchInput = document.querySelector(".search__input");
-const searchButton = document.querySelector('.search__button');
+const searchButton = document.querySelector(".search__button");
 const searchResults = document.querySelector(".search__results");
-const backgroundSearchModal = document.querySelector('.background-modal');
-const lastSearchesButton = document.querySelector('#sidebar__last-searches');
+const backgroundSearchModal = document.querySelector(".background-modal");
+const lastSearchesButton = document.querySelector("#sidebar__last-searches");
 
 let gamesArray = []; // Variable for the games fetching functionality.
 let filteredArr = []; // Variable to filter the games for the search functionality.
-let lastSearches = JSON.parse(localStorage.getItem('searches')) || []; // Variable for the last searches functionality.
+let lastSearches = JSON.parse(localStorage.getItem("searches")) || []; // Variable for the last searches functionality.
 
 /*
 ############################################
@@ -81,46 +86,50 @@ toggle.addEventListener("click", () => {
 ############################################
 */
 
-async function fetchGameDetails(game) {
-  try {
-    let details = await fetch(
-      `https://api.rawg.io/api/games/${game.id}?key=e3108f7dfa484f38bdb2d3b8372fb406`
-    );
-    let detailsJson = await details.json();
-    let description = detailsJson.description;
+let currentPage = 1;
 
-    return description;
-  } catch (err) {
-    console.log(err);
-    return 'The details could not be retrieved.';
-  }
+async function getGamesWithDetails() {
+  const pageResults = await fetchGames(currentPage);
+  gamesArray.push(...pageResults);
+  gamesArray = await getGamesDetails(gamesArray, currentPage);
 }
 
-fetch("https://api.rawg.io/api/games?key=e3108f7dfa484f38bdb2d3b8372fb406")
-  .then((res) => {
-    return res.json();
-  })
-  .then((games) => {
-    gamesArray = games.results;
-    games.results.forEach(async (game, i) => {
-        let description = await fetchGameDetails(game);
-
-        // Replaces the tags the description has.
-        // Matches the character < / > literally (case sensitive).
-        // ? Matches the previous token as many times as needed.
-        // The g flag captures all instead of returning at the first encounter.
-        description = description.replace(/<\/?[^>]+(>|$)/g, "");
-
-        // Adds the description to the array of games.
-        gamesArray[i] = { ...gamesArray[i], description };
-    });
-  })
+getGamesWithDetails()
   .then(() => {
-    renderView(gamesContainer, gamesArray, cardTemplate);
+    currentPage++;
+    renderView(
+      gamesContainer,
+      gamesArray,
+      gamesContainer.style.gridTemplateColumns === "697px"
+        ? galleryTemplate
+        : cardTemplate
+    );
   })
   .catch((err) => {
     console.log(err);
   });
+
+gamesContainer.addEventListener("scroll", (e) => {
+  const element = e.target;
+
+  // Checks if the element is at the bottom of the container (can't go further).
+  if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+    getGamesWithDetails()
+      .then(() => {
+        currentPage++;
+        renderView(
+          gamesContainer,
+          gamesArray,
+          gamesContainer.style.gridTemplateColumns === "697px"
+            ? galleryTemplate
+            : cardTemplate
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+});
 
 /*
 ############################################
@@ -184,8 +193,8 @@ galleryOption.addEventListener("click", () => handleViewChange(galleryOption));
 */
 
 // Handles the background for the search list, when clicked, it closes the list.
-backgroundSearchModal.addEventListener('click', () => {
-  backgroundSearchModal.style.display = 'none';
+backgroundSearchModal.addEventListener("click", () => {
+  backgroundSearchModal.style.display = "none";
   searchResults.innerHTML = "";
   searchInput.value = "";
 });
@@ -199,19 +208,23 @@ searchInput.addEventListener("input", (e) => {
       game.name.toLowerCase().includes(searchValue) ||
       searchValue === game.name.toLowerCase()
   );
-  
+
   searchResults.innerHTML = "";
 
-  if(filteredArr.length > 0 && searchValue !== "") {
-
+  if (filteredArr.length > 0 && searchValue !== "") {
     filteredArr.forEach((item, i) => {
-      searchResults.innerHTML += searchResultTemplate(item, filteredArr.length - 1 === i);
+      searchResults.innerHTML += searchResultTemplate(
+        item,
+        filteredArr.length - 1 === i
+      );
     });
 
     // Handles the click on a list item option.
-    let searchItems = Array.from(document.querySelectorAll('.search__results-item'));
+    let searchItems = Array.from(
+      document.querySelectorAll(".search__results-item")
+    );
     searchItems.forEach((item) => {
-      item.addEventListener('click', () => {
+      item.addEventListener("click", () => {
         // Sets the filteredArr to the game clicked, and submits the form.
         filteredArr = gamesArray.filter(
           (game) =>
@@ -219,10 +232,10 @@ searchInput.addEventListener("input", (e) => {
             item.textContent === game.name
         );
         searchButton.click();
-      })
+      });
     });
 
-    backgroundSearchModal.style.display = 'block';
+    backgroundSearchModal.style.display = "block";
   }
 });
 
@@ -230,14 +243,14 @@ searchInput.addEventListener("input", (e) => {
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  if(filteredArr.length === 1) {
+  if (filteredArr.length === 1) {
     // If the lastSearches arr already has the last two, takes out the first (added before), and adds the new one.
-    if(lastSearches.length  === 2) {
+    if (lastSearches.length === 2) {
       lastSearches.shift();
     }
 
     lastSearches.push(filteredArr[0]);
-    localStorage.setItem('searches', JSON.stringify(lastSearches));
+    localStorage.setItem("searches", JSON.stringify(lastSearches));
   }
 
   renderView(
@@ -262,8 +275,7 @@ homeButton.addEventListener("click", () => {
   );
 });
 
-lastSearchesButton.addEventListener('click', () => {
-
+lastSearchesButton.addEventListener("click", () => {
   renderView(
     gamesContainer,
     lastSearches,
@@ -272,7 +284,6 @@ lastSearchesButton.addEventListener('click', () => {
       : cardTemplate
   );
 });
-
 
 /*
 ############################################
