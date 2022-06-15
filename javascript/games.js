@@ -207,46 +207,50 @@ searchInput.addEventListener("input", async (e) => {
 
   searchResults.innerHTML = "";
 
-  if (filteredArr.length > 0 && searchValue !== "") {
-    filteredArr.forEach((item, i) => {
-      searchResults.innerHTML += searchResultTemplate(
-        item,
-        filteredArr.length - 1 === i
-      );
-    });
-
-    // Handles the click on a list item option.
-    let searchItems = Array.from(
-      document.querySelectorAll(".search__results-item")
-    );
-    searchItems.forEach((item) => {
-      item.addEventListener("click", () => {
-        // Sets the filteredArr to the game clicked, and submits the form.
-        filteredArr = filteredArr.filter(
-          (game) =>
-            game.name.includes(item.textContent) ||
-            item.textContent === game.name
+  if (searchValue !== "") {
+    if (filteredArr.length > 0) {
+      filteredArr.forEach((item, i) => {
+        searchResults.innerHTML += searchResultTemplate(
+          item,
+          filteredArr.length - 1 === i
         );
-
-        // This basically handles if the game searched was not fetched before.
-        // If not, it gets its details so i can change view without showing undefined on the description.
-        // Otherwise it just shows it.
-        if (!gameInArray(filteredArr[0], gamesArray)) {
-          getGamesDetails(filteredArr)
-            .then((res) => {
-              filteredArr = res;
-              searchButton.click();
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        } else {
-          searchButton.click();
-        }
       });
-    });
 
-    backgroundSearchModal.style.display = "block";
+      // Handles the click on a list item option.
+      let searchItems = Array.from(
+        document.querySelectorAll(".search__results-item")
+      );
+      searchItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          // Sets the filteredArr to the game clicked, and submits the form.
+          filteredArr = filteredArr.filter(
+            (game) =>
+              game.name.includes(item.textContent) ||
+              item.textContent === game.name
+          );
+
+          // This basically handles if the game searched was not fetched before.
+          // If not, it gets its details so i can change view without showing undefined on the description.
+          // Otherwise it just shows it.
+          if (!gameInArray(filteredArr[0], gamesArray)) {
+            getGamesDetails(filteredArr)
+              .then((res) => {
+                filteredArr = res;
+                searchButton.click();
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          } else {
+            searchButton.click();
+          }
+        });
+      });
+
+      backgroundSearchModal.style.display = "block";
+    }
+  } else {
+    backgroundSearchModal.style.display = "none";
   }
 });
 
