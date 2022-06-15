@@ -89,9 +89,9 @@ toggle.addEventListener("click", () => {
 let currentPage = 1;
 
 async function getGamesWithDetails() {
-  const pageResults = await fetchGames(currentPage);
+  let pageResults = await fetchGames(currentPage);
+  pageResults = await getGamesDetails(pageResults, currentPage);
   gamesArray.push(...pageResults);
-  gamesArray = await getGamesDetails(gamesArray, currentPage);
 }
 
 getGamesWithDetails()
