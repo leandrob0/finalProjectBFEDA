@@ -248,6 +248,11 @@ searchInput.addEventListener("input", async (e) => {
       });
 
       backgroundSearchModal.style.display = "block";
+    } else {
+      searchResults.innerHTML += searchResultTemplate(
+        {id: 0, name: 'No results found'},
+        true
+      );
     }
   } else {
     backgroundSearchModal.style.display = "none";
