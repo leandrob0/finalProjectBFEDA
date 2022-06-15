@@ -3,8 +3,8 @@ import {
   cardTemplate,
   searchResultTemplate,
 } from "./templates.js";
-import { renderView } from "./helpers.js";
-import { fetchGames, getGamesDetails , searchGames } from "./services.js";
+import { renderView, gameInArray } from "./helpers.js";
+import { fetchGames, getGamesDetails, searchGames } from "./services.js";
 
 // Select every element that i will use.
 const userimg = document.querySelector(".user__img");
@@ -227,7 +227,22 @@ searchInput.addEventListener("input", async (e) => {
             game.name.includes(item.textContent) ||
             item.textContent === game.name
         );
-        searchButton.click();
+
+        // This basically handles if the game searched was not fetched before.
+        // If not, it gets its details so i can change view without showing undefined on the description.
+        // Otherwise it just shows it.
+        if (!gameInArray(filteredArr[0], gamesArray)) {
+          getGamesDetails(filteredArr)
+            .then((res) => {
+              filteredArr = res;
+              searchButton.click();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          searchButton.click();
+        }
       });
     });
 
@@ -239,7 +254,8 @@ searchInput.addEventListener("input", async (e) => {
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  if (filteredArr.length === 1) {
+  // Checks that the array has only one solution to add to the last search, and if the game searched is already in the last searches.
+  if (filteredArr.length === 1 && !gameInArray(filteredArr[0], lastSearches)) {
     // If the lastSearches arr already has the last two, takes out the first (added before), and adds the new one.
     if (lastSearches.length === 2) {
       lastSearches.shift();
