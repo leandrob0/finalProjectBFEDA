@@ -18,6 +18,7 @@ const homeButton = document.querySelector("#home");
 const searchForm = document.querySelector(".search__form");
 const searchInput = document.querySelector(".search__input");
 const searchButton = document.querySelector(".search__button");
+const searchResultsClear = document.querySelector(".search__icon-clear");
 const searchResults = document.querySelector(".search__results");
 const backgroundSearchModal = document.querySelector(".background-modal");
 const lastSearchesButton = document.querySelector("#sidebar__last-searches");
@@ -197,6 +198,7 @@ backgroundSearchModal.addEventListener("click", () => {
   backgroundSearchModal.style.display = "none";
   searchResults.innerHTML = "";
   searchInput.value = "";
+  searchResultsClear.style.visibility = "hidden";
 });
 
 // Handles the dropdown with all the options depending on the string entered.
@@ -208,6 +210,9 @@ searchInput.addEventListener("input", async (e) => {
   searchResults.innerHTML = "";
 
   if (searchValue !== "") {
+    // Shows the button to clear the search input.
+    searchResultsClear.style.visibility = 'visible';
+
     if (filteredArr.length > 0) {
       filteredArr.forEach((item, i) => {
         searchResults.innerHTML += searchResultTemplate(
@@ -256,8 +261,16 @@ searchInput.addEventListener("input", async (e) => {
     }
   } else {
     backgroundSearchModal.style.display = "none";
+    searchResultsClear.style.visibility = 'hidden';
   }
 });
+
+searchResultsClear.addEventListener('click', () => {
+  backgroundSearchModal.style.display = "none";
+  searchResults.innerHTML = "";
+  searchInput.value = "";
+  searchResultsClear.style.visibility = 'hidden';
+})
 
 // Handles showing the cards that the user filtered before when clicked on the search icon or pressed enter.
 searchForm.addEventListener("submit", (e) => {

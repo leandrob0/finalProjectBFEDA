@@ -133,10 +133,20 @@ header {
 
     margin-right: 8px;
     padding-top: 3px;
-    width: 314px;
+    width: 280px;
 
     font-size: 0.938rem;
     color: #3D3D3D;
+}
+
+.search__icon-clear {
+    visibility: hidden;
+    margin-right: 11px;
+    margin-top: 1px;
+}
+
+.search__icon-clear:hover {
+    cursor: pointer;
 }
 
 .search__results {
