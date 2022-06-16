@@ -3,7 +3,7 @@ import {
   cardTemplate,
   searchResultTemplate,
 } from "./templates.js";
-import { renderView, gameInArray } from "./helpers.js";
+import { renderView, gameInArray, resetSearch } from "./helpers.js";
 import { fetchGames, getGamesDetails, searchGames } from "./services.js";
 
 // Select every element that i will use.
@@ -18,8 +18,8 @@ const homeButton = document.querySelector("#home");
 const searchForm = document.querySelector(".search__form");
 const searchInput = document.querySelector(".search__input");
 const searchButton = document.querySelector(".search__button");
-const searchResultsClear = document.querySelector(".search__icon-clear");
 const searchResults = document.querySelector(".search__results");
+const searchResultsClear = document.querySelector(".search__icon-clear");
 const backgroundSearchModal = document.querySelector(".background-modal");
 const lastSearchesButton = document.querySelector("#sidebar__last-searches");
 
@@ -113,8 +113,8 @@ getGamesWithDetails()
 gamesContainer.addEventListener("scroll", (e) => {
   const element = e.target;
 
-  // Checks if the element is at the bottom of the container (can't go further).
-  if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+  // Checks if the element is at the bottom of the container (can't go further). -> poor attemp of trying to block fetching when i'm seeing search results.
+  if (element.scrollHeight - element.scrollTop === element.clientHeight && gamesContainer.children.length === gamesArray.length) {
     getGamesWithDetails()
       .then(() => {
         currentPage++;
@@ -195,10 +195,21 @@ galleryOption.addEventListener("click", () => handleViewChange(galleryOption));
 
 // Handles the background for the search list, when clicked, it closes the list.
 backgroundSearchModal.addEventListener("click", () => {
-  backgroundSearchModal.style.display = "none";
-  searchResults.innerHTML = "";
-  searchInput.value = "";
-  searchResultsClear.style.visibility = "hidden";
+  resetSearch(
+    backgroundSearchModal,
+    searchResults,
+    searchInput,
+    searchResultsClear
+  );
+});
+
+searchResultsClear.addEventListener("click", () => {
+  resetSearch(
+    backgroundSearchModal,
+    searchResults,
+    searchInput,
+    searchResultsClear
+  );
 });
 
 // Handles the dropdown with all the options depending on the string entered.
@@ -210,8 +221,7 @@ searchInput.addEventListener("input", async (e) => {
   searchResults.innerHTML = "";
 
   if (searchValue !== "") {
-    // Shows the button to clear the search input.
-    searchResultsClear.style.visibility = 'visible';
+    searchResultsClear.style.visibility = "visible";
 
     if (filteredArr.length > 0) {
       filteredArr.forEach((item, i) => {
@@ -229,9 +239,7 @@ searchInput.addEventListener("input", async (e) => {
         item.addEventListener("click", () => {
           // Sets the filteredArr to the game clicked, and submits the form.
           filteredArr = filteredArr.filter(
-            (game) =>
-              game.name.includes(item.textContent) ||
-              item.textContent === game.name
+            (game) => item.textContent === game.name
           );
 
           // This basically handles if the game searched was not fetched before.
@@ -255,22 +263,14 @@ searchInput.addEventListener("input", async (e) => {
       backgroundSearchModal.style.display = "block";
     } else {
       searchResults.innerHTML += searchResultTemplate(
-        {id: 0, name: 'No results found'},
+        { id: 0, name: "No results found" },
         true
       );
     }
   } else {
-    backgroundSearchModal.style.display = "none";
-    searchResultsClear.style.visibility = 'hidden';
+    resetSearch(backgroundSearchModal,searchResults,searchInput,searchResultsClear);
   }
 });
-
-searchResultsClear.addEventListener('click', () => {
-  backgroundSearchModal.style.display = "none";
-  searchResults.innerHTML = "";
-  searchInput.value = "";
-  searchResultsClear.style.visibility = 'hidden';
-})
 
 // Handles showing the cards that the user filtered before when clicked on the search icon or pressed enter.
 searchForm.addEventListener("submit", (e) => {
@@ -296,10 +296,16 @@ searchForm.addEventListener("submit", (e) => {
   );
 });
 
+/*
+############################################
+
+    Code for the sidebar options click.
+
+############################################
+*/
+
 // Handles going back to showing all the games when clicked on the Home option on the sidebar.
 homeButton.addEventListener("click", () => {
-  searchInput.value = "";
-
   renderView(
     gamesContainer,
     gamesArray,

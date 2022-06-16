@@ -39,7 +39,7 @@ export const getGamesDetails = async (games) => {
 
 export const searchGames = async (search) => {
   const response = await fetch(
-    `${baseUrl}?search=${search}&search_exact=true&key=${API_KEY}`
+    `${baseUrl}?search=${search}&search_precise=true&page_size=50&key=${API_KEY}`
   );
 
   // This handles a 404 status
