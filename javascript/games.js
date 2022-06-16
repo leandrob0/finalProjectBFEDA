@@ -113,7 +113,7 @@ getGamesWithDetails()
 gamesContainer.addEventListener("scroll", (e) => {
   const element = e.target;
 
-  // Checks if the element is at the bottom of the container (can't go further). -> poor attemp of trying to block fetching when i'm seeing a search results.
+  // Checks if the element is at the bottom of the container (can't go further). -> poor attemp of trying to block fetching when i'm seeing search results.
   if (element.scrollHeight - element.scrollTop === element.clientHeight && gamesContainer.children.length === gamesArray.length) {
     getGamesWithDetails()
       .then(() => {
