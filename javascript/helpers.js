@@ -27,9 +27,9 @@ export const gameInArray = (game, array) => {
   return false;
 }
 
-export const resetSearch = () => {
-  backgroundSearchModal.style.display = "none";
-  searchResults.innerHTML = "";
-  searchInput.value = "";
-  searchResultsClear.style.visibility = "hidden";
+export const resetSearch = (background, results, input, button) => {
+  background.style.display = "none";
+  results.innerHTML = "";
+  input.value = "";
+  button.style.visibility = "hidden";
 }
