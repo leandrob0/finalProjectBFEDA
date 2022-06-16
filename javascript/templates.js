@@ -19,7 +19,7 @@ export function galleryTemplate(game, index) {
         <p class="info-value genres-value-margin">${game.genres.map(
           (genre, i) =>
             i + 1 === game.genres.length ? genre.name : genre.name + " "
-        ) || 'Unknown'}</p>
+        )}</p>
       </div>
       <div class="icon-container">
       ${
@@ -187,7 +187,7 @@ export function cardTemplate(game, index) {
       <p class="info-key">Genres:</p>
       <p class="info-value genres-margin">${game.genres.map((genre, i) =>
         i + 1 === game.genres.length ? genre.name : genre.name + " "
-      ) || 'Unknown'}</p>
+      )}</p>
     </div>
     </article>`;
 }
