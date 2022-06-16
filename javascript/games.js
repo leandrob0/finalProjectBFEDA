@@ -113,8 +113,8 @@ getGamesWithDetails()
 gamesContainer.addEventListener("scroll", (e) => {
   const element = e.target;
 
-  // Checks if the element is at the bottom of the container (can't go further).
-  if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+  // Checks if the element is at the bottom of the container (can't go further). -> poor attemp of trying to block fetching when i'm seeing a search results.
+  if (element.scrollHeight - element.scrollTop === element.clientHeight && gamesContainer.children.length === gamesArray.length) {
     getGamesWithDetails()
       .then(() => {
         currentPage++;
@@ -268,8 +268,7 @@ searchInput.addEventListener("input", async (e) => {
       );
     }
   } else {
-    backgroundSearchModal.style.display = "none";
-    searchResultsClear.style.visibility = "hidden";
+    resetSearch(backgroundSearchModal,searchResults,searchInput,searchResultsClear);
   }
 });
 
