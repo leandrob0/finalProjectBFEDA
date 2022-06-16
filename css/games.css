@@ -409,6 +409,8 @@ main {
 .game-title-container {
     white-space: nowrap;
     overflow: hidden;
+
+    max-width: 280px;
 }
 
 .game-title-hide {
