@@ -2,7 +2,7 @@ import { includesPlatform } from "./helpers.js";
 
 export function galleryTemplate(game, index) {
   return `<article class="gallery">
-    <img class="gallery__image" src="${game.background_image}" />
+    <img class="gallery__image" src="${game.background_image || `https://via.placeholder.com/363x179`}" />
     <img class="heart-icon" src="./resources/icons/heart-empty.svg" alt="Heart icon." />
     <div class="first-row">
       <div class="game-title-container">
@@ -98,7 +98,7 @@ export function cardTemplate(game, index) {
   return `<article class="card">
     <img
       class="card__image"
-      src="${game.background_image}"
+      src="${game.background_image || `https://via.placeholder.com/363x179`}"
       alt="placeholder image"
     />
     <img class="heart-icon" src="./resources/icons/heart-empty.svg" alt="Heart icon." />
