@@ -14,12 +14,12 @@ export function galleryTemplate(game, index) {
     <div class="second-row">
       <div class="text-container info-key">
         <p>Release date:</p>
-        <p class="date-release-gallery info-value">${game.released}</p>
+        <p class="date-release-gallery info-value">${game.released || 'Unknown'}</p>
         <p class="genres-key-margin">Genres:</p>
         <p class="info-value genres-value-margin">${game.genres.map(
           (genre, i) =>
             i + 1 === game.genres.length ? genre.name : genre.name + " "
-        )}</p>
+        ) || 'Unknown'}</p>
       </div>
       <div class="icon-container">
       ${
@@ -90,7 +90,7 @@ export function galleryTemplate(game, index) {
       }
       </div>
     </div>
-    <p class="game-description">${game.description}</p>
+    <p class="game-description">${game.description || 'Unknown'}</p>
   </article>`;
 }
 
@@ -112,7 +112,7 @@ export function cardTemplate(game, index) {
     <div class="second-row">
       <div class="text-container info-key">
         <p>Release date:</p>
-        <p class="date-release info-value">${game.released}</p>
+        <p class="date-release info-value">${game.released || 'Unknown'}</p>
       </div>
       <div class="icon-container">
       ${
@@ -187,7 +187,7 @@ export function cardTemplate(game, index) {
       <p class="info-key">Genres:</p>
       <p class="info-value genres-margin">${game.genres.map((genre, i) =>
         i + 1 === game.genres.length ? genre.name : genre.name + " "
-      )}</p>
+      ) || 'Unknown'}</p>
     </div>
     </article>`;
 }
