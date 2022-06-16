@@ -26,3 +26,10 @@ export const gameInArray = (game, array) => {
 
   return false;
 }
+
+export const resetSearch = () => {
+  backgroundSearchModal.style.display = "none";
+  searchResults.innerHTML = "";
+  searchInput.value = "";
+  searchResultsClear.style.visibility = "hidden";
+}
