@@ -151,8 +151,7 @@ const loginUser = (email, password) => {
     body: JSON.stringify({
       email,
       password,
-    }),
-    referrerPolicy: "origin",
+    })
   });
 };
 
