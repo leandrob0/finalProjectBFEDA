@@ -1,9 +1,7 @@
 import {
-  galleryTemplate,
-  cardTemplate,
   searchResultTemplate,
 } from "./templates.js";
-import { renderView, gameInArray, resetSearch } from "./helpers.js";
+import { gameInArray, resetSearch } from "./helpers.js";
 import { getGamesDetails, searchGames } from "./services.js";
 import { GamesContainerFunctions } from "./gamesContainer.js";
 
