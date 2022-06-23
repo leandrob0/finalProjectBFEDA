@@ -40,14 +40,12 @@ const GamesContainerFunctions = (function () {
 
       return equal;
     },
-    renderCards: function (arr) {
-      let initialCount = gamesArray.length === 20 ? 1 : 21;
+    renderCards: function (arr, initialCount = 1) {
       arr.forEach((game, index) => {
         gamesContainer.innerHTML += cardTemplate(game, initialCount + index);
       });
     },
-    renderGallery: function (arr) {
-      let initialCount = gamesArray.length === 20 ? 1 : 21;
+    renderGallery: function (arr, initialCount = 1) {
       arr.forEach((game, index) => {
         gamesContainer.innerHTML += galleryTemplate(game, initialCount + index);
       });
@@ -69,10 +67,11 @@ const GamesContainerFunctions = (function () {
       }
     },
     renderNextPageGames: function (arr) {
+      let initialCount = gamesArray.length === 20 ? 1 : 21;
       if (this.isCard()) {
-        this.renderCards(arr);
+        this.renderCards(arr, initialCount);
       } else {
-        this.renderGallery(arr);
+        this.renderGallery(arr, initialCount);
       }
     },
     changeView: function () {
