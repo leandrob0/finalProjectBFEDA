@@ -24,7 +24,6 @@ const searchResultsClear = document.querySelector(".search__icon-clear");
 const backgroundSearchModal = document.querySelector(".background-modal");
 const lastSearchesButton = document.querySelector("#sidebar__last-searches");
 
-let gamesArray = []; // Variable for the games fetching functionality.
 let filteredArr = []; // Variable to filter the games for the search functionality.
 let lastSearches = JSON.parse(localStorage.getItem("searches")) || []; // Variable for the last searches functionality.
 
@@ -90,27 +89,13 @@ toggle.addEventListener("click", () => {
 
 GamesContainerFunctions.loadInitialGames();
 
-/* gamesContainer.addEventListener("scroll", (e) => {
+gamesContainer.addEventListener("scroll", (e) => {
   const element = e.target;
-
   // Checks if the element is at the bottom of the container (can't go further). -> poor attemp of trying to block fetching when i'm seeing search results.
-  if (element.scrollHeight - element.scrollTop === element.clientHeight && gamesContainer.children.length === gamesArray.length) {
-    getGamesWithDetails()
-      .then(() => {
-        currentPage++;
-        renderView(
-          gamesContainer,
-          gamesArray,
-          gamesContainer.style.gridTemplateColumns === "697px"
-            ? galleryTemplate
-            : cardTemplate
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  if (element.scrollHeight - element.scrollTop === element.clientHeight && GamesContainerFunctions.isEqual()) {
+    GamesContainerFunctions.loadNextGames();
   }
-}); */
+});
 
 /*
 ############################################

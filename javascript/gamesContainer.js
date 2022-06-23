@@ -8,7 +8,7 @@ const GamesContainerFunctions = (function () {
 
   async function getGamesWithDetails() {
     let pageResults = await fetchGames(currentPage);
-    pageResults = await getGamesDetails(pageResults, currentPage);
+    pageResults = await getGamesDetails(pageResults);
     return pageResults;
   }
 
@@ -18,6 +18,27 @@ const GamesContainerFunctions = (function () {
         return false;
       }
       return true;
+    },
+    /**
+     * For every rendered game, it checks if the array of fetched games is the same.
+     * In case it is the same, the container is allowed to fetch the next page of games.
+     * This is done to avoid fetching games and re-rendering the page when seeing another content like search results.
+     * @returns True if the rendered cards are the same as the fetched games (same order also). False otherwise.
+     */
+    isEqual: function () {
+      let equal = true;
+      for (let i = 0; i < gamesArray.length; i++) {
+        if (
+          gamesArray[i].name !==
+          gamesContainer.children[i].children[2].children[0].children[0]
+            .textContent
+        ) {
+          equal = false;
+          return equal;
+        } 
+      }
+
+      return equal;
     },
     renderCards: function (arr) {
       arr.forEach((game, index) => {
@@ -45,6 +66,13 @@ const GamesContainerFunctions = (function () {
         this.renderGallery(gamesArray);
       }
     },
+    renderNextPageGames: function (arr) {
+      if (this.isCard()) {
+        this.renderCards(arr);
+      } else {
+        this.renderGallery(arr);
+      }
+    },
     changeView: function () {
       if (!this.isCard()) {
         gamesContainer.classList.remove("center-games");
@@ -56,6 +84,17 @@ const GamesContainerFunctions = (function () {
           gamesArray.push(...res);
           currentPage++;
           this.renderFetchedGames();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    loadNextGames: function () {
+      getGamesWithDetails()
+        .then((res) => {
+          gamesArray.push(...res);
+          currentPage++;
+          this.renderNextPageGames(res);
         })
         .catch((err) => {
           console.log(err);
