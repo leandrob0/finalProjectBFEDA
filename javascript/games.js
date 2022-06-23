@@ -4,13 +4,13 @@ import {
   searchResultTemplate,
 } from "./templates.js";
 import { renderView, gameInArray, resetSearch } from "./helpers.js";
-import { fetchGames, getGamesDetails, searchGames } from "./services.js";
+import { getGamesDetails, searchGames } from "./services.js";
+import { GamesContainer } from "./gamesContainer.js";
 
 // Select every element that i will use.
 const userimg = document.querySelector(".user__img");
 const toggle = document.querySelector("#toggle-switch");
 const body = document.querySelector("body");
-const gamesContainer = document.querySelector(".games-container");
 const logoutButton = document.querySelector(".user__log-out");
 const cardOption = document.querySelector("#card-option");
 const galleryOption = document.querySelector("#gallery-option");
@@ -87,30 +87,9 @@ toggle.addEventListener("click", () => {
 ############################################
 */
 
-let currentPage = 1;
+GamesContainer.loadInitialGames();
 
-async function getGamesWithDetails() {
-  let pageResults = await fetchGames(currentPage);
-  pageResults = await getGamesDetails(pageResults, currentPage);
-  gamesArray.push(...pageResults);
-}
-
-getGamesWithDetails()
-  .then(() => {
-    currentPage++;
-    renderView(
-      gamesContainer,
-      gamesArray,
-      gamesContainer.style.gridTemplateColumns === "697px"
-        ? galleryTemplate
-        : cardTemplate
-    );
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-gamesContainer.addEventListener("scroll", (e) => {
+/* gamesContainer.addEventListener("scroll", (e) => {
   const element = e.target;
 
   // Checks if the element is at the bottom of the container (can't go further). -> poor attemp of trying to block fetching when i'm seeing search results.
@@ -130,7 +109,7 @@ gamesContainer.addEventListener("scroll", (e) => {
         console.log(err);
       });
   }
-});
+}); */
 
 /*
 ############################################
@@ -153,15 +132,11 @@ function handleViewChange(element) {
 
   // Checks which view option the user selected to set the grid layout and the card styling.
   if (element.id === "gallery-option") {
-    gamesContainer.classList.add('center-games');
-
-    // Changes the cards.
-    renderView(gamesContainer, gamesArray, galleryTemplate);
+    GamesContainer.changeView();
+    GamesContainer.renderFetchedGames();
   } else {
-    gamesContainer.classList.remove('center-games');
-
-    // Changes the cards.
-    renderView(gamesContainer, gamesArray, cardTemplate);
+    GamesContainer.changeView();
+    GamesContainer.renderFetchedGames();
   }
 
   // Swaps the classes between the children of the svg's.
@@ -285,10 +260,9 @@ searchForm.addEventListener("submit", (e) => {
     localStorage.setItem("searches", JSON.stringify(lastSearches));
   }
 
-  renderView(
-    gamesContainer,
+  GamesContainer.renderContent(
     filteredArr,
-    gamesContainer.style.gridTemplateColumns === "697px"
+    gamesContainer.classList.contains("center-games")
       ? galleryTemplate
       : cardTemplate
   );
