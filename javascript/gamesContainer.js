@@ -35,19 +35,21 @@ const GamesContainerFunctions = (function () {
         ) {
           equal = false;
           return equal;
-        } 
+        }
       }
 
       return equal;
     },
     renderCards: function (arr) {
+      let initialCount = gamesArray.length === 20 ? 1 : 21;
       arr.forEach((game, index) => {
-        gamesContainer.innerHTML += cardTemplate(game, index + 1);
+        gamesContainer.innerHTML += cardTemplate(game, initialCount + index);
       });
     },
     renderGallery: function (arr) {
+      let initialCount = gamesArray.length === 20 ? 1 : 21;
       arr.forEach((game, index) => {
-        gamesContainer.innerHTML += galleryTemplate(game, index + 1);
+        gamesContainer.innerHTML += galleryTemplate(game, initialCount + index);
       });
     },
     renderFilteredGames: function (arr) {
