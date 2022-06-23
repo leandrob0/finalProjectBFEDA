@@ -153,14 +153,12 @@ function handleViewChange(element) {
 
   // Checks which view option the user selected to set the grid layout and the card styling.
   if (element.id === "gallery-option") {
-    gamesContainer.style.gridTemplateColumns = "697px";
-    gamesContainer.style.gridAutoRows = "538px";
+    gamesContainer.classList.add('center-games');
 
     // Changes the cards.
     renderView(gamesContainer, gamesArray, galleryTemplate);
   } else {
-    gamesContainer.style.gridTemplateColumns = "repeat(3, 363px)";
-    gamesContainer.style.gridAutoRows = "314px";
+    gamesContainer.classList.remove('center-games');
 
     // Changes the cards.
     renderView(gamesContainer, gamesArray, cardTemplate);

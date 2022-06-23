@@ -334,18 +334,23 @@ main {
 */
 
 .games-container {
-    display: grid;
-
-    grid-template-columns: repeat(3, 363px);
-    grid-auto-rows: 314px;
+    display: flex;
+    flex-wrap: wrap;
     
     gap: 24px;
     margin-top: 24px;
+    margin-left: 12px;
 
     height: 788px;
 
-    overflow-y: auto;
+    overflow-y: overlay;
     grid-area: games;
+}
+
+.center-games {
+    justify-content: center;
+    margin-left: 0;
+    padding-right: 90px;
 }
 
 ::-webkit-scrollbar {
