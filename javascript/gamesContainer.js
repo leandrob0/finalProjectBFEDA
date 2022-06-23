@@ -1,7 +1,7 @@
 import { galleryTemplate, cardTemplate } from "./templates.js";
 import { fetchGames, getGamesDetails } from "./services.js";
 
-const GamesContainer = (function () {
+const GamesContainerFunctions = (function () {
   const gamesContainer = document.querySelector(".games-container");
   let currentPage = 1;
   let gamesArray = [];
@@ -19,21 +19,30 @@ const GamesContainer = (function () {
       }
       return true;
     },
-    renderSpecific: function (arr, template) {
+    renderCards: function (arr) {
       arr.forEach((game, index) => {
-        gamesContainer.innerHTML += template(game, index + 1);
+        gamesContainer.innerHTML += cardTemplate(game, index + 1);
       });
     },
-    renderFetchedGames: function () {
-      gamesContainer.innerHTML = '';
+    renderGallery: function (arr) {
+      arr.forEach((game, index) => {
+        gamesContainer.innerHTML += galleryTemplate(game, index + 1);
+      });
+    },
+    renderFilteredGames: function (arr) {
+      gamesContainer.innerHTML = "";
       if (this.isCard()) {
-        gamesArray.forEach((game, index) => {
-          gamesContainer.innerHTML += cardTemplate(game, index + 1);
-        });
+        this.renderCards(arr);
       } else {
-        gamesArray.forEach((game, index) => {
-          gamesContainer.innerHTML += galleryTemplate(game, index + 1);
-        });
+        this.renderGallery(arr);
+      }
+    },
+    renderFetchedGames: function () {
+      gamesContainer.innerHTML = "";
+      if (this.isCard()) {
+        this.renderCards(gamesArray);
+      } else {
+        this.renderGallery(gamesArray);
       }
     },
     changeView: function () {
@@ -55,4 +64,4 @@ const GamesContainer = (function () {
   };
 })();
 
-export { GamesContainer };
+export { GamesContainerFunctions };

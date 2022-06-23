@@ -5,13 +5,14 @@ import {
 } from "./templates.js";
 import { renderView, gameInArray, resetSearch } from "./helpers.js";
 import { getGamesDetails, searchGames } from "./services.js";
-import { GamesContainer } from "./gamesContainer.js";
+import { GamesContainerFunctions } from "./gamesContainer.js";
 
 // Select every element that i will use.
 const userimg = document.querySelector(".user__img");
 const toggle = document.querySelector("#toggle-switch");
 const body = document.querySelector("body");
 const logoutButton = document.querySelector(".user__log-out");
+const gamesContainer = document.querySelector(".games-container");
 const cardOption = document.querySelector("#card-option");
 const galleryOption = document.querySelector("#gallery-option");
 const homeButton = document.querySelector("#home");
@@ -87,7 +88,7 @@ toggle.addEventListener("click", () => {
 ############################################
 */
 
-GamesContainer.loadInitialGames();
+GamesContainerFunctions.loadInitialGames();
 
 /* gamesContainer.addEventListener("scroll", (e) => {
   const element = e.target;
@@ -132,11 +133,11 @@ function handleViewChange(element) {
 
   // Checks which view option the user selected to set the grid layout and the card styling.
   if (element.id === "gallery-option") {
-    GamesContainer.changeView();
-    GamesContainer.renderFetchedGames();
+    GamesContainerFunctions.changeView();
+    GamesContainerFunctions.renderFetchedGames();
   } else {
-    GamesContainer.changeView();
-    GamesContainer.renderFetchedGames();
+    GamesContainerFunctions.changeView();
+    GamesContainerFunctions.renderFetchedGames();
   }
 
   // Swaps the classes between the children of the svg's.
@@ -260,12 +261,7 @@ searchForm.addEventListener("submit", (e) => {
     localStorage.setItem("searches", JSON.stringify(lastSearches));
   }
 
-  GamesContainer.renderContent(
-    filteredArr,
-    gamesContainer.classList.contains("center-games")
-      ? galleryTemplate
-      : cardTemplate
-  );
+  GamesContainerFunctions.renderFilteredGames(filteredArr);
 });
 
 /*
@@ -277,25 +273,8 @@ searchForm.addEventListener("submit", (e) => {
 */
 
 // Handles going back to showing all the games when clicked on the Home option on the sidebar.
-homeButton.addEventListener("click", () => {
-  renderView(
-    gamesContainer,
-    gamesArray,
-    gamesContainer.style.gridTemplateColumns === "697px"
-      ? galleryTemplate
-      : cardTemplate
-  );
-});
-
-lastSearchesButton.addEventListener("click", () => {
-  renderView(
-    gamesContainer,
-    lastSearches,
-    gamesContainer.style.gridTemplateColumns === "697px"
-      ? galleryTemplate
-      : cardTemplate
-  );
-});
+homeButton.addEventListener("click", () => GamesContainerFunctions.renderFetchedGames());
+lastSearchesButton.addEventListener("click", () => GamesContainerFunctions.renderFilteredGames(lastSearches));
 
 /*
 ############################################
