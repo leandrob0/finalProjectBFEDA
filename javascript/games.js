@@ -1,7 +1,7 @@
 import {
   searchResultTemplate,
 } from "./templates.js";
-import { gameInArray, resetSearch } from "./helpers.js";
+import { searchAdded, resetSearch } from "./helpers.js";
 import { getGamesDetails, searchGames } from "./services.js";
 import { GamesContainerFunctions } from "./gamesContainer.js";
 
@@ -202,7 +202,7 @@ searchInput.addEventListener("input", async (e) => {
           // This basically handles if the game searched was not fetched before.
           // If not, it gets its details so i can change view without showing undefined on the description.
           // Otherwise it just shows it.
-          if (!gameInArray(filteredArr[0], gamesArray)) {
+          if (!GamesContainerFunctions.gameInArray(filteredArr[0])) {
             getGamesDetails(filteredArr)
               .then((res) => {
                 filteredArr = res;
@@ -234,7 +234,7 @@ searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   // Checks that the array has only one solution to add to the last search, and if the game searched is already in the last searches.
-  if (filteredArr.length === 1 && !gameInArray(filteredArr[0], lastSearches)) {
+  if (filteredArr.length === 1 && !searchAdded(filteredArr[0], lastSearches)) {
     // If the lastSearches arr already has the last two, takes out the first (added before), and adds the new one.
     if (lastSearches.length === 2) {
       lastSearches.shift();

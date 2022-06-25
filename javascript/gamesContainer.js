@@ -79,6 +79,14 @@ const GamesContainerFunctions = (function () {
         gamesContainer.classList.remove("center-games");
       } else gamesContainer.classList.add("center-games");
     },
+    gameInArray: function (game) {
+      for(let i = 0; i < gamesArray.length; i++) {
+        if(game.id === gamesArray[i].id) {
+          return true;
+        } 
+      }
+      return false;
+    },
     loadInitialGames: function () {
       getGamesWithDetails()
         .then((res) => {

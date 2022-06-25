@@ -10,13 +10,12 @@ export const includesPlatform = (game, platformName) => {
   return isIn;
 };
 
-export const gameInArray = (game, array) => {
+export const searchAdded = (game, array) => {
   for(let i = 0; i < array.length; i++) {
     if(game.id === array[i].id) {
       return true;
     } 
   }
-
   return false;
 }
 
