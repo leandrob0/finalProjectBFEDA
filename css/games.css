@@ -643,6 +643,46 @@ main {
 }
 
 /*
+    ##########################################################################
+
+    GAME MODAL ON CLICK STYLING.
+
+    ##########################################################################
+*/
+
+.modal-game {
+    position: absolute;
+    left: 182px;
+    top: 111px;
+
+    width: 1076px;
+    height: 793px;
+
+    background-color: var(--card-bg);
+    border-radius: 24px;
+}
+
+.modal-image {
+    width: inherit;
+    height: 100%;
+
+    position:absolute;
+
+    border-radius: 24px;
+} 
+
+.fade {
+    height: 100%;
+    width: 100%;
+
+    position:absolute;
+    z-index: 2;
+
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--card-bg) 63.23%, var(--card-bg) 75.85%);
+}
+
+/*
 
     Bottom of the page fade effect.
 

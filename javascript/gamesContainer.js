@@ -1,4 +1,4 @@
-import { galleryTemplate, cardTemplate } from "./templates.js";
+import { galleryTemplate, cardTemplate, modalTemplate } from "./templates.js";
 import { fetchGames, getGamesDetails } from "./services.js";
 
 const GamesContainerFunctions = (function () {
@@ -13,11 +13,21 @@ const GamesContainerFunctions = (function () {
     return pageResults;
   }
 
+  function getGameFromArray(game) {
+    for(let i = 0; i < gamesArray.length; i++) {
+      if(Number(game.id) === Number(gamesArray[i].id)) {
+        return gamesArray[i];
+      } 
+    }
+    return {};
+  }
+
   function addModalEventListener() {
     const gameContainer = document.querySelectorAll('.game-container');
     Array.from(gameContainer).forEach(game => {
       game.addEventListener('click', () => {
-        body.innerHTML += '<h1>Hola</h1>'
+        const gameWithDetails = getGameFromArray(game);
+        body.innerHTML += modalTemplate(gameWithDetails);
       })
     })
   }

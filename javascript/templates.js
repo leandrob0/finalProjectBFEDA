@@ -1,7 +1,7 @@
 import { includesPlatform } from "./helpers.js";
 
 export function galleryTemplate(game, index) {
-  return `<article class="gallery game-container">
+  return `<article id=${game.id} class="gallery game-container">
     <img class="gallery__image" src="${game.background_image || `https://via.placeholder.com/363x179`}" />
     <img class="heart-icon" src="./resources/icons/heart-empty.svg" alt="Heart icon." />
     <div class="first-row">
@@ -95,7 +95,7 @@ export function galleryTemplate(game, index) {
 }
 
 export function cardTemplate(game, index) {
-  return `<article class="card game-container">
+  return `<article id=${game.id} class="card game-container">
     <img
       class="card__image"
       src="${game.background_image || `https://via.placeholder.com/363x179`}"
@@ -190,6 +190,13 @@ export function cardTemplate(game, index) {
       ) : 'Unknown'}</p>
     </div>
     </article>`;
+}
+
+export function modalTemplate(game) {
+  return `<article class="modal-game">
+    <div class="fade"></div>
+    <img class="modal-image" alt="Game official." src=${game.background_image || `https://via.placeholder.com/363x179`} />
+  </article>`;
 }
 
 export function searchResultTemplate(game, last) {
