@@ -10,20 +10,12 @@ export const includesPlatform = (game, platformName) => {
   return isIn;
 };
 
-export const renderView = (container, arr, renderOption) => {
-  container.innerHTML = "";
-  arr.forEach((game, index) => {
-    container.innerHTML += renderOption(game, index + 1);
-  });
-}
-
-export const gameInArray = (game, array) => {
+export const searchAdded = (game, array) => {
   for(let i = 0; i < array.length; i++) {
     if(game.id === array[i].id) {
       return true;
     } 
   }
-
   return false;
 }
 

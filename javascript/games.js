@@ -1,17 +1,16 @@
 import {
-  galleryTemplate,
-  cardTemplate,
   searchResultTemplate,
 } from "./templates.js";
-import { renderView, gameInArray, resetSearch } from "./helpers.js";
-import { fetchGames, getGamesDetails, searchGames } from "./services.js";
+import { searchAdded, resetSearch } from "./helpers.js";
+import { getGamesDetails, searchGames } from "./services.js";
+import { GamesContainerFunctions } from "./gamesContainer.js";
 
 // Select every element that i will use.
 const userimg = document.querySelector(".user__img");
 const toggle = document.querySelector("#toggle-switch");
 const body = document.querySelector("body");
-const gamesContainer = document.querySelector(".games-container");
 const logoutButton = document.querySelector(".user__log-out");
+const gamesContainer = document.querySelector(".games-container");
 const cardOption = document.querySelector("#card-option");
 const galleryOption = document.querySelector("#gallery-option");
 const homeButton = document.querySelector("#home");
@@ -23,7 +22,6 @@ const searchResultsClear = document.querySelector(".search__icon-clear");
 const backgroundSearchModal = document.querySelector(".background-modal");
 const lastSearchesButton = document.querySelector("#sidebar__last-searches");
 
-let gamesArray = []; // Variable for the games fetching functionality.
 let filteredArr = []; // Variable to filter the games for the search functionality.
 let lastSearches = JSON.parse(localStorage.getItem("searches")) || []; // Variable for the last searches functionality.
 
@@ -87,48 +85,13 @@ toggle.addEventListener("click", () => {
 ############################################
 */
 
-let currentPage = 1;
-
-async function getGamesWithDetails() {
-  let pageResults = await fetchGames(currentPage);
-  pageResults = await getGamesDetails(pageResults, currentPage);
-  gamesArray.push(...pageResults);
-}
-
-getGamesWithDetails()
-  .then(() => {
-    currentPage++;
-    renderView(
-      gamesContainer,
-      gamesArray,
-      gamesContainer.style.gridTemplateColumns === "697px"
-        ? galleryTemplate
-        : cardTemplate
-    );
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+GamesContainerFunctions.loadInitialGames();
 
 gamesContainer.addEventListener("scroll", (e) => {
   const element = e.target;
-
   // Checks if the element is at the bottom of the container (can't go further). -> poor attemp of trying to block fetching when i'm seeing search results.
-  if (element.scrollHeight - element.scrollTop === element.clientHeight && gamesContainer.children.length === gamesArray.length) {
-    getGamesWithDetails()
-      .then(() => {
-        currentPage++;
-        renderView(
-          gamesContainer,
-          gamesArray,
-          gamesContainer.style.gridTemplateColumns === "697px"
-            ? galleryTemplate
-            : cardTemplate
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  if (element.scrollHeight - element.scrollTop === element.clientHeight && GamesContainerFunctions.isEqual()) {
+    GamesContainerFunctions.loadNextGames();
   }
 });
 
@@ -153,15 +116,11 @@ function handleViewChange(element) {
 
   // Checks which view option the user selected to set the grid layout and the card styling.
   if (element.id === "gallery-option") {
-    gamesContainer.classList.add('center-games');
-
-    // Changes the cards.
-    renderView(gamesContainer, gamesArray, galleryTemplate);
+    GamesContainerFunctions.changeView();
+    GamesContainerFunctions.renderFetchedGames();
   } else {
-    gamesContainer.classList.remove('center-games');
-
-    // Changes the cards.
-    renderView(gamesContainer, gamesArray, cardTemplate);
+    GamesContainerFunctions.changeView();
+    GamesContainerFunctions.renderFetchedGames();
   }
 
   // Swaps the classes between the children of the svg's.
@@ -243,7 +202,7 @@ searchInput.addEventListener("input", async (e) => {
           // This basically handles if the game searched was not fetched before.
           // If not, it gets its details so i can change view without showing undefined on the description.
           // Otherwise it just shows it.
-          if (!gameInArray(filteredArr[0], gamesArray)) {
+          if (!GamesContainerFunctions.gameInArray(filteredArr[0])) {
             getGamesDetails(filteredArr)
               .then((res) => {
                 filteredArr = res;
@@ -275,7 +234,7 @@ searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   // Checks that the array has only one solution to add to the last search, and if the game searched is already in the last searches.
-  if (filteredArr.length === 1 && !gameInArray(filteredArr[0], lastSearches)) {
+  if (filteredArr.length === 1 && !searchAdded(filteredArr[0], lastSearches)) {
     // If the lastSearches arr already has the last two, takes out the first (added before), and adds the new one.
     if (lastSearches.length === 2) {
       lastSearches.shift();
@@ -285,13 +244,7 @@ searchForm.addEventListener("submit", (e) => {
     localStorage.setItem("searches", JSON.stringify(lastSearches));
   }
 
-  renderView(
-    gamesContainer,
-    filteredArr,
-    gamesContainer.style.gridTemplateColumns === "697px"
-      ? galleryTemplate
-      : cardTemplate
-  );
+  GamesContainerFunctions.renderFilteredGames(filteredArr);
 });
 
 /*
@@ -303,25 +256,8 @@ searchForm.addEventListener("submit", (e) => {
 */
 
 // Handles going back to showing all the games when clicked on the Home option on the sidebar.
-homeButton.addEventListener("click", () => {
-  renderView(
-    gamesContainer,
-    gamesArray,
-    gamesContainer.style.gridTemplateColumns === "697px"
-      ? galleryTemplate
-      : cardTemplate
-  );
-});
-
-lastSearchesButton.addEventListener("click", () => {
-  renderView(
-    gamesContainer,
-    lastSearches,
-    gamesContainer.style.gridTemplateColumns === "697px"
-      ? galleryTemplate
-      : cardTemplate
-  );
-});
+homeButton.addEventListener("click", () => GamesContainerFunctions.renderFetchedGames());
+lastSearchesButton.addEventListener("click", () => GamesContainerFunctions.renderFilteredGames(lastSearches));
 
 /*
 ############################################
