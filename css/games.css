@@ -238,8 +238,8 @@ main {
     color: var(--primary-text-color);
 
     display: grid;
-    grid-template-areas: "below below below"
-                         "aside games games";
+    grid-template-areas: "below below"
+                         "aside games";
 }
 
 .descriptions {

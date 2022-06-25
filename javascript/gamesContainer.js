@@ -3,6 +3,7 @@ import { fetchGames, getGamesDetails } from "./services.js";
 
 const GamesContainerFunctions = (function () {
   const gamesContainer = document.querySelector(".games-container");
+  const body = document.querySelector("body");
   let currentPage = 1;
   let gamesArray = [];
 
@@ -10,6 +11,15 @@ const GamesContainerFunctions = (function () {
     let pageResults = await fetchGames(currentPage);
     pageResults = await getGamesDetails(pageResults);
     return pageResults;
+  }
+
+  function addModalEventListener() {
+    const gameContainer = document.querySelectorAll('.game-container');
+    Array.from(gameContainer).forEach(game => {
+      game.addEventListener('click', () => {
+        body.innerHTML += '<h1>Hola</h1>'
+      })
+    })
   }
 
   return {
@@ -44,6 +54,7 @@ const GamesContainerFunctions = (function () {
       arr.forEach((game, index) => {
         gamesContainer.innerHTML += cardTemplate(game, initialCount + index);
       });
+      addModalEventListener();
     },
     renderGallery: function (arr, initialCount = 1) {
       arr.forEach((game, index) => {
