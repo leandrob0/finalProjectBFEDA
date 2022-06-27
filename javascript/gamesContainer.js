@@ -49,6 +49,8 @@ const GamesContainerFunctions = (function () {
     if(xbox) platformsContainer.innerHTML += xboxTemplate;
     if(pc) platformsContainer.innerHTML += pcTemplate;
     if(playstation) platformsContainer.innerHTML += playstationTemplate;
+    // Makes the platform icons bigger (by default they are 20x20 or 24x20 depending on the icon).
+    Array.from(platformsContainer.children).forEach((child) => child.classList.add('bigger-icon'));
 
     gameTitle.textContent = game.name;
   }
