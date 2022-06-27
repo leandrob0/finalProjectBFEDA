@@ -192,13 +192,6 @@ export function cardTemplate(game, index) {
     </article>`;
 }
 
-export function modalTemplate(game) {
-  return `<article class="modal-game">
-    <div class="fade"></div>
-    <img class="modal-image" alt="Game official." src=${game.background_image || `https://via.placeholder.com/363x179`} />
-  </article>`;
-}
-
 export function searchResultTemplate(game, last) {
   return `
   <li id="${game.id}" class="search__results-item">${game.name}</li>

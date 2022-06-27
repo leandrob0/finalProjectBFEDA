@@ -1,4 +1,4 @@
-import { galleryTemplate, cardTemplate, modalTemplate } from "./templates.js";
+import { galleryTemplate, cardTemplate } from "./templates.js";
 import { fetchGames, getGamesDetails } from "./services.js";
 
 const GamesContainerFunctions = (function () {
