@@ -712,6 +712,45 @@ main {
     padding-top: 10px;
 }
 
+.text-content__achievements {
+    padding-top: 10px;
+}
+
+.achievements {
+    background: #FFFFFF;
+    color: #515151;
+
+    padding: 5px 10px 5px 10px;
+    margin-right: 10px;
+    border-radius: 62px;
+}
+
+.achievements__ranking {
+    color: #36B972;
+    font-weight: 800;
+
+    padding-right: 5px;
+}
+
+.text-content__description {
+    margin-top: 22px;
+
+    max-width: 50%;
+    max-height: 150px;
+    overflow-y: scroll;
+}
+
+.text-content__description::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+.text-content__description::-webkit-scrollbar-thumb {
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
 .background-modal-game {
     display: none;
 

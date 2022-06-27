@@ -36,6 +36,7 @@ const GamesContainerFunctions = (function () {
     const modalImage = document.querySelector('.modal-image');
     const gameTitle = document.querySelector('.text-content__title');
     const platformsContainer = document.querySelector('.text-content__platforms');
+    const description = document.querySelector('.text-content__description');
 
     const xbox = includesPlatform(game, "Xbox");
     const pc = includesPlatform(game, "PC");
@@ -53,6 +54,7 @@ const GamesContainerFunctions = (function () {
     Array.from(platformsContainer.children).forEach((child) => child.classList.add('bigger-icon'));
 
     gameTitle.textContent = game.name;
+    description.textContent = game.description;
   }
 
   function gameListener(game) {
