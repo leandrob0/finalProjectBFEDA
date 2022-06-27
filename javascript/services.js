@@ -22,7 +22,7 @@ export const getGamesDetails = async (games) => {
       `${baseUrl}/${game.id}?key=${API_KEY}`
     );
     let detailsJson = await details.json();
-    let description = detailsJson.description;
+    let {description, website, released, platforms} = detailsJson;
 
     // Replaces the tags the description has.
     // Matches the character < / > literally (case sensitive).
@@ -31,7 +31,7 @@ export const getGamesDetails = async (games) => {
     description = description.replace(/<\/?[^>]+(>|$)/g, "");
 
     // Adds the description to the array of games.
-    return { ...games[i], description };
+    return { ...games[i], description, website, released, platforms };
   }));
 
   return gamesWithDescription;
