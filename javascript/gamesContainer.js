@@ -1,5 +1,6 @@
-import { galleryTemplate, cardTemplate } from "./templates.js";
+import { galleryTemplate, cardTemplate, xboxTemplate, playstationTemplate, pcTemplate } from "./templates.js";
 import { fetchGames, getGamesDetails } from "./services.js";
+import { includesPlatform } from "./helpers.js";
 
 const GamesContainerFunctions = (function () {
   const gamesContainer = document.querySelector(".games-container");
@@ -28,12 +29,36 @@ const GamesContainerFunctions = (function () {
     gameModal.style.display = 'none';
   });
 
+  function populateModal(game) {
+    // This will fill every field in the game modal.
+
+    // Variables to be used.
+    const modalImage = document.querySelector('.modal-image');
+    const gameTitle = document.querySelector('.text-content__title');
+    const platformsContainer = document.querySelector('.text-content__platforms');
+
+    const xbox = includesPlatform(game, "Xbox");
+    const pc = includesPlatform(game, "PC");
+    const playstation = includesPlatform(game, "PlayStation");
+
+    // Value assignation.
+    modalImage.src = `${game.background_image}`;
+
+    // Resets in case the user opened another game modal and the icons are still there.
+    platformsContainer.innerHTML = '';
+    if(xbox) platformsContainer.innerHTML += xboxTemplate;
+    if(pc) platformsContainer.innerHTML += pcTemplate;
+    if(playstation) platformsContainer.innerHTML += playstationTemplate;
+
+    gameTitle.textContent = game.name;
+  }
+
   function gameListener(game) {
     return () => {
       gameModal.style.display = 'block';
       backgroundGameModal.style.display = 'block';
-      /* const gameWithDetails = getGameFromArray(game);
-      body.innerHTML += modalTemplate(gameWithDetails); */
+      const gameWithDetails = getGameFromArray(game);
+      populateModal(gameWithDetails);
     }
   }
 

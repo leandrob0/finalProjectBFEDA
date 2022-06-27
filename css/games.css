@@ -682,6 +682,14 @@ main {
     border-radius: 24px;
 } 
 
+.modal-game__text-content {
+    position: absolute;
+    top: 110px;
+    z-index: 25;
+
+    color: var(--primary-text-color);
+}
+
 .background-modal-game {
     display: none;
 
