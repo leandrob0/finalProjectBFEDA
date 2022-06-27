@@ -3,7 +3,8 @@ import { fetchGames, getGamesDetails } from "./services.js";
 
 const GamesContainerFunctions = (function () {
   const gamesContainer = document.querySelector(".games-container");
-  const body = document.querySelector("body");
+  const gameModal = document.querySelector(".modal-game");
+  const backgroundGameModal = document.querySelector(".background-modal-game");
   let currentPage = 1;
   let gamesArray = [];
 
@@ -22,13 +23,26 @@ const GamesContainerFunctions = (function () {
     return {};
   }
 
+  backgroundGameModal.addEventListener('click', () => {
+    backgroundGameModal.style.display = 'none';
+    gameModal.style.display = 'none';
+  });
+
+  function gameListener(game) {
+    return () => {
+      gameModal.style.display = 'block';
+      backgroundGameModal.style.display = 'block';
+      /* const gameWithDetails = getGameFromArray(game);
+      body.innerHTML += modalTemplate(gameWithDetails); */
+    }
+  }
+
   function addModalEventListener() {
     const gameContainer = document.querySelectorAll('.game-container');
     Array.from(gameContainer).forEach(game => {
-      game.addEventListener('click', () => {
-        const gameWithDetails = getGameFromArray(game);
-        body.innerHTML += modalTemplate(gameWithDetails);
-      })
+      // Si el juego ya estaba (estoy renderizando optra pagina), evito agregar mas event listeners a el mismo juego.
+      game.removeEventListener('click', gameListener(game));
+      game.addEventListener('click', gameListener(game));
     })
   }
 
@@ -70,6 +84,7 @@ const GamesContainerFunctions = (function () {
       arr.forEach((game, index) => {
         gamesContainer.innerHTML += galleryTemplate(game, initialCount + index);
       });
+      addModalEventListener();
     },
     renderFilteredGames: function (arr) {
       gamesContainer.innerHTML = "";

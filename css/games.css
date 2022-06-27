@@ -373,6 +373,10 @@ main {
     border-radius: 12px;
 }
 
+.card:hover {
+    cursor: pointer;
+}
+
 .heart-icon {
     position: absolute;
 
@@ -528,6 +532,10 @@ main {
     border-radius: 12px;
 }
 
+.gallery:hover {
+    cursor: pointer;
+}
+
 .gallery__image {
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
@@ -651,12 +659,15 @@ main {
 */
 
 .modal-game {
+    display: none;
+
     position: absolute;
     left: 182px;
     top: 111px;
 
     width: 1076px;
     height: 793px;
+    z-index: 20;
 
     background-color: var(--card-bg);
     border-radius: 24px;
@@ -670,6 +681,21 @@ main {
 
     border-radius: 24px;
 } 
+
+.background-modal-game {
+    display: none;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    z-index: 15;
+
+    background-color: black;
+    opacity: 0.3;
+}
 
 .fade {
     height: 100%;
