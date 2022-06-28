@@ -718,8 +718,8 @@ main {
     background: #FFFFFF;
     color: #515151;
 
-    padding: 5px 10px 5px 10px;
-    margin-right: 10px;
+    padding: 5px 14px 5px 14px;
+    margin-right: 14px;
     border-radius: 62px;
 }
 
@@ -766,7 +766,7 @@ main {
     background-color: #4CC986;
     border: 0;
     border-radius: 6px;
-    padding: 10px 20px 9px 40px;
+    padding: 10px 25px 9px 46px;
 }
 
 .wishlist__image {
@@ -784,6 +784,8 @@ main {
 
     padding: 5px;
     margin-left: 20px;
+
+    width: 229px;
 }
 
 .modal-game__media-content {
