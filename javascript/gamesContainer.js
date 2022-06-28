@@ -59,7 +59,7 @@ const GamesContainerFunctions = (function () {
 
   function gameListener(game) {
     return () => {
-      gameModal.style.display = 'block';
+      gameModal.style.display = 'flex';
       backgroundGameModal.style.display = 'block';
       const gameWithDetails = getGameFromArray(game);
       populateModal(gameWithDetails);
