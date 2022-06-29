@@ -666,6 +666,7 @@ main {
     display: none;
 
     position: absolute;
+    top: 111px;
     left: 0;
     right: 0;
     margin-left: auto;
