@@ -842,6 +842,14 @@ main {
     margin-left: 18px;
 }
 
+.right__text-container {
+    margin-bottom: 22px;
+}
+
+#age-text {
+    text-decoration: none;
+}
+
 .modal-game__media-content {
     width: 40%;
 }

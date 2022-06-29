@@ -38,9 +38,12 @@ const GamesContainerFunctions = (function () {
     const platformsContainer = document.querySelector('.text-content__platforms');
     const description = document.querySelector('.text-content__description');
     const platformsText = document.getElementById('platforms-text');
+    const ratingText = document.querySelector('.achievements__top');
     const releaseDateText = document.getElementById('release-date-text');
     const publisherText = document.getElementById('publisher-text');
     const websiteText = document.getElementById('website-text');
+    const genreText = document.getElementById('genre-text');
+    const ageText = document.getElementById('age-text');
 
     const xbox = includesPlatform(game, "Xbox");
     const pc = includesPlatform(game, "PC");
@@ -58,6 +61,7 @@ const GamesContainerFunctions = (function () {
     Array.from(platformsContainer.children).forEach((child) => child.classList.add('bigger-icon'));
 
     gameTitle.textContent = game.name;
+    ratingText.textContent = `#${game.rating_top || ''}`;
     description.textContent = game.description;
     platformsText.setAttribute('title', formatPlatformsText(game.platforms));
     platformsText.textContent = formatPlatformsText(game.platforms);
@@ -65,6 +69,8 @@ const GamesContainerFunctions = (function () {
     publisherText.textContent = 'THQ Nordic';
     websiteText.setAttribute('href', game.website);
     websiteText.textContent = game.website;
+    genreText.textContent = game.genres ? game.genres.map((genre, i) => i + 1 === game.genres.length ? genre.name : genre.name + ", ") : 'Unknown';
+    ageText.textContent = game.esrb_rating.name;
   }
 
   function gameListener(game) {
