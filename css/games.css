@@ -788,12 +788,20 @@ main {
     width: 229px;
 }
 
+.text-content__extra {
+    display: flex;
+}
+
 .extra__left {
     margin-top: 24px;
 }
 
 .left__text-container {
     margin-bottom: 22px;
+    
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 230px;
 }
 
 .left__text-container > label, p {
@@ -807,12 +815,31 @@ main {
 }
 
 .text-info {
+    text-overflow: ellipsis;
+    overflow: hidden;
+
     margin-top: 6px;
     text-decoration: underline;
+    color: var(--primary-text-color);
 }
 
 #release-date-text {
     text-decoration: none;
+}
+
+#website-text {
+    text-decoration: underline;
+    color: var(--primary-text-color);
+    display: block;
+}
+
+#website-text:hover {
+    cursor: pointer;
+}
+
+.extra__right {
+    margin-top: 24px;
+    margin-left: 18px;
 }
 
 .modal-game__media-content {

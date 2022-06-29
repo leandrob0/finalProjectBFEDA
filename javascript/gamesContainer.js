@@ -59,9 +59,11 @@ const GamesContainerFunctions = (function () {
 
     gameTitle.textContent = game.name;
     description.textContent = game.description;
+    platformsText.setAttribute('title', formatPlatformsText(game.platforms));
     platformsText.textContent = formatPlatformsText(game.platforms);
     releaseDateText.textContent = game.released;
     publisherText.textContent = 'THQ Nordic';
+    websiteText.setAttribute('href', game.website);
     websiteText.textContent = game.website;
   }
 
