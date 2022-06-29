@@ -1,6 +1,6 @@
 import { galleryTemplate, cardTemplate, xboxTemplate, playstationTemplate, pcTemplate } from "./templates.js";
 import { fetchGames, getGamesDetails } from "./services.js";
-import { includesPlatform } from "./helpers.js";
+import { formatPlatformsText, includesPlatform } from "./helpers.js";
 
 const GamesContainerFunctions = (function () {
   const gamesContainer = document.querySelector(".games-container");
@@ -37,6 +37,10 @@ const GamesContainerFunctions = (function () {
     const gameTitle = document.querySelector('.text-content__title');
     const platformsContainer = document.querySelector('.text-content__platforms');
     const description = document.querySelector('.text-content__description');
+    const platformsText = document.getElementById('platforms-text');
+    const releaseDateText = document.getElementById('release-date-text');
+    const publisherText = document.getElementById('publisher-text');
+    const websiteText = document.getElementById('website-text');
 
     const xbox = includesPlatform(game, "Xbox");
     const pc = includesPlatform(game, "PC");
@@ -55,6 +59,10 @@ const GamesContainerFunctions = (function () {
 
     gameTitle.textContent = game.name;
     description.textContent = game.description;
+    platformsText.textContent = formatPlatformsText(game.platforms);
+    releaseDateText.textContent = game.released;
+    publisherText.textContent = 'THQ Nordic';
+    websiteText.textContent = game.website;
   }
 
   function gameListener(game) {

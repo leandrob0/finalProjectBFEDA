@@ -788,6 +788,33 @@ main {
     width: 229px;
 }
 
+.extra__left {
+    margin-top: 24px;
+}
+
+.left__text-container {
+    margin-bottom: 22px;
+}
+
+.left__text-container > label, p {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 21px;
+}
+
+.text-label {
+    color: #939393;
+}
+
+.text-info {
+    margin-top: 6px;
+    text-decoration: underline;
+}
+
+#release-date-text {
+    text-decoration: none;
+}
+
 .modal-game__media-content {
     width: 40%;
 }

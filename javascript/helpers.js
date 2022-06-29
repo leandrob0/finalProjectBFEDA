@@ -25,3 +25,13 @@ export const resetSearch = (background, results, input, button) => {
   input.value = "";
   button.style.visibility = "hidden";
 }
+
+export const formatPlatformsText = (platforms) => {
+  let formattedText = '';
+  platforms.forEach((platform, i) => {
+    formattedText += platform.platform.name;
+    if(i + 1 !== platforms.length) formattedText += ', ';
+  });
+
+  return formattedText;
+}
