@@ -58,7 +58,13 @@ const GamesContainerFunctions = (function () {
     if(pc) platformsContainer.innerHTML += pcTemplate;
     if(playstation) platformsContainer.innerHTML += playstationTemplate;
     // Makes the platform icons bigger (by default they are 20x20 or 24x20 depending on the icon).
-    Array.from(platformsContainer.children).forEach((child) => child.classList.add('bigger-icon'));
+    Array.from(platformsContainer.children).forEach((child) => {
+      child.classList.add('bigger-icon');
+      Array.from(child.children).forEach((path) => {
+        path.classList.remove('icon-color');
+        path.classList.add('platforms-color');
+      })
+    });
 
     gameTitle.textContent = game.name;
     ratingText.textContent = `#${game.rating_top || ''}`;
