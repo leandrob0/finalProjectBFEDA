@@ -36,10 +36,10 @@ let lastSearches = JSON.parse(localStorage.getItem("searches")) || []; // Variab
 function handleSwitchChange(mode) {
   if (mode === "dark") {
     body.classList.add("light-mode");
-    toggle.src = "./resources/icons/Off.png";
+    toggle.src = "./resources/icons/off.png";
   } else {
     body.classList.remove("light-mode");
-    toggle.src = "./resources/icons/On.png";
+    toggle.src = "./resources/icons/on.png";
   }
 }
 
