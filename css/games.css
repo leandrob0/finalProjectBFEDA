@@ -666,8 +666,10 @@ main {
     display: none;
 
     position: absolute;
-    left: 182px;
-    top: 111px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
 
     width: 1076px;
     height: 793px;
