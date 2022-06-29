@@ -865,6 +865,14 @@ main {
     text-decoration: none;
 }
 
+.right__icons-container {
+    margin-top: 48px;
+}
+
+.icon-modal {
+    padding-right: 12px;
+}
+
 .modal-game__media-content {
     width: 40%;
 }
