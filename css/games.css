@@ -424,19 +424,6 @@ main {
     max-width: 280px;
 }
 
-.game-title-hide {
-    display: none;
-
-    color: var(--primary-text-color);
-    padding: 2px;
-    background-color: var(--bg);
-}
-
-.game-title-container:hover .game-title-hide{
-    position: absolute;
-    display: block;
-}
-
 .game-ranking {
     font-size: 1.125rem;
     font-weight: 700;

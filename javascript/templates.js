@@ -63,8 +63,7 @@ export function galleryTemplate(game, index) {
     <img class="heart-icon" src="./resources/icons/heart-empty.svg" alt="Heart icon." />
     <div class="first-row">
       <div class="game-title-container">
-        <h2 class="game-title">${game.name}</h2>
-        <p class="game-title-hide">${game.name}</p>
+        <h2 class="game-title" title="${game.name}">${game.name}</h2>
       </div>
       <span class="game-ranking">#${index}</span>
     </div>
@@ -110,8 +109,7 @@ export function cardTemplate(game, index) {
     <img class="heart-icon" src="./resources/icons/heart-empty.svg" alt="Heart icon." />
     <div class="first-row">
       <div class="game-title-container">
-        <h2 class="game-title">${game.name}</h2>
-        <p class="game-title-hide">${game.name}</p>
+        <h2 class="game-title" title="${game.name}">${game.name}</h2>
       </div>
       <span class="game-ranking">#${index}</span>
     </div>
