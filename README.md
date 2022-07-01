@@ -10,7 +10,7 @@ Final project for the Frontend bootcamp by Altimetrik. Made with plain HTML, CSS
 npm install
 ```
 
-- After that, we need to install [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) to run the Frontend
+- After that, we need to install [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) and run it to view the project.
 
 - To run the server, you need to use this script:
 
