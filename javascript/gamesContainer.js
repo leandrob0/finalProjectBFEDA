@@ -17,6 +17,11 @@ const GamesContainerFunctions = (function () {
   const gamesContainer = document.querySelector(".games-container");
   const gameModal = document.querySelector(".modal-game");
   const backgroundGameModal = document.querySelector(".background-modal-game");
+  const gameTrailer = document.getElementById("media-content__trailer");
+  const gameTrailerNot = document.getElementById("media-content__trailer-not");
+  const gameScreenshots = document.querySelectorAll(
+    ".media-content__screenshot"
+  );
   let currentPage = 1;
   let gamesArray = [];
 
@@ -35,11 +40,31 @@ const GamesContainerFunctions = (function () {
     return {};
   }
 
+  function defaultScreenshots() {
+    Array.from(gameScreenshots).forEach((img) => {
+      img.src = "https://via.placeholder.com/184x104";
+    });
+  };
+
+  function resetTrailer() {
+    gameTrailer.style.display = "none";
+    gameTrailerNot.style.display = "block";
+  };
+
+  // Resets the source of all the media shown in the game modal.
+  function resetMedia() {
+    defaultScreenshots();
+    resetTrailer();
+  }
+
+  // Adds the event listener for the background when the game modal is opened.
   backgroundGameModal.addEventListener("click", () => {
     backgroundGameModal.style.display = "none";
     gameModal.style.display = "none";
+    resetMedia();
   });
 
+  // Populates the modal of the game clicked.
   function populateModal(game) {
     // This will fill every field in the game modal.
 
@@ -57,20 +82,14 @@ const GamesContainerFunctions = (function () {
     const websiteText = document.getElementById("website-text");
     const genreText = document.getElementById("genre-text");
     const ageText = document.getElementById("age-text");
-    const gameTrailer = document.getElementById("media-content__trailer");
-    const gameTrailerNot = document.getElementById(
-      "media-content__trailer-not"
-    );
-    const gameScreenshots = document.querySelectorAll('.media-content__screenshot');
 
-    const resetMedia = () => {
-      gameTrailer.style.display = "none";
-      gameTrailerNot.style.display = "block";
-      Array.from(gameScreenshots).forEach((img) => {
-        img.src = "https://via.placeholder.com/184x104";
-      })
+    const defaultFromIndex = (index) => {
+      Array.from(gameScreenshots).forEach((img, i) => {
+        if (i >= index) {
+          img.src = "https://via.placeholder.com/184x104";
+        }
+      });
     };
-    resetMedia();
 
     getGameTrailer(game.id)
       .then((res) => {
@@ -78,24 +97,24 @@ const GamesContainerFunctions = (function () {
           gameTrailer.style.display = "block";
           gameTrailerNot.style.display = "none";
           gameTrailer.src = res[0].data.max || res[0].data[480];
-        } else {
-          resetMedia();
-        }
+        } 
       })
       .catch((err) => {
         console.log(err);
-        resetMedia();
       });
 
     getGameScreenshots(game.id)
       .then((res) => {
-        Array.from(gameScreenshots).forEach((img,i) => {
-          img.src = res[i].image;
-        })
+        if (res.length >= 4) {
+          Array.from(gameScreenshots).forEach((img, i) => {
+            img.src = res[i].image;
+          });
+        } else {
+          defaultFromIndex(res.length);
+        }
       })
       .catch((err) => {
         console.log(err);
-        resetMedia();
       });
 
     const xbox = includesPlatform(game, "Xbox");

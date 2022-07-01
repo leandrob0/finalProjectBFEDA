@@ -897,8 +897,8 @@ main {
 }
 
 .media-content__screenshot {
-    max-width: 184px;
-    max-height: 104px;
+    width: 184px;
+    height: 104px;
 }
 
 .background-modal-game {
