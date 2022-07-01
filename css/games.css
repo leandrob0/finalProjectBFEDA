@@ -238,8 +238,8 @@ main {
     color: var(--primary-text-color);
 
     display: grid;
-    grid-template-areas: "below below below"
-                         "aside games games";
+    grid-template-areas: "below below"
+                         "aside games";
 }
 
 .descriptions {
@@ -373,6 +373,10 @@ main {
     border-radius: 12px;
 }
 
+.card:hover {
+    cursor: pointer;
+}
+
 .heart-icon {
     position: absolute;
 
@@ -390,6 +394,8 @@ main {
 
     width: 363px;
     height: 179px;
+
+    object-fit: cover;
 }
 
 .first-row {
@@ -416,19 +422,6 @@ main {
     overflow: hidden;
 
     max-width: 280px;
-}
-
-.game-title-hide {
-    display: none;
-
-    color: var(--primary-text-color);
-    padding: 2px;
-    background-color: var(--bg);
-}
-
-.game-title-container:hover .game-title-hide{
-    position: absolute;
-    display: block;
 }
 
 .game-ranking {
@@ -528,12 +521,18 @@ main {
     border-radius: 12px;
 }
 
+.gallery:hover {
+    cursor: pointer;
+}
+
 .gallery__image {
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
 
     width: 697px;
     height: 314px;
+
+    object-fit: cover;
 }
 
 .date-release-gallery {
@@ -640,6 +639,292 @@ main {
 
 #sidebar__last-searches:hover {
     cursor: pointer;
+}
+
+/*
+    ##########################################################################
+
+    GAME MODAL ON CLICK STYLING.
+
+    ##########################################################################
+*/
+
+.modal-game {
+    display: none;
+
+    position: absolute;
+    top: 111px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 1076px;
+    height: 793px;
+    z-index: 20;
+
+    background-color: var(--card-bg);
+    border-radius: 24px;
+}
+
+.modal-image {
+    width: inherit;
+    height: 100%;
+
+    position:absolute;
+
+    border-radius: 24px;
+
+    object-fit: cover;
+} 
+
+.modal-game__text-content {
+    margin: 125px 0 0 35px;
+    z-index: 25;
+
+    color: var(--primary-text-color);
+}
+
+.bigger-icon {
+    -webkit-filter: drop-shadow( 0px 0px 18px rgba(0, 0, 0, .7));
+    filter: drop-shadow( 0px 0px 18px rgba(0, 0, 0, .7));
+    filter: drop-shadow( 0px 0px 18px rgba(0, 0, 0, .7));
+
+    width: 35px;
+    height: 35px;
+
+    margin-right: 20px;
+}
+
+.platforms-color {
+    fill: white;
+}
+
+.text-content__title {
+    color: white;
+
+    font-weight: 700;
+    line-height: 64px;
+    font-size: 3rem;
+
+    padding-top: 10px;
+
+    text-shadow: 0px 0px 30px rgba(0, 0, 0, .7);
+}
+
+.text-content__achievements {
+    padding-top: 10px;
+}
+
+.achievements {
+    background: #FFFFFF;
+    color: #515151;
+
+    padding: 5px 14px 5px 14px;
+    margin-right: 14px;
+    border-radius: 62px;
+}
+
+.achievements__ranking {
+    color: #36B972;
+    font-weight: 800;
+
+    padding-right: 5px;
+}
+
+.text-content__description {
+    margin-top: 22px;
+
+    max-height: 120px;
+    overflow-y: scroll;
+}
+
+.text-content__description::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+.text-content__description::-webkit-scrollbar-thumb {
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.text-content__buttons {
+    display: flex;
+    padding-top: 15px;
+}
+
+.buttons__wishlist {
+    display: flex;
+    align-items: center;
+
+    font-weight: 700;
+    line-height: 24px;
+    font-size: 1.125rem;
+    color: white;
+
+    background-color: #4CC986;
+    border: 0;
+    border-radius: 6px;
+    padding: 10px 25px 9px 46px;
+}
+
+.wishlist__image {
+    padding-left: 12px;
+}
+
+.buttons__purchase {
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: #36B972;
+
+    background-color: transparent;
+    border: 2px solid #36B972;
+    border-radius: 6px;
+
+    padding: 5px;
+    margin-left: 20px;
+
+    width: 229px;
+}
+
+.text-content__extra {
+    display: flex;
+}
+
+.extra__left {
+    margin-top: 24px;
+}
+
+.left__text-container {
+    margin-bottom: 22px;
+    
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 230px;
+}
+
+.left__text-container > label, p {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 21px;
+}
+
+.text-label {
+    color: #939393;
+}
+
+.text-info {
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    margin-top: 6px;
+    text-decoration: underline;
+    color: var(--primary-text-color);
+}
+
+#release-date-text {
+    text-decoration: none;
+}
+
+#website-text {
+    text-decoration: underline;
+    color: var(--primary-text-color);
+    display: block;
+}
+
+#website-text:hover {
+    cursor: pointer;
+}
+
+.extra__right {
+    margin-top: 24px;
+    margin-left: 18px;
+}
+
+.right__text-container {
+    margin-bottom: 22px;
+}
+
+#age-text {
+    text-decoration: none;
+}
+
+.right__icons-container {
+    margin-top: 48px;
+}
+
+.icon-modal {
+    padding-right: 12px;
+}
+
+.modal-game__media-content {
+    z-index: 25;
+
+    margin-top: 290px;
+    margin-right: 32px;
+    margin-left: 17px;
+}
+
+.media-content__screenshot-container {
+    margin-top: 10px;
+}
+
+.media-content__screenshot:first-of-type {
+    margin-right: 18px;
+    margin-bottom: 14px;
+}
+
+.media-content__screenshot:nth-of-type(2) {
+    margin-bottom: 14px;
+}
+
+.media-content__screenshot:nth-of-type(3) {
+    margin-right: 18px;
+}
+
+#media-content__trailer {
+    max-width: 390px;
+    max-height: 217px;
+
+    display: none;
+    border:0;
+}
+
+#media-content__trailer-not {
+    display: block;
+}
+
+.media-content__screenshot {
+    width: 184px;
+    height: 104px;
+}
+
+.background-modal-game {
+    display: none;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    z-index: 15;
+
+    background-color: black;
+    opacity: 0.3;
+}
+
+.fade {
+    height: 100%;
+    width: 100%;
+
+    position:absolute;
+    z-index: 2;
+
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--card-bg) 63.23%, var(--card-bg) 75.85%);
 }
 
 /*

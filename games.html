@@ -16,6 +16,7 @@
   </head>
   <body>
     <div class="background-modal"></div>
+    <div class="background-modal-game"></div>
     <header>
       <section>
         <img
@@ -161,6 +162,73 @@
       <section class="games-container"></section>
       <footer class="fade-effect"></footer>
     </main>
+    <article class="modal-game">
+      <div class="fade"></div>
+      <img class="modal-image" alt="Game official." src='https://via.placeholder.com/363x179' />
+      <section class="modal-game__text-content">
+        <div class="text-content__platforms"></div>
+        <h3 class="text-content__title"></h3>
+        <div class="text-content__achievements">
+          <span class="achievements">May 31, 2021</span>
+          <span class="achievements"><span class="achievements__ranking achievements__top"></span>TOP 2021</span>
+          <span class="achievements"><span class="achievements__ranking">#9</span>RPG</span>
+        </div>
+        <p class="text-content__description"></p>
+        <div class="text-content__buttons">
+          <button class="buttons__wishlist" type="button">Add to wishlist<img class="wishlist__image" src="./resources/icons/Heart.svg"/></button>
+          <button class="buttons__purchase" type="button">Purchase</button>
+        </div>
+        <div class="text-content__extra">
+          <div class="extra__left">
+            <div class="left__text-container">
+              <label class="text-label">Platforms</label>
+              <p class="text-info" id="platforms-text"></p>
+            </div>
+            <div class="left__text-container">
+              <label class="text-label">Release date</label>
+              <p class="text-info" id="release-date-text"></p>
+            </div>
+            <div class="left__text-container">
+              <label class="text-label">Publisher</label>
+              <p class="text-info" id="publisher-text"></p>
+            </div>
+            <div class="left__text-container">
+              <label class="text-label">Website</label>
+              <a class="text-info" id="website-text" target="_blank" rel="noopener"></a>
+            </div>
+          </div>
+          <div class="extra__right">
+            <div class="right__text-container">
+              <label class="text-label">Genre</label>
+              <p class="text-info" id="genre-text"></p>
+            </div>
+            <div class="right__text-container">
+              <label class="text-label">Developer</label>
+              <p class="text-info" id="developer-text">Experiment 101</p>
+            </div>
+            <div class="right__text-container">
+              <label class="text-label">Age rating</label>
+              <p class="text-info" id="age-text"></p>
+            </div>
+            <div class="right__icons-container">
+              <img class="icon-modal" src="./resources/icons/chat-bubbles.svg" />
+              <img class="icon-modal" src="./resources/icons/thumbs-up-modal.svg" />
+              <img class="icon-modal" src="./resources/icons/action.svg" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="modal-game__media-content">
+        <iframe sandbox title="Game trailer" width="390" height="217" id="media-content__trailer"></iframe>
+        <img id="media-content__trailer-not" src="https://via.placeholder.com/390x217"/>
+        <div class="media-content__screenshot-container">
+          <img class="media-content__screenshot" />
+          <img class="media-content__screenshot" />
+          <img class="media-content__screenshot" />
+          <img class="media-content__screenshot" />
+        </div>
+      </section>
+    </article>
     <script src="./javascript/services.js" type="module"></script>
     <script src="./javascript/helpers.js" type="module"></script>
     <script src="./javascript/templates.js" type="module"></script>

@@ -36,10 +36,10 @@ let lastSearches = JSON.parse(localStorage.getItem("searches")) || []; // Variab
 function handleSwitchChange(mode) {
   if (mode === "dark") {
     body.classList.add("light-mode");
-    toggle.src = "./resources/icons/Off.png";
+    toggle.src = "./resources/icons/off.png";
   } else {
     body.classList.remove("light-mode");
-    toggle.src = "./resources/icons/On.png";
+    toggle.src = "./resources/icons/on.png";
   }
 }
 
@@ -179,6 +179,7 @@ searchInput.addEventListener("input", async (e) => {
 
   if (searchValue !== "") {
     searchResultsClear.style.visibility = "visible";
+    backgroundSearchModal.style.display = "block";
 
     if (filteredArr.length > 0) {
       filteredArr.forEach((item, i) => {
@@ -216,8 +217,6 @@ searchInput.addEventListener("input", async (e) => {
           }
         });
       });
-
-      backgroundSearchModal.style.display = "block";
     } else {
       searchResults.innerHTML += searchResultTemplate(
         { id: 0, name: "No results found" },

@@ -1,5 +1,5 @@
 const baseUrl = "https://api.rawg.io/api/games";
-const API_KEY = "e3108f7dfa484f38bdb2d3b8372fb406"
+const API_KEY = "98cb70b16e2c40599321014ad4e71495"
 
 export const fetchGames = async (page) => {
   const response = await fetch(
@@ -22,7 +22,7 @@ export const getGamesDetails = async (games) => {
       `${baseUrl}/${game.id}?key=${API_KEY}`
     );
     let detailsJson = await details.json();
-    let description = detailsJson.description;
+    let {description, website, released, platforms} = detailsJson;
 
     // Replaces the tags the description has.
     // Matches the character < / > literally (case sensitive).
@@ -31,7 +31,7 @@ export const getGamesDetails = async (games) => {
     description = description.replace(/<\/?[^>]+(>|$)/g, "");
 
     // Adds the description to the array of games.
-    return { ...games[i], description };
+    return { ...games[i], description, website, released, platforms };
   }));
 
   return gamesWithDescription;
@@ -51,3 +51,31 @@ export const searchGames = async (search) => {
 
   return transformedResponse.results;
 }
+
+export const getGameTrailer = async (id) => {
+  const response = await fetch(
+    `${baseUrl}/${id}/movies?key=${API_KEY}`
+  );
+
+  // This handles a 404 status
+  if (!response.ok) {
+    throw new Error("The game doesn't have any trailer.");
+  }
+  const transformedResponse = await response.json();
+
+  return transformedResponse.results;
+}
+
+export const getGameScreenshots = async (id) => {
+  const response = await fetch(
+    `${baseUrl}/${id}/screenshots?key=${API_KEY}`
+  );
+
+  // This handles a 404 status
+  if (!response.ok) {
+    throw new Error("The game doesn't have any screenshots.");
+  }
+  const transformedResponse = await response.json();
+
+  return transformedResponse.results;
+} 

@@ -48,10 +48,10 @@ eye.addEventListener("click", () => {
   input.classList.toggle("form__password-dots");
 
   if (eye.src.indexOf("Off") !== -1) {
-    eye.src = "../resources/icons/Eye.png";
+    eye.src = "../resources/icons/eye.png";
     input.type = "password";
   } else {
-    eye.src = "../resources/icons/Eye Off.png";
+    eye.src = "../resources/icons/eye-off.png";
     input.type = "text";
   }
 });

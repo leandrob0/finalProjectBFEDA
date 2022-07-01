@@ -1,8 +1,27 @@
-import { galleryTemplate, cardTemplate } from "./templates.js";
-import { fetchGames, getGamesDetails } from "./services.js";
+import {
+  galleryTemplate,
+  cardTemplate,
+  xboxTemplate,
+  playstationTemplate,
+  pcTemplate,
+} from "./templates.js";
+import {
+  fetchGames,
+  getGameScreenshots,
+  getGamesDetails,
+  getGameTrailer,
+} from "./services.js";
+import { formatPlatformsText, includesPlatform } from "./helpers.js";
 
 const GamesContainerFunctions = (function () {
   const gamesContainer = document.querySelector(".games-container");
+  const gameModal = document.querySelector(".modal-game");
+  const backgroundGameModal = document.querySelector(".background-modal-game");
+  const gameTrailer = document.getElementById("media-content__trailer");
+  const gameTrailerNot = document.getElementById("media-content__trailer-not");
+  const gameScreenshots = document.querySelectorAll(
+    ".media-content__screenshot"
+  );
   let currentPage = 1;
   let gamesArray = [];
 
@@ -10,6 +29,148 @@ const GamesContainerFunctions = (function () {
     let pageResults = await fetchGames(currentPage);
     pageResults = await getGamesDetails(pageResults);
     return pageResults;
+  }
+
+  function getGameFromArray(game) {
+    for (let i = 0; i < gamesArray.length; i++) {
+      if (Number(game.id) === Number(gamesArray[i].id)) {
+        return gamesArray[i];
+      }
+    }
+    return {};
+  }
+
+  function defaultScreenshots() {
+    Array.from(gameScreenshots).forEach((img) => {
+      img.src = "https://via.placeholder.com/184x104";
+    });
+  };
+
+  function resetTrailer() {
+    gameTrailer.style.display = "none";
+    gameTrailerNot.style.display = "block";
+  };
+
+  // Resets the source of all the media shown in the game modal.
+  function resetMedia() {
+    defaultScreenshots();
+    resetTrailer();
+  }
+
+  // Adds the event listener for the background when the game modal is opened.
+  backgroundGameModal.addEventListener("click", () => {
+    backgroundGameModal.style.display = "none";
+    gameModal.style.display = "none";
+    resetMedia();
+  });
+
+  // Populates the modal of the game clicked.
+  function populateModal(game) {
+    // This will fill every field in the game modal.
+
+    // Variables to be used.
+    const modalImage = document.querySelector(".modal-image");
+    const gameTitle = document.querySelector(".text-content__title");
+    const platformsContainer = document.querySelector(
+      ".text-content__platforms"
+    );
+    const description = document.querySelector(".text-content__description");
+    const platformsText = document.getElementById("platforms-text");
+    const ratingText = document.querySelector(".achievements__top");
+    const releaseDateText = document.getElementById("release-date-text");
+    const publisherText = document.getElementById("publisher-text");
+    const websiteText = document.getElementById("website-text");
+    const genreText = document.getElementById("genre-text");
+    const ageText = document.getElementById("age-text");
+
+    const defaultFromIndex = (index) => {
+      Array.from(gameScreenshots).forEach((img, i) => {
+        if (i >= index) {
+          img.src = "https://via.placeholder.com/184x104";
+        }
+      });
+    };
+
+    getGameTrailer(game.id)
+      .then((res) => {
+        if (res.length !== 0) {
+          gameTrailer.style.display = "block";
+          gameTrailerNot.style.display = "none";
+          gameTrailer.src = res[0].data.max || res[0].data[480];
+        } 
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    getGameScreenshots(game.id)
+      .then((res) => {
+        if (res.length >= 4) {
+          Array.from(gameScreenshots).forEach((img, i) => {
+            img.src = res[i].image;
+          });
+        } else {
+          defaultFromIndex(res.length);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    const xbox = includesPlatform(game, "Xbox");
+    const pc = includesPlatform(game, "PC");
+    const playstation = includesPlatform(game, "PlayStation");
+
+    // Value assignation.
+    modalImage.src = `${game.background_image}`;
+
+    // Resets in case the user opened another game modal and the icons are still there.
+    platformsContainer.innerHTML = "";
+    if (xbox) platformsContainer.innerHTML += xboxTemplate;
+    if (pc) platformsContainer.innerHTML += pcTemplate;
+    if (playstation) platformsContainer.innerHTML += playstationTemplate;
+    // Makes the platform icons bigger (by default they are 20x20 or 24x20 depending on the icon).
+    Array.from(platformsContainer.children).forEach((child) => {
+      child.classList.add("bigger-icon");
+      Array.from(child.children).forEach((path) => {
+        path.classList.remove("icon-color");
+        path.classList.add("platforms-color");
+      });
+    });
+
+    gameTitle.textContent = game.name;
+    ratingText.textContent = `#${game.rating_top || ""}`;
+    description.textContent = game.description;
+    platformsText.setAttribute("title", formatPlatformsText(game.platforms));
+    platformsText.textContent = formatPlatformsText(game.platforms);
+    releaseDateText.textContent = game.released;
+    publisherText.textContent = "THQ Nordic";
+    websiteText.setAttribute("href", game.website);
+    websiteText.textContent = game.website;
+    genreText.textContent = game.genres
+      ? game.genres.map((genre, i) =>
+          i + 1 === game.genres.length ? genre.name : genre.name + ", "
+        )
+      : "Unknown";
+    ageText.textContent = game.esrb_rating.name;
+  }
+
+  function gameListener(game) {
+    return () => {
+      gameModal.style.display = "flex";
+      backgroundGameModal.style.display = "block";
+      const gameWithDetails = getGameFromArray(game);
+      populateModal(gameWithDetails);
+    };
+  }
+
+  function addModalEventListener() {
+    const gameContainer = document.querySelectorAll(".game-container");
+    Array.from(gameContainer).forEach((game) => {
+      // Si el juego ya estaba (estoy renderizando optra pagina), evito agregar mas event listeners a el mismo juego.
+      game.removeEventListener("click", gameListener(game));
+      game.addEventListener("click", gameListener(game));
+    });
   }
 
   return {
@@ -44,11 +205,13 @@ const GamesContainerFunctions = (function () {
       arr.forEach((game, index) => {
         gamesContainer.innerHTML += cardTemplate(game, initialCount + index);
       });
+      addModalEventListener();
     },
     renderGallery: function (arr, initialCount = 1) {
       arr.forEach((game, index) => {
         gamesContainer.innerHTML += galleryTemplate(game, initialCount + index);
       });
+      addModalEventListener();
     },
     renderFilteredGames: function (arr) {
       gamesContainer.innerHTML = "";
@@ -80,10 +243,10 @@ const GamesContainerFunctions = (function () {
       } else gamesContainer.classList.add("center-games");
     },
     gameInArray: function (game) {
-      for(let i = 0; i < gamesArray.length; i++) {
-        if(game.id === gamesArray[i].id) {
+      for (let i = 0; i < gamesArray.length; i++) {
+        if (game.id === gamesArray[i].id) {
           return true;
-        } 
+        }
       }
       return false;
     },
