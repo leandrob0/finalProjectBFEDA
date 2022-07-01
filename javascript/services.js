@@ -51,3 +51,17 @@ export const searchGames = async (search) => {
 
   return transformedResponse.results;
 }
+
+export const getGameTrailer = async (id) => {
+  const response = await fetch(
+    `${baseUrl}/${id}/movies?key=${API_KEY}`
+  );
+
+  // This handles a 404 status
+  if (!response.ok) {
+    return [];
+  }
+  const transformedResponse = await response.json();
+
+  return transformedResponse.results;
+}

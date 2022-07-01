@@ -1,5 +1,5 @@
 import { galleryTemplate, cardTemplate, xboxTemplate, playstationTemplate, pcTemplate } from "./templates.js";
-import { fetchGames, getGamesDetails } from "./services.js";
+import { fetchGames, getGamesDetails, getGameTrailer } from "./services.js";
 import { formatPlatformsText, includesPlatform } from "./helpers.js";
 
 const GamesContainerFunctions = (function () {
@@ -30,6 +30,15 @@ const GamesContainerFunctions = (function () {
   });
 
   function populateModal(game) {
+
+    getGameTrailer(game.id)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+
     // This will fill every field in the game modal.
 
     // Variables to be used.
