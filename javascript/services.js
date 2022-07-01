@@ -59,9 +59,23 @@ export const getGameTrailer = async (id) => {
 
   // This handles a 404 status
   if (!response.ok) {
-    return [];
+    throw new Error("The game doesn't have any trailer.");
   }
   const transformedResponse = await response.json();
 
   return transformedResponse.results;
 }
+
+export const getGameScreenshots = async (id) => {
+  const response = await fetch(
+    `${baseUrl}/${id}/screenshots?key=${API_KEY}`
+  );
+
+  // This handles a 404 status
+  if (!response.ok) {
+    throw new Error("The game doesn't have any screenshots.");
+  }
+  const transformedResponse = await response.json();
+
+  return transformedResponse.results;
+} 

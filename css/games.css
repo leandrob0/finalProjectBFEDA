@@ -884,6 +884,23 @@ main {
     margin-right: 18px;
 }
 
+#media-content__trailer {
+    max-width: 390px;
+    max-height: 217px;
+
+    display: none;
+    border:0;
+}
+
+#media-content__trailer-not {
+    display: block;
+}
+
+.media-content__screenshot {
+    max-width: 184px;
+    max-height: 104px;
+}
+
 .background-modal-game {
     display: none;
 
