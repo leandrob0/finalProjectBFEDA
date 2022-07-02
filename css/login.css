@@ -352,7 +352,7 @@ input.form__text-input {
 
 .form__password.form__password-dots {
     font: large Verdana,sans-serif;
-    padding-bottom: 5px;
+    padding-bottom: 3px;
 }
 
 input[type="password"]::placeholder {
