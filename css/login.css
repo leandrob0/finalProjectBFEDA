@@ -110,6 +110,10 @@ body {
     fill: var(--primary-text-color);
 }
 
+.dot-color:hover {
+    cursor: pointer;
+}
+
 .right-side {
     display: flex;
     align-items: center;
