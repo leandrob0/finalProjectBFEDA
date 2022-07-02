@@ -3,6 +3,7 @@ const carousel = document.getElementById("bg-carousel");
 const rightChevron = document.getElementById("right-chevron");
 const leftChevron = document.getElementById("left-chevron");
 const bottomSliderChildren = document.getElementById("bottom-slider").children;
+const bottomSliderDots = document.querySelectorAll('.dot-color');
 
 const headerLightMode = document.querySelector('.not-show');
 const logo = document.querySelector("#logo-login");
@@ -47,7 +48,7 @@ eye.addEventListener("click", () => {
   const input = eye.previousElementSibling;
   input.classList.toggle("form__password-dots");
 
-  if (eye.src.indexOf("Off") !== -1) {
+  if (eye.src.includes("eye-off")) {
     eye.src = "../resources/icons/eye.png";
     input.type = "password";
   } else {
@@ -133,6 +134,28 @@ const handleCarousel = (e) => {
 
 rightChevron.addEventListener("click", handleCarousel);
 leftChevron.addEventListener("click", handleCarousel);
+
+// Handles the bottom slider dot click to change the image.
+Array.from(bottomSliderDots).forEach((dot, i) => {
+  dot.addEventListener("click", () => {
+    let actualPhoto = JSON.parse(localStorage.getItem("carousel")) || {
+      index: 0,
+      mode: "dark",
+    };
+
+    carousel.style.backgroundImage = `url('../resources/images/${
+      actualPhoto.mode === "dark"
+        ? images[i].dark
+        : images[i].light
+    }')`;
+
+    bottomSliderChildren[actualPhoto.index + 1].style.opacity = "0.25";
+    actualPhoto.index = i;
+    bottomSliderChildren[actualPhoto.index + 1].style.opacity = "1";
+
+    localStorage.setItem("carousel", JSON.stringify(actualPhoto));
+  });
+})
 
 /*
 ############################################
