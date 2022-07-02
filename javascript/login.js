@@ -47,7 +47,7 @@ eye.addEventListener("click", () => {
   const input = eye.previousElementSibling;
   input.classList.toggle("form__password-dots");
 
-  if (eye.src.indexOf("Off") !== -1) {
+  if (eye.src.includes("eye-off")) {
     eye.src = "../resources/icons/eye.png";
     input.type = "password";
   } else {
