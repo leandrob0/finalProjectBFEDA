@@ -481,3 +481,12 @@ input[type="password"]::placeholder {
 .social-logo-icon {
     fill: var(--social-icon-color);
 }
+
+@media (max-width: 768px) {
+    #logo-login {
+        left: 0; 
+        right: 0; 
+        margin-left: auto; 
+        margin-right: auto; 
+    }
+}
