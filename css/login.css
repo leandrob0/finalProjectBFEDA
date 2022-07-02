@@ -79,7 +79,6 @@ body {
 
 #right-chevron {
     margin-left: 25px;
-    margin-right: 32px;
 
     transform: rotate(-180deg);
 }
@@ -115,6 +114,7 @@ body {
 }
 
 .right-side {
+    padding-right: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -484,6 +484,21 @@ input[type="password"]::placeholder {
 
 @media (max-width: 768px) {
     #logo-login {
+        left: 0; 
+        right: 0; 
+        margin-left: auto; 
+        margin-right: auto; 
+    }
+
+    .login-container {
+        position: absolute;
+        left: 0; 
+        right: 0; 
+        margin-left: auto; 
+        margin-right: auto; 
+    }
+
+    .login-container.login-background  {
         left: 0; 
         right: 0; 
         margin-left: auto; 
