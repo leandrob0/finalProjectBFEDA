@@ -960,10 +960,6 @@ main {
         --margin-l-r: 20px;
     }
 
-    .sidebar {
-        display: none;
-    }
-
     main {
         grid-template-areas:
         "below below"
@@ -978,7 +974,11 @@ main {
         width: inherit;
     }
 
+    /* ITEMS THAT I NEED TO DISAPPEAR */
     /* Hide scrollbar for Chrome, Safari and Opera */
+    .user, 
+    .sidebar, 
+    .logo__image, 
     .games-container::-webkit-scrollbar {
         display: none;
     }
