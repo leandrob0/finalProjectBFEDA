@@ -105,6 +105,10 @@ header {
     display: none;
 }
 
+.menu__burguer:hover {
+    cursor: pointer;
+}
+
 .search {
     position: relative;
 
