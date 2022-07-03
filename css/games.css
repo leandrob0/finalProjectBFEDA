@@ -970,18 +970,6 @@ main {
         "games games";
     }
 
-    .description-title {
-        margin-left: 20px;
-    }
-
-    .descriptions__subtitle {
-        margin-left: 20px;
-    }
-
-    .descriptions__options:last-child {
-        margin-right: 20px;
-    }
-
     .card {
         width: 351px;
     }
