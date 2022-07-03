@@ -85,15 +85,15 @@ toggle.addEventListener("click", () => {
 ############################################
 */
 
-GamesContainerFunctions.loadInitialGames();
+//GamesContainerFunctions.loadInitialGames();
 
-gamesContainer.addEventListener("scroll", (e) => {
+/* gamesContainer.addEventListener("scroll", (e) => {
   const element = e.target;
   // Checks if the element is at the bottom of the container (can't go further). -> poor attemp of trying to block fetching when i'm seeing search results.
   if (element.scrollHeight - element.scrollTop === element.clientHeight && GamesContainerFunctions.isEqual()) {
     GamesContainerFunctions.loadNextGames();
   }
-});
+}); */
 
 /*
 ############################################

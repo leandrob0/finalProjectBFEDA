@@ -3,6 +3,8 @@
     --primary-text-color: #FFFFFF;
 
     --bg: #151515;
+    --menu-bg: #2A2A2A;
+    --menu-separator: #515151;
 
     /* Icons from the view options */
     --enabled-bg: #515151;
@@ -28,6 +30,8 @@
     --disabled-inside: #C4C4C4;
 
     --bg: #F0F0F0;
+    --menu-bg: white;
+    --menu-separator: #E4E4E4;
 
     --primary-text-color: #515151;
 
@@ -68,6 +72,63 @@ body {
 
     background-color: black;
     opacity: 0.3;
+}
+
+.menu-sm-devices {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    z-index: 30;
+
+    background-color: var(--menu-bg);
+}
+
+.menu__user-close {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 16px;
+    margin-left: 16px;
+}
+
+.menu__user {
+    color: var(--primary-text-color);
+    display: flex;
+}
+
+.user__name {
+    font-weight: 800;
+    font-size: 1.125rem;
+    line-height: 24px;
+
+    margin-left: 8px;
+}
+
+.user__username {
+    font-size: 0.875rem;
+
+    margin-left: 8px;
+}
+
+.close__cross {
+    align-self: flex-start;
+
+    margin-right: 12px;
+}
+
+.close__cross:hover {
+    cursor: pointer;
+}
+
+.menu__separator {
+    margin: 0;
+    margin-top: 14px;
+
+    border: 1px solid var(--menu-separator);
 }
 
 /*
