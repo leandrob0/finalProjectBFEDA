@@ -960,6 +960,14 @@ main {
         --margin-l-r: 20px;
     }
 
+    header {
+        justify-content: center;
+    }
+
+    .search {
+        margin-left: 0;
+    }
+
     main {
         grid-template-areas:
         "below below"
