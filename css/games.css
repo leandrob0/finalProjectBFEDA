@@ -994,6 +994,10 @@ main {
         width: 351px;
     }
 
+    .gallery {
+        margin-left: 0;
+    }
+
     .card__image {
         width: inherit;
     }
@@ -1014,5 +1018,11 @@ main {
 
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
+    }
+
+    .games-container.center-games {
+        justify-content: center;
+        padding-right: 0;
+        margin-left: 0;
     }
 }
