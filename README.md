@@ -21,5 +21,6 @@ npm run server
 - After this steps, you are ready to use the application on http://localhost:3000.
 
 - To Log In, you can use this credentials: 
-  Email: olivier@mail.com
-  Password: bestPassw0rd
+
+Email: olivier@mail.com
+Password: bestPassw0rd
