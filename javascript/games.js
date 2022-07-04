@@ -6,7 +6,7 @@ import { getGamesDetails, searchGames } from "./services.js";
 import { GamesContainerFunctions } from "./gamesContainer.js";
 
 // Select every element that i will use.
-const userimg = document.querySelector(".user__img");
+const userimg = document.querySelectorAll(".user__img");
 const toggle = document.querySelector("#toggle-switch");
 const body = document.querySelector("body");
 const logoutButton = document.querySelector(".user__log-out");
@@ -69,7 +69,7 @@ toggle.addEventListener("click", () => {
     location.href = "/";
   }
 
-  userimg.src = `../resources/images/${userinfo.user.photo}`;
+  [...userimg].forEach((img) => img.src = `../resources/images/${userinfo.user.photo}`);
 
   const localStorageItem = JSON.parse(localStorage.getItem("carousel"));
   const mode = localStorageItem.mode;

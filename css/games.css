@@ -175,10 +175,6 @@ body {
     line-height: 20px;
 }
 
-.menu__bottom-section > div {
-    margin-left: 4px;
-}
-
 .menu__bottom-section > p {
     height: 39px;
     display: flex;
