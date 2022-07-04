@@ -162,6 +162,35 @@ body {
     cursor: pointer;
 }
 
+.menu__bottom-section {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    color: var(--primary-text-color);
+    font-size: 0.938rem;
+    line-height: 20px;
+}
+
+.menu__bottom-section > div {
+    margin-left: 4px;
+}
+
+.menu__bottom-section > p {
+    height: 39px;
+    display: flex;
+    align-items: center;
+
+    padding-left: 16px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+.menu__bottom-section > p:hover {
+    cursor: pointer;
+}
+
 /*
     ##########################################################################
 
