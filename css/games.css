@@ -139,6 +139,29 @@ body {
     border: 1px solid var(--menu-separator);
 }
 
+.menu__navigation-options {
+    color: var(--primary-text-color);
+
+    margin-left: 16px;
+    margin-top: 18px;
+}
+
+.navigation-options__option:first-of-type {
+    color: #5FE19B;
+}
+
+.navigation-options__option {
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 27px;
+
+    margin-bottom: 32px;
+}
+
+.navigation-options__option:hover {
+    cursor: pointer;
+}
+
 /*
     ##########################################################################
 
