@@ -89,11 +89,29 @@ body {
     top: 0;
     bottom: 0;
     right: 0;
-    left: 0;
+    left: -1000px;
 
     z-index: 30;
 
+    opacity: 0;
     background-color: var(--menu-bg);
+    -webkit-animation: slide 0.2s forwards;
+    animation: slide 0.2s forwards;
+}
+
+/* Animation code from https://stackoverflow.com/questions/16989585/css-3-slide-in-from-left-transition */
+@-webkit-keyframes slide {
+    100% { 
+        left: 0; 
+        opacity: 1;
+    }
+}
+
+@keyframes slide {
+    100% { 
+        left: 0; 
+        opacity: 1;
+    }
 }
 
 .menu__user-close {
