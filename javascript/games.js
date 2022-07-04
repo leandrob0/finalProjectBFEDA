@@ -85,7 +85,7 @@ toggle.addEventListener("click", () => {
 ############################################
 */
 
-GamesContainerFunctions.loadInitialGames();
+//GamesContainerFunctions.loadInitialGames();
 
 /* gamesContainer.addEventListener("scroll", (e) => {
   const element = e.target;
