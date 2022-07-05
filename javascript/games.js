@@ -6,9 +6,9 @@ import { getGamesDetails, searchGames } from "./services.js";
 import { GamesContainerFunctions } from "./games-container.js";
 
 // Select every element that i will use.
-const userimg = document.querySelectorAll(".user__img");
-const toggle = document.querySelectorAll(".toggle-switch");
 const body = document.querySelector("body");
+const userimg = document.querySelectorAll(".user__img");
+const toggles = document.querySelectorAll(".toggle-switch");
 const logoutButton = document.querySelector(".user__log-out");
 const gamesContainer = document.querySelector(".games-container");
 const cardOption = document.querySelector("#card-option");
@@ -36,29 +36,31 @@ let lastSearches = JSON.parse(localStorage.getItem("searches")) || []; // Variab
 function handleSwitchChange(mode) {
   if (mode === "dark") {
     body.classList.add("light-mode");
-    [...toggle].forEach((toggle) => toggle.src = "./resources/icons/off.png");
+    [...toggles].forEach((toggle) => toggle.src = "./resources/icons/off.png");
   } else {
     body.classList.remove("light-mode");
-    [...toggle].forEach((toggle) => toggle.src = "./resources/icons/on.png");
+    [...toggles].forEach((toggle) => toggle.src = "./resources/icons/on.png");
   }
 }
 
-[...toggle].forEach((toggle) => {
-  toggle.addEventListener("click", () => {
-    const localStorageItem = JSON.parse(localStorage.getItem("carousel"));
-    const mode = localStorageItem.mode;
-  
-    handleSwitchChange(mode);
-  
-    localStorage.setItem(
-      "carousel",
-      JSON.stringify({
-        ...localStorageItem,
-        mode: mode === "dark" ? "light" : "dark",
-      })
-    );
+function addTogglesListeners() {
+  [...toggles].forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const localStorageItem = JSON.parse(localStorage.getItem("carousel"));
+      const mode = localStorageItem.mode;
+    
+      handleSwitchChange(mode);
+    
+      localStorage.setItem(
+        "carousel",
+        JSON.stringify({
+          ...localStorageItem,
+          mode: mode === "dark" ? "light" : "dark",
+        })
+      );
+    })
   })
-})
+}
 
 // When the page loads, checks if the localStorage item describing the user logged in exists.
 // If it doesn't exist, it goes back to the login page (it means the user didn't log in.)
@@ -77,6 +79,7 @@ function handleSwitchChange(mode) {
   const mode = localStorageItem.mode;
 
   handleSwitchChange(mode === "dark" ? "light" : "dark");
+  addTogglesListeners();
 })();
 
 /*
