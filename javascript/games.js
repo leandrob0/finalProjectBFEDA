@@ -10,6 +10,7 @@ const body = document.querySelector("body");
 const userimg = document.querySelectorAll(".user__img");
 const toggles = document.querySelectorAll(".toggle-switch");
 const logoutButton = document.querySelector(".user__log-out");
+const logoutButtonMenu = document.querySelector('.bottom-section__logout');
 const gamesContainer = document.querySelector(".games-container");
 const cardOption = document.querySelector("#card-option");
 const galleryOption = document.querySelector("#gallery-option");
@@ -271,6 +272,5 @@ lastSearchesButton.addEventListener("click", () => GamesContainerFunctions.rende
 ############################################
 */
 
-logoutButton.addEventListener("click", () => {
-  localStorage.removeItem("userinfo");
-});
+logoutButton.addEventListener("click", () => localStorage.removeItem("userinfo"));
+logoutButtonMenu.addEventListener("click", () => localStorage.removeItem("userinfo"));

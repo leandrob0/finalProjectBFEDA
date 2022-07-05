@@ -211,6 +211,23 @@ body {
     cursor: pointer;
 }
 
+.bottom-section__logout {
+    text-decoration: none;
+    color: var(--primary-text-color);
+
+    height: 39px;
+    display: flex;
+    align-items: center;
+
+    padding-left: 16px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+.bottom-section__logout:hover {
+    cursor: pointer;
+}
+
 .menu__bottom-section .switch-menu .switch {
     padding-left: 5px;
 }
