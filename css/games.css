@@ -207,6 +207,10 @@ body {
     cursor: pointer;
 }
 
+.menu__bottom-section > div {
+    padding-left: 5px;
+}
+
 /*
     ##########################################################################
 
@@ -427,7 +431,7 @@ main {
     justify-content: flex-end;
 }
 
-#toggle-switch {
+.toggle-switch {
     margin-left: 13px;
 }
 
