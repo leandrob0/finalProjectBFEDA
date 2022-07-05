@@ -148,6 +148,10 @@ body {
     margin-right: 12px;
 }
 
+.close__cross-color {
+    fill: var(--primary-text-color);
+}
+
 .close__cross:hover {
     cursor: pointer;
 }
