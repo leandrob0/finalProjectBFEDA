@@ -211,7 +211,7 @@ body {
     cursor: pointer;
 }
 
-.menu__bottom-section > div {
+.menu__bottom-section .switch-menu .switch {
     padding-left: 5px;
 }
 
@@ -1172,5 +1172,9 @@ main {
         justify-content: center;
         padding-right: 0;
         margin-left: 0;
+    }
+
+    .switch-menu {
+        display: none;
     }
 }
