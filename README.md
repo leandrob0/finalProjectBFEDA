@@ -1,6 +1,8 @@
 ## GAME FINDER.
 
-Final project for the Frontend bootcamp by Altimetrik. Made with plain HTML, CSS, and JavaScript.
+This is a Game Finder web. 
+You can search, and view different games in detail. It has also dark/light mode functionality.
+It was made as a final project for the Frontend bootcamp by Altimetrik. Made with plain HTML, CSS, and JavaScript, consuming the [RAWG API](https://api.rawg.io/docs/).
 
 ### Running it.
 
