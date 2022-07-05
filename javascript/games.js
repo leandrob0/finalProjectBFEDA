@@ -3,7 +3,7 @@ import {
 } from "./templates.js";
 import { searchAdded, resetSearch } from "./helpers.js";
 import { getGamesDetails, searchGames } from "./services.js";
-import { GamesContainerFunctions } from "./gamesContainer.js";
+import { GamesContainerFunctions } from "./games-container.js";
 
 // Select every element that i will use.
 const userimg = document.querySelectorAll(".user__img");
