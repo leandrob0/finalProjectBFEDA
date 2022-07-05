@@ -1,7 +1,10 @@
 :root {
+    /* COLORS */
     --primary-text-color: #FFFFFF;
 
     --bg: #151515;
+    --menu-bg: #2A2A2A;
+    --menu-separator: #515151;
 
     /* Icons from the view options */
     --enabled-bg: #515151;
@@ -12,6 +15,9 @@
     --card-bg: #303030;
 
     --footer-gradient: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+
+    /* MARGINS */
+    --margin-l-r: 40px;
 }
 
 .light-mode {
@@ -24,6 +30,8 @@
     --disabled-inside: #C4C4C4;
 
     --bg: #F0F0F0;
+    --menu-bg: white;
+    --menu-separator: #E4E4E4;
 
     --primary-text-color: #515151;
 
@@ -47,8 +55,8 @@ html {
 }
 
 body {
-    max-width: 1440px;
-    height: 1024px;
+    width: 100vw;
+    height: 100vh;
 }
 
 .background-modal {
@@ -64,6 +72,164 @@ body {
 
     background-color: black;
     opacity: 0.3;
+}
+
+/*
+    ##########################################################################
+
+    MENU FOR SMALL DEVICES STYLING.
+
+    ##########################################################################
+*/
+
+.menu-sm-devices {
+    display: none;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: -1000px;
+
+    z-index: 30;
+
+    opacity: 0;
+    background-color: var(--menu-bg);
+    -webkit-animation: slide 0.2s forwards;
+    animation: slide 0.2s forwards;
+}
+
+/* Animation code from https://stackoverflow.com/questions/16989585/css-3-slide-in-from-left-transition */
+@-webkit-keyframes slide {
+    100% { 
+        left: 0; 
+        opacity: 1;
+    }
+}
+
+@keyframes slide {
+    100% { 
+        left: 0; 
+        opacity: 1;
+    }
+}
+
+.menu__user-close {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 16px;
+    margin-left: 16px;
+}
+
+.menu__user {
+    color: var(--primary-text-color);
+    display: flex;
+}
+
+.user__name {
+    font-weight: 800;
+    font-size: 1.125rem;
+    line-height: 24px;
+
+    margin-left: 8px;
+}
+
+.user__username {
+    font-size: 0.875rem;
+
+    margin-left: 8px;
+}
+
+.close__cross {
+    align-self: flex-start;
+
+    margin-right: 12px;
+}
+
+.close__cross-color {
+    fill: var(--primary-text-color);
+}
+
+.close__cross:hover {
+    cursor: pointer;
+}
+
+.menu__separator {
+    margin: 0;
+    margin-top: 14px;
+
+    border: 1px solid var(--menu-separator);
+}
+
+.menu__navigation-options {
+    color: var(--primary-text-color);
+
+    margin-left: 16px;
+    margin-top: 18px;
+}
+
+.navigation-options__option:first-of-type {
+    color: #5FE19B;
+}
+
+.navigation-options__option {
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 27px;
+
+    margin-bottom: 32px;
+}
+
+.navigation-options__option:hover {
+    cursor: pointer;
+}
+
+.menu__bottom-section {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    color: var(--primary-text-color);
+    font-size: 0.938rem;
+    line-height: 20px;
+}
+
+.menu__bottom-section > p {
+    height: 39px;
+    display: flex;
+    align-items: center;
+
+    padding-left: 16px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+.menu__bottom-section > p:hover {
+    cursor: pointer;
+}
+
+.bottom-section__logout {
+    text-decoration: none;
+    color: var(--primary-text-color);
+
+    height: 39px;
+    display: flex;
+    align-items: center;
+
+    padding-left: 16px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+.bottom-section__logout:hover {
+    cursor: pointer;
+}
+
+.menu__bottom-section .switch-menu .switch {
+    padding-left: 5px;
 }
 
 /*
@@ -95,6 +261,14 @@ header {
     width: 267px;
 
     margin-left: 40px;
+}
+
+.menu__burguer {
+    display: none;
+}
+
+.menu__burguer:hover {
+    cursor: pointer;
 }
 
 .search {
@@ -257,7 +431,7 @@ main {
     font-size: 3rem;
     line-height: 64px;
 
-    margin-left: 40px;
+    margin-left: var(--margin-l-r);
     padding-top: 19px;
 }
 
@@ -266,7 +440,7 @@ main {
     align-items: center;
 
     padding-top: 19px;
-    padding-right: 40px;
+    padding-right: var(--margin-l-r);
 }
 
 .switch p {
@@ -278,7 +452,7 @@ main {
     justify-content: flex-end;
 }
 
-#toggle-switch {
+.toggle-switch {
     margin-left: 13px;
 }
 
@@ -292,7 +466,7 @@ main {
     font-size: 1.125rem;
     line-height: 24px;
 
-    margin-left: 40px;
+    margin-left: var(--margin-l-r);
     margin-top: 2px;
 }
 
@@ -301,7 +475,7 @@ main {
     justify-content: space-between;
 
     width: 104px;
-    margin-right: 40px;
+    margin-right: var(--margin-l-r);
     margin-top: -5px;
 }
 
@@ -340,11 +514,17 @@ main {
     gap: 24px;
     margin-top: 24px;
     margin-left: 12px;
+    padding-bottom: 24px;
 
-    height: 788px;
-
-    overflow-y: overlay;
     grid-area: games;
+
+    /* I want the height to be the rest of the remaining space */
+    /* So i do screen height - top section - header - margin */
+    height: calc(100vh - 118px - 94px - 24px);
+    overflow-y: auto;
+
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 .center-games {
@@ -354,13 +534,7 @@ main {
 }
 
 ::-webkit-scrollbar {
-    width: 15px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--card-bg);
-    border: 1px solid black;
-    border-radius: 20px;
+    display: none;
 }
 
 .card {
@@ -942,4 +1116,82 @@ main {
     height: 100px;
 
     background: var(--footer-gradient);
+}
+
+/*
+
+    MEDIA QUERIES TABLET
+
+*/
+
+@media (max-width: 768px) {
+
+    :root {
+        --margin-l-r: 24px;
+    }
+
+    header {
+        justify-content: center;
+        height: 78px;
+    }
+
+    .search {
+        margin-left: 0;
+    }
+
+    .menu__burguer {
+        display: block;
+
+        position: absolute;
+        left: 24px;
+        top: 0;
+        bottom: 0;
+        margin: auto 0;
+    }
+
+    main {
+        margin-top: 78px;
+        height: 100%;
+        grid-template-areas:
+        "below below"
+        "games games";
+        grid-template-rows: 118px auto;
+    }
+
+    .card {
+        width: 351px;
+    }
+
+    .gallery {
+        margin-left: 0;
+    }
+
+    .card__image {
+        width: inherit;
+    }
+
+    /* ITEMS THAT I NEED TO DISAPPEAR */
+    .user, 
+    .sidebar, 
+    .logo__image {
+        display: none;
+    }
+    
+    .games-container {
+        margin-left: 24px;
+        padding-bottom: 48px;
+        gap: 18px;
+
+        height: calc(100vh - 78px - 94px - 24px);
+    }
+
+    .games-container.center-games {
+        justify-content: center;
+        padding-right: 0;
+        margin-left: 0;
+    }
+
+    .switch-menu {
+        display: none;
+    }
 }

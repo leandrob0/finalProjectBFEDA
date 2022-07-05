@@ -3,13 +3,14 @@ import {
 } from "./templates.js";
 import { searchAdded, resetSearch } from "./helpers.js";
 import { getGamesDetails, searchGames } from "./services.js";
-import { GamesContainerFunctions } from "./gamesContainer.js";
+import { GamesContainerFunctions } from "./games-container.js";
 
 // Select every element that i will use.
-const userimg = document.querySelector(".user__img");
-const toggle = document.querySelector("#toggle-switch");
 const body = document.querySelector("body");
+const userimg = document.querySelectorAll(".user__img");
+const toggles = document.querySelectorAll(".toggle-switch");
 const logoutButton = document.querySelector(".user__log-out");
+const logoutButtonMenu = document.querySelector('.bottom-section__logout');
 const gamesContainer = document.querySelector(".games-container");
 const cardOption = document.querySelector("#card-option");
 const galleryOption = document.querySelector("#gallery-option");
@@ -36,27 +37,31 @@ let lastSearches = JSON.parse(localStorage.getItem("searches")) || []; // Variab
 function handleSwitchChange(mode) {
   if (mode === "dark") {
     body.classList.add("light-mode");
-    toggle.src = "./resources/icons/off.png";
+    [...toggles].forEach((toggle) => toggle.src = "./resources/icons/off.png");
   } else {
     body.classList.remove("light-mode");
-    toggle.src = "./resources/icons/on.png";
+    [...toggles].forEach((toggle) => toggle.src = "./resources/icons/on.png");
   }
 }
 
-toggle.addEventListener("click", () => {
-  const localStorageItem = JSON.parse(localStorage.getItem("carousel"));
-  const mode = localStorageItem.mode;
-
-  handleSwitchChange(mode);
-
-  localStorage.setItem(
-    "carousel",
-    JSON.stringify({
-      ...localStorageItem,
-      mode: mode === "dark" ? "light" : "dark",
+function addTogglesListeners() {
+  [...toggles].forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const localStorageItem = JSON.parse(localStorage.getItem("carousel"));
+      const mode = localStorageItem.mode;
+    
+      handleSwitchChange(mode);
+    
+      localStorage.setItem(
+        "carousel",
+        JSON.stringify({
+          ...localStorageItem,
+          mode: mode === "dark" ? "light" : "dark",
+        })
+      );
     })
-  );
-});
+  })
+}
 
 // When the page loads, checks if the localStorage item describing the user logged in exists.
 // If it doesn't exist, it goes back to the login page (it means the user didn't log in.)
@@ -69,12 +74,13 @@ toggle.addEventListener("click", () => {
     location.href = "/";
   }
 
-  userimg.src = `../resources/images/${userinfo.user.photo}`;
+  [...userimg].forEach((img) => img.src = `../resources/images/${userinfo.user.photo}`);
 
   const localStorageItem = JSON.parse(localStorage.getItem("carousel"));
   const mode = localStorageItem.mode;
 
   handleSwitchChange(mode === "dark" ? "light" : "dark");
+  addTogglesListeners();
 })();
 
 /*
@@ -85,15 +91,15 @@ toggle.addEventListener("click", () => {
 ############################################
 */
 
-GamesContainerFunctions.loadInitialGames();
+//GamesContainerFunctions.loadInitialGames();
 
-gamesContainer.addEventListener("scroll", (e) => {
+/* gamesContainer.addEventListener("scroll", (e) => {
   const element = e.target;
   // Checks if the element is at the bottom of the container (can't go further). -> poor attemp of trying to block fetching when i'm seeing search results.
   if (element.scrollHeight - element.scrollTop === element.clientHeight && GamesContainerFunctions.isEqual()) {
     GamesContainerFunctions.loadNextGames();
   }
-});
+}); */
 
 /*
 ############################################
@@ -266,6 +272,5 @@ lastSearchesButton.addEventListener("click", () => GamesContainerFunctions.rende
 ############################################
 */
 
-logoutButton.addEventListener("click", () => {
-  localStorage.removeItem("userinfo");
-});
+logoutButton.addEventListener("click", () => localStorage.removeItem("userinfo"));
+logoutButtonMenu.addEventListener("click", () => localStorage.removeItem("userinfo"));

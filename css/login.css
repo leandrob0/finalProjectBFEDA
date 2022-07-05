@@ -512,7 +512,7 @@ input[type="password"]::placeholder {
 }
 
 /* MEDIA QUERIES FOR THE MOBILE VIEW */
-@media (max-width: 720px) {
+@media (max-width: 320px) {
 
     #bg-carousel {
         display: block;
